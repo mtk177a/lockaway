@@ -111,3 +111,13 @@
 2. **LINE APIを利用した通知システム**
 
 3. **Xでの達成状況の共有機能**
+
+## ■ 技術スタック
+
+| カテゴリ | 技術 |
+|---|---|
+| フロントエンド | Ruby, Ruby on Rails (Hotwire/Turbo), TailwindCSS, DaisyUI |
+| バックエンド | Rails |
+| データベース | MySQL |
+| 環境構築 | Docker |
+| インフラ | Heroku |
