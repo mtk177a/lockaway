@@ -96,7 +96,6 @@
 5. **ソーシャル機能**
 
      - いいね機能
-     - コメント機能
      - フォロー機能
 
 6. **通知機能**:
@@ -119,3 +118,7 @@
 | データベース | MySQL |
 | 環境構築 | Docker |
 | インフラ | Heroku |
+
+## ■ 画面遷移図
+
+画面遷移図は [こちら](https://www.figma.com/file/Q2u0pKoIFN1LrdvBUic4S7/LockAway?type=design&t=zdL9i7K1Ozu3jlQ3-6)
