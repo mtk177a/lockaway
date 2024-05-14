@@ -143,3 +143,7 @@
 ## ■ 画面遷移図
 
 画面遷移図は [こちら](https://www.figma.com/file/Q2u0pKoIFN1LrdvBUic4S7/LockAway?type=design&t=zdL9i7K1Ozu3jlQ3-6)
+
+## ■ ER図
+
+ER図は [こちら](https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=lockaway-er-diagram.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1loKvYOCyuzMYhKh2IrdWCPF9gb315BAv%26export%3Ddownload)
