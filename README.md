@@ -1,5 +1,9 @@
 # LockAway
 
+## ■ サービスURL
+
+ [Lockaway](https://lockaway-fbeb557015fd.herokuapp.com/)
+
 ## ■ サービス概要
 
 「LockAway」は、悪い習慣を「ロック」して、良い習慣を「アンロック」することをサポートするアプリです。
