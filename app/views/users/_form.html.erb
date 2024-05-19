@@ -1,0 +1,39 @@
+<%= form_with(model: user) do |f| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <div class="my-5">
+      <%= f.label :username, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= f.text_field :username, class: "my-2 w-full input input-bordered flex items-center gap-2", placeholder: "Username" %>
+    </div>
+
+    <div class="my-5">
+      <%= f.label :email, style: "display: block", class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= f.text_field :email, class: "my-2 w-full input input-bordered flex items-center gap-2", placeholder: "Email" %>
+    </div>
+
+    <div class="my-5">
+      <%= f.label :password, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= f.password_field :password, class: "my-2 w-full input input-bordered flex items-center gap-2", placeholder: "Password" %>
+    </div>
+
+    <div class="my-5">
+      <%= f.label :password_confirmation, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= f.password_field :password_confirmation, class: "my-2 w-full input input-bordered flex items-center gap-2", placeholder: "Password confirmation" %>
+    </div>
+
+    <div class="my-10">
+      <%= f.submit class: "btn btn-primary w-full" %>
+    </div>
+  </div>
+<% end %>
