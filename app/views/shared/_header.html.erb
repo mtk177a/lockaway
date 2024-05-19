@@ -1,0 +1,32 @@
+<header>
+  <div class="navbar bg-base-100">
+    <div class="flex-1">
+      <a class="btn btn-ghost text-xl">Lockaway</a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li>
+          <%= link_to "Home", root_path %>
+        </li>
+        <li>
+          <%= link_to "User List", users_path %>
+        </li>
+        <li>
+          <details>
+            <summary>
+              Username
+            </summary>
+            <ul class="p-2 bg-base-100 rounded-t-none">
+              <li>
+                <%= link_to "Profile", "#" %>
+              </li>
+              <li>
+                <%= link_to "Logout", logout_path, data: {turbo_method: :delete} %>
+              </li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,23 @@
+<header>
+  <div class="navbar bg-base-100">
+    <div class="flex-1">
+      <%= link_to "Lockaway", root_path, class: "btn btn-ghost text-xl" %>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li>
+          <%= link_to "Home", root_path %>
+        </li>
+        <li>
+          <%= link_to "User List", users_path %>
+        </li>
+        <li>
+          <%= link_to "Sign in", new_user_path %>
+        </li>
+        <li>
+          <%= link_to "Login", login_path %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
