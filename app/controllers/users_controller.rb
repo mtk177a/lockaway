@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      auto_login(@user)
       redirect_to root_path, success: "User was successfully created."
     else
       flash.now[:danger] = "User could not be created."
