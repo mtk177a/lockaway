@@ -1,6 +1,6 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Users</h1>
+<div class="sm:mx-auto sm:w-full sm:max-w-sm">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">User list</h2>
+</div>
 
 <div id="users">
   <% @users.each do |user| %>
@@ -10,5 +10,3 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New user", new_user_path %>

@@ -2,9 +2,9 @@
 
 <%= render "form", user: @user %>
 
-<br>
-
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
+<div class="sm:mx-auto sm:w-full sm:max-w-sm">
+  <div class="flex">
+    <%= link_to "Show this user", @user, class: "btn btn-primary btn-outline mr-2 w-full flex-auto" %>
+    <%= link_to "Back to users", users_path, class: "btn btn-primary btn-outline ml-2 w-full flex-auto" %>
+  </div>
 </div>

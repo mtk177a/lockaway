@@ -11,21 +11,28 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <div class="my-5">
+      <%= form.label :username, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= form.text_field :username, class: "my-2 w-full input input-bordered flex items-center gap-2", placeholder: "Username" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :password %><br />
-    <%= form.password_field :password %>
-  </div>
-  <div class="field">
-    <%= form.label :password_confirmation %><br />
-    <%= form.password_field :password_confirmation %>
-  </div>
+    <div class="my-5">
+      <%= form.label :email, style: "display: block", class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= form.text_field :email, class: "my-2 w-full input input-bordered flex items-center gap-2", placeholder: "Email" %>
+    </div>
 
-  <div>
-    <%= form.submit %>
+    <div class="my-5">
+      <%= form.label :password, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= form.password_field :password, class: "my-2 w-full input input-bordered flex items-center gap-2", placeholder: "Password" %>
+    </div>
+    <div class="my-5">
+      <%= form.label :password_confirmation, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= form.password_field :password_confirmation, class: "my-2 w-full input input-bordered flex items-center gap-2", placeholder: "Password confirmation" %>
+    </div>
+
+    <div class="my-10">
+      <%= form.submit class: "btn btn-primary w-full" %>
+    </div>
   </div>
 <% end %>
