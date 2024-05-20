@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_19_144321) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_20_151342) do
+  create_table "habits", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.integer "habit_type", null: false
+    t.text "description"
+    t.datetime "start_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_habits_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -21,4 +32,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_144321) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "habits", "users"
 end
