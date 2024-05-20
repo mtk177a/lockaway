@@ -41,7 +41,7 @@ class HabitsController < ApplicationController
   # DELETE /habits/1
   def destroy
     @habit.destroy
-    redirect_to habits_path, notice: 'Habit was successfully deleted.'
+    redirect_to habits_path, notice: 'Habit was successfully deleted.', status: :see_other
   end
 
   private
