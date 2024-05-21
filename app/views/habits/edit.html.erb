@@ -1,0 +1,9 @@
+<div class="container mx-auto w-full max-w-2xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Edit Habit</h2>
+
+  <%= render 'form', habit: @habit %>
+
+  <div class="mt-5 mb-10">
+    <%= link_to 'Back', habits_path, class: "btn btn-primary btn-outline w-full" %>
+  </div>
+</div>
