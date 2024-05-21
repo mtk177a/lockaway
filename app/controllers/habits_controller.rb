@@ -19,7 +19,7 @@ class HabitsController < ApplicationController
   def create
     @habit = current_user.habits.build(habit_params)
     if @habit.save
-      redirect_to habits_path, notice: 'Habit was successfully created.'
+      redirect_to habits_path, success: 'Habit was successfully created.'
     else
       render :new
     end
@@ -32,7 +32,7 @@ class HabitsController < ApplicationController
   # PATCH/PUT /habits/1
   def update
     if @habit.update(habit_params)
-      redirect_to habits_path, notice: 'Habit was successfully updated.'
+      redirect_to habits_path, success: 'Habit was successfully updated.'
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class HabitsController < ApplicationController
   # DELETE /habits/1
   def destroy
     @habit.destroy
-    redirect_to habits_path, notice: 'Habit was successfully deleted.', status: :see_other
+    redirect_to habits_path, error: 'Habit was successfully deleted.', status: :see_other
   end
 
   private
