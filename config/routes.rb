@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'habit_logs/new'
+  get 'habit_logs/create'
   root :to => 'users#index'
   resources :users
   resources :habits
