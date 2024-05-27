@@ -1,0 +1,50 @@
+<div class="mx-auto w-full max-w-2xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Habit Logs for <%= @habit.name %></h2>
+
+  <div class="form-control max-w-64 float-right">
+    <label class="label cursor-pointer">
+      <span class="label-text mx-2">Incomplete Logs</span>
+      <%= check_box_tag 'filter', 'incomplete', params[:filter] == 'incomplete', class: 'toggle toggle-primary mx-2', data: { toggle_url: habit_habit_logs_path(@habit, filter: 'incomplete'), toggle_all_url: habit_habit_logs_path(@habit) } %>
+    </label>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @habit_logs.present? %>
+        <% @habit_logs.each do |log| %>
+          <tr>
+            <td><%= log.date %></td>
+            <td><%= log.status %></td>
+            <td>
+              <% if log.status.nil? %>
+                <%= form_with(model: [@habit, log], local: true, method: :patch) do |form| %>
+                  <%= form.hidden_field :status, value: 'completed' %>
+                  <%= form.submit 'Mark as Completed', class: 'btn btn-success btn-sm' %>
+                <% end %>
+                <%= form_with(model: [@habit, log], local: true, method: :patch) do |form| %>
+                  <%= form.hidden_field :status, value: 'not_completed' %>
+                  <%= form.submit 'Mark as Not Completed', class: 'btn btn-danger btn-sm' %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="3">No habit logs found.</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="mt-5 mb-10">
+    <%= link_to 'Back', habits_path, class: "btn btn-primary btn-outline w-full" %>
+  </div>
+</div>
