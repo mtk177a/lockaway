@@ -1,5 +1,6 @@
 class Habit < ApplicationRecord
   belongs_to :user
+  has_many :habit_logs, dependent: :destroy
 
   enum habit_type: { good: 0, bad: 1 }
 
