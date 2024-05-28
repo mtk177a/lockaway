@@ -18,3 +18,13 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+set :output, "log/cron_log.log"
+
+every 1.day, at: '12:00am' do
+  rake "habit_logs:generate"
+end
+
+every :day, at: '12:00am' do
+  rake "daily_tasks:create_habit_logs"
+end
