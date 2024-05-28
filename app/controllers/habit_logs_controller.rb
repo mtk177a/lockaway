@@ -1,5 +1,5 @@
 class HabitLogsController < ApplicationController
-  before_action :set_habit, only: [:index, :create, :update]
+  before_action :set_habit, only: [:index, :new, :create, :update]
   before_action :set_habit_log, only: [:update]
 
   def index
@@ -7,6 +7,10 @@ class HabitLogsController < ApplicationController
     if params[:filter] == 'incomplete'
       @habit_logs = @habit_logs.where(status: nil)
     end
+  end
+
+  def new
+    @habit_log = @habit.habit_logs.new
   end
 
   def create
