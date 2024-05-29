@@ -11,14 +11,6 @@ class Habit < ApplicationRecord
   validates :habit_type, presence: true
   validates :start_date, presence: true
 
-  private
-
-  def generate_initial_logs
-    (start_date..Date.today).each do |date|
-      habit_logs.find_or_create_by(date: date)
-    end
-  end
-
   def total_completed_days
     habit_logs.where(status: 'completed').count
   end
@@ -37,6 +29,14 @@ class Habit < ApplicationRecord
     total_logs = habit_logs.count
     completed_logs = habit_logs.where(status: 'completed').count
     total_logs > 0 ? (completed_logs.to_f / total_logs * 100).round(2) : 0.0
+  end
+
+  private
+
+  def generate_initial_logs
+    (start_date..Date.today).each do |date|
+      habit_logs.find_or_create_by(date: date)
+    end
   end
 
   def update_completion_stats
