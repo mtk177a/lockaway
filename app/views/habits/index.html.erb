@@ -1,4 +1,4 @@
-<div class="mx-auto w-full max-w-2xl">
+<div class="mx-auto w-full max-w-5xl">
   <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Habits</h2>
 
   <div class="container">
@@ -12,6 +12,9 @@
           <th>Description</th>
           <th>Start Date</th>
           <th>Actions</th>
+          <th>Total Completed Days</th>
+          <th>Continuous Completed Days</th>
+          <th>Completion Rate</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +24,9 @@
             <td><%= habit.habit_type %></td>
             <td><%= habit.description %></td>
             <td><%= habit.start_date.strftime("%Y-%m-%d") %></td>
+            <td><%= habit.total_completed_days %></td>
+            <td><%= habit.continuous_completed_days %></td>
+            <td><%= habit.completion_rate %></td>
             <td>
               <%= link_to 'Show', habit, class: 'btn btn-secondary btn-outline btn-xs' %>
               <% if current_user.own?(habit) %>
