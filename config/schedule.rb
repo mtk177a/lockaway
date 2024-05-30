@@ -21,10 +21,10 @@
 
 set :output, "log/cron_log.log"
 
-every 1.day, at: '12:00am' do
+every 1.day, at: '00:00' do
   rake "habit_logs:generate"
 end
 
-every :day, at: '12:00am' do
+every 1.day, at: '00:00' do
   rake "daily_tasks:create_habit_logs"
 end
