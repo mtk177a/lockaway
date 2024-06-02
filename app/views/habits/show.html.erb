@@ -29,6 +29,63 @@
     </div>
   </p>
 
+  <p>
+    <strong class="my-2 w-full block leading-6 text-gray-900">Total Completed Days:</strong>
+    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
+      <%= @habit.total_completed_days %>
+    </div>
+  </p>
+
+  <p>
+    <strong class="my-2 w-full block leading-6 text-gray-900">Continuous Completed Days:</strong>
+    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
+      <%= @habit.continuous_completed_days %>
+    </div>
+  </p>
+
+  <p>
+    <strong class="my-2 w-full block leading-6 text-gray-900">Completion Rate:</strong>
+    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
+      <%= @habit.completion_rate %>
+    </div>
+  </p>
+
+  <div>
+    <div class="flex justify-between items-center my-5">
+      <h3 class="text-xl font-bold leading-9 tracking-tight text-gray-900">Recent Habit Logs</h3>
+      <%= link_to 'View All Logs >', habit_habit_logs_path(@habit), class: 'link link-primary link-hover' %>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @habit.habit_logs.order(date: :desc).limit(5).each do |log| %>
+          <tr>
+            <td><%= log.date %></td>
+            <td><%= log.status %></td>
+            <td>
+              <% if log.status.nil? %>
+                <%= form_with(model: [@habit, log], local: true, method: :patch) do |form| %>
+                  <%= form.hidden_field :status, value: 'completed' %>
+                  <%= form.submit 'Mark as Completed', class: 'btn btn-success btn-sm' %>
+                <% end %>
+                <%= form_with(model: [@habit, log], local: true, method: :patch) do |form| %>
+                  <%= form.hidden_field :status, value: 'not_completed' %>
+                  <%= form.submit 'Mark as Not Completed', class: 'btn btn-danger btn-sm' %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
   <div class="flex mt-5 mb-10">
     <%= link_to 'Edit', edit_habit_path(@habit), class: 'btn btn-secondary flex-auto w-full mr-2' %>

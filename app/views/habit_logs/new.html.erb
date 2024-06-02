@@ -1,0 +1,30 @@
+<h1>Log Habit Progress</h1>
+
+<%= form_with(model: [@habit, @habit_log], local: true) do |form| %>
+  <% if @habit_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@habit_log.errors.count, "error") %> prohibited this habit_log from being saved:</h2>
+      <ul>
+        <% @habit_log.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, HabitLog.statuses.keys.map { |w| [w.humanize, w] }, class: "my-2 w-full select select-bordered" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Log Progress', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', habit_path(@habit) %>

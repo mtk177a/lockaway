@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_20_151342) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_29_153540) do
+  create_table "habit_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "habit_id", null: false
+    t.date "date", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["habit_id", "date"], name: "index_habit_logs_on_habit_id_and_date", unique: true
+    t.index ["habit_id"], name: "index_habit_logs_on_habit_id"
+  end
+
   create_table "habits", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name", null: false
@@ -19,6 +29,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_20_151342) do
     t.datetime "start_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "total_completed_days", default: 0
+    t.integer "continuous_completed_days", default: 0
+    t.float "completion_rate", default: 0.0
     t.index ["user_id"], name: "index_habits_on_user_id"
   end
 
@@ -32,5 +45,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_20_151342) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "habit_logs", "habits"
   add_foreign_key "habits", "users"
 end
