@@ -34,7 +34,7 @@ class Habit < ApplicationRecord
   private
 
   def generate_initial_logs
-    (start_date..Date.today).each do |date|
+    (start_date.to_date..Date.today).each do |date|
       habit_logs.find_or_create_by(date: date)
     end
   end

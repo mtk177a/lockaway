@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'habits#index'
 
   resources :habits do
-    resources :habit_logs, only: [:new, :create, :index]
+    resources :habit_logs, only: [:new, :create, :index, :update]
   end
   resources :users
 
