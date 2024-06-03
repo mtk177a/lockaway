@@ -71,11 +71,11 @@
             <td><%= log.status %></td>
             <td>
               <% if log.status.nil? %>
-                <%= form_with(model: [@habit, log], local: true, method: :patch) do |form| %>
+                <%= form_with(model: [@habit, log], local: true, method: :patch, url: habit_habit_log_path(@habit, log)) do |form| %>
                   <%= form.hidden_field :status, value: 'completed' %>
                   <%= form.submit 'Mark as Completed', class: 'btn btn-success btn-sm' %>
                 <% end %>
-                <%= form_with(model: [@habit, log], local: true, method: :patch) do |form| %>
+                <%= form_with(model: [@habit, log], local: true, method: :patch, url: habit_habit_log_path(@habit, log)) do |form| %>
                   <%= form.hidden_field :status, value: 'not_completed' %>
                   <%= form.submit 'Mark as Not Completed', class: 'btn btn-danger btn-sm' %>
                 <% end %>
