@@ -1,6 +1,8 @@
 class Habit < ApplicationRecord
   belongs_to :user
   has_many :habit_logs, dependent: :destroy
+  has_many :habit_rewards, dependent: :destroy
+  has_many :rewards, through: :habit_rewards
 
   after_create :generate_initial_logs
   after_save :update_completion_stats
