@@ -27,6 +27,23 @@ class Habit < ApplicationRecord
     count
   end
 
+  def highest_continuous_days
+    logs = habit_logs.order(date: :asc)
+    max_streak = 0
+    current_streak = 0
+
+    logs.each do |log|
+      if log.status == 'completed'
+        current_streak += 1
+        max_streak = [max_streak, current_streak].max
+      else
+        current_streak = 0
+      end
+    end
+
+    max_streak
+  end
+
   def completion_rate
     total_logs = habit_logs.count
     completed_logs = habit_logs.where(status: 'completed').count
@@ -34,7 +51,7 @@ class Habit < ApplicationRecord
   end
 
   def check_and_apply_rewards
-    rewards.each do |reward|
+    Reward.all.each do |reward|
       case reward.condition_type
       when 'continuous_days'
         apply_reward(reward) if continuous_completed_days >= reward.threshold
@@ -56,6 +73,7 @@ class Habit < ApplicationRecord
     update_columns(
       total_completed_days: total_completed_days,
       continuous_completed_days: continuous_completed_days,
+      highest_continuous_days: highest_continuous_days,
       completion_rate: completion_rate
     )
   end
