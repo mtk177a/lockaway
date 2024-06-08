@@ -33,6 +33,17 @@ class Habit < ApplicationRecord
     total_logs > 0 ? (completed_logs.to_f / total_logs * 100).round(2) : 0.0
   end
 
+  def check_and_apply_rewards
+    rewards.each do |reward|
+      case reward.condition_type
+      when 'continuous_days'
+        apply_reward(reward) if continuous_completed_days >= reward.threshold
+      when 'total_days'
+        apply_reward(reward) if total_completed_days >= reward.threshold
+      end
+    end
+  end
+
   private
 
   def generate_initial_logs
@@ -47,5 +58,12 @@ class Habit < ApplicationRecord
       continuous_completed_days: continuous_completed_days,
       completion_rate: completion_rate
     )
+  end
+
+  def apply_reward(reward)
+    unless self.rewards.include?(reward)
+      self.rewards << reward
+      # ここでユーザーに通知を送るなどの処理を追加
+    end
   end
 end
