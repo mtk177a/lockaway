@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_05_145117) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_08_121256) do
   create_table "habit_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "habit_id", null: false
     t.date "date", null: false
@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_145117) do
     t.integer "total_completed_days", default: 0
     t.integer "continuous_completed_days", default: 0
     t.float "completion_rate", default: 0.0
+    t.integer "highest_continuous_days", default: 0
     t.index ["user_id"], name: "index_habits_on_user_id"
   end
 
