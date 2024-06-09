@@ -1,2 +1,11 @@
-<h1>Rewards#index</h1>
-<p>Find me in app/views/rewards/index.html.erb</p>
+<div class="mx-auto w-full max-w-5xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">All Rewards</h2>
+
+  <ul>
+    <% @rewards.each do |reward| %>
+      <li>
+        <%= link_to reward.name, reward_path(reward) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
