@@ -5,6 +5,13 @@ Rails.application.routes.draw do
     resources :habit_logs, only: [:new, :create, :index, :update]
   end
 
+  resources :rewards, only: [:index, :show] do
+    collection do
+      get 'user_rewards', to: 'rewards#user_rewards'
+      get 'available_rewards', to: 'rewards#available_rewards'
+    end
+  end
+
   resources :users
 
   get 'login' => 'user_sessions#new', :as => :login
