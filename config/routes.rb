@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  get 'rewards/index'
-  get 'rewards/show'
   root 'habits#index'
 
   resources :habits do
     resources :habit_logs, only: [:new, :create, :index, :update]
+  end
+
+  resources :rewards, only: [:index, :show] do
+    collection do
+      get 'user_rewards', to: 'rewards#user_rewards'
+    end
   end
 
   resources :users
