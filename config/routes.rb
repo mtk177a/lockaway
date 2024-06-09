@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'rewards/index'
+  get 'rewards/show'
   root 'habits#index'
 
   resources :habits do
