@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :habits do
     resources :habit_logs, only: [:new, :create, :index, :update]
+    collection do
+      get 'unlogged', to: 'unlogged_habits#index'
+    end
   end
   resources :users
 
