@@ -10,4 +10,8 @@ class RewardsController < ApplicationController
   def user_rewards
     @user_rewards = current_user.rewards
   end
+
+  def available_rewards
+    @available_rewards = Reward.all.reject { |reward| current_user.rewards.include?(reward) }
+  end
 end
