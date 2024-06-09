@@ -1,0 +1,20 @@
+<div class="mx-auto w-full max-w-5xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Available Rewards</h2>
+
+  <ul>
+    <% @available_rewards.each do |reward| %>
+      <li>
+        <strong><%= reward.name %></strong>
+        <p><%= reward.description %></p>
+        <p>Condition: <%= reward.condition %></p>
+        <% if reward.condition_type == 'continuous_days' %>
+          <p>Progress: <%= current_user.habits.maximum(:continuous_completed_days) %> / <%= reward.threshold %> days</p>
+        <% elsif reward.condition_type == 'total_days' %>
+          <p>Progress: <%= current_user.habits.sum(:total_completed_days) %> / <%= reward.threshold %> days</p>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Back to All Rewards', rewards_path %>
+</div>
