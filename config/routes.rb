@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'admin_sessions/new'
+  get 'admin_sessions/create'
+  get 'admin_sessions/destroy'
   root 'habits#index'
 
   resources :habits do
