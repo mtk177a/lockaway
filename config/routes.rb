@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'admin_sessions/new'
-  get 'admin_sessions/create'
-  get 'admin_sessions/destroy'
   root 'habits#index'
 
   resources :habits do
@@ -16,6 +13,10 @@ Rails.application.routes.draw do
   end
 
   resources :users
+
+  get 'admin_login' => 'admin_sessions#new', :as => :admin_login
+  post 'admin_login' => "admin_sessions#create"
+  delete 'admin_logout' => 'admin_sessions#destroy', :as => :admin_logout
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'login' => "user_sessions#create"
