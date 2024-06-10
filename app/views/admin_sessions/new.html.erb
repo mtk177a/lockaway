@@ -1,2 +1,17 @@
-<h1>AdminSessions#new</h1>
-<p>Find me in app/views/admin_sessions/new.html.erb</p>
+<h1>Admin Login</h1>
+
+<%= form_with url: admin_login_path, local: true do |form| %>
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.submit "Login" %>
+  </div>
+<% end %>
