@@ -23,4 +23,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'user_sessions#destroy', :as => :logout
 
   get 'unlogged_habit_logs', to: 'unlogged_habit_logs#index', as: 'unlogged_habit_logs'
+
+  namespace :admin do
+    get 'dashboard', to: 'dashboard#index'
+  end
 end
