@@ -1,0 +1,25 @@
+<h1>All Habits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>User</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @habits.each do |habit| %>
+      <tr>
+        <td><%= habit.id %></td>
+        <td><%= habit.name %></td>
+        <td><%= habit.user.email %></td>
+        <td>
+          <%= link_to 'Show', admin_habit_path(habit) %>
+          <%= link_to 'Delete', admin_habit_path(habit), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
