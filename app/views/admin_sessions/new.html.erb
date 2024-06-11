@@ -1,6 +1,6 @@
 <h1>Admin Login</h1>
 
-<%= form_with url: admin_login_path, local: true do |form| %>
+<%= form_with(url: admin_login_path, local: true, data: { turbo: false }) do |form| %>
   <div>
     <%= form.label :email %>
     <%= form.email_field :email %>

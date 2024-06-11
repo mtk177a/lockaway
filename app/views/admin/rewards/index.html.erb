@@ -1,0 +1,28 @@
+<h1>Rewards</h1>
+<%= link_to 'New Reward', new_admin_reward_path, class: 'btn btn-primary' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Condition Type</th>
+      <th>Threshold</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rewards.each do |reward| %>
+      <tr>
+        <td><%= reward.name %></td>
+        <td><%= reward.description %></td>
+        <td><%= reward.condition_type %></td>
+        <td><%= reward.threshold %></td>
+        <td>
+          <%= link_to 'Show', admin_reward_path(reward), class: 'btn btn-info' %>
+          <%= link_to 'Edit', edit_admin_reward_path(reward), class: 'btn btn-warning' %>
+          <%= link_to 'Delete', admin_reward_path(reward), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
