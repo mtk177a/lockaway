@@ -1,0 +1,19 @@
+<h1>Reward Details</h1>
+<p>
+  <strong>Name:</strong>
+  <%= @reward.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @reward.description %>
+</p>
+<p>
+  <strong>Condition Type:</strong>
+  <%= @reward.condition_type %>
+</p>
+<p>
+  <strong>Threshold:</strong>
+  <%= @reward.threshold %>
+</p>
+<%= link_to 'Edit', edit_admin_reward_path(@reward), class: 'btn btn-warning' %>
+<%= link_to 'Back', admin_rewards_path, class: 'btn btn-secondary' %>
