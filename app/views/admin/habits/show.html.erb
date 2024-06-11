@@ -1,0 +1,18 @@
+<h1>Habit Details</h1>
+
+<p>
+  <strong>ID:</strong>
+  <%= @habit.id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @habit.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @habit.user.email %>
+</p>
+
+<%= link_to 'Back', admin_habits_path %>
