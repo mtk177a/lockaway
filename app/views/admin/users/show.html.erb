@@ -1,13 +1,20 @@
-<h1>User Details</h1>
+<div class="mx-auto w-full max-w-5xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-rose-700">User Details</h2>
 
-<p>
-  <strong>ID:</strong>
-  <%= @user.id %>
-</p>
+  <div class="container mx-auto w-full max-w-2xl">
+    <p>
+      <strong>ID:</strong>
+      <%= @user.id %>
+    </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
 
-<%= link_to 'Back', admin_users_path %>
+    <div class="flex mt-5 mb-10">
+      <%= link_to 'Back', admin_users_path, class: 'btn btn-primary btn-outline flex-auto' %>
+      <%= link_to 'Delete', admin_user_path(@user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-error flex-auto ml-5' %>
+    </div>
+  </div>
+</div>

@@ -1,23 +1,27 @@
-<h1>All Users</h1>
+<div class="mx-auto w-full max-w-5xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-rose-700">All Users</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Email</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= link_to 'Show', admin_user_path(user) %>
-          <%= link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="container mx-auto w-full max-w-2xl">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.email %></td>
+            <td>
+              <%= link_to 'Show', admin_user_path(user), class: 'btn btn-info btn-xs' %>
+              <%= link_to 'Delete', admin_user_path(user), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-error btn-xs' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
