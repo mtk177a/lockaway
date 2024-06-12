@@ -1,25 +1,29 @@
-<h1>All Habits</h1>
+<div class="mx-auto w-full max-w-5xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-rose-700">All Habits</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>User</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @habits.each do |habit| %>
-      <tr>
-        <td><%= habit.id %></td>
-        <td><%= habit.name %></td>
-        <td><%= habit.user.email %></td>
-        <td>
-          <%= link_to 'Show', admin_habit_path(habit) %>
-          <%= link_to 'Delete', admin_habit_path(habit), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="container mx-auto w-full max-w-2xl">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>User</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @habits.each do |habit| %>
+          <tr>
+            <td><%= habit.id %></td>
+            <td><%= habit.name %></td>
+            <td><%= habit.user.email %></td>
+            <td>
+              <%= link_to 'Show', admin_habit_path(habit), class: 'btn btn-info btn-xs' %>
+              <%= link_to 'Delete', admin_habit_path(habit), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-error btn-xs' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
