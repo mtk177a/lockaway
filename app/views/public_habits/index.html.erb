@@ -16,7 +16,7 @@
   <% end %>
   <div class="habits-list">
     <% @habits.each do |habit| %>
-      <div class="habit-card">
+      <div class="card">
         <h2><%= link_to habit.name, habit_path(habit) %></h2>
         <p><%= habit.description %></p>
       </div>
