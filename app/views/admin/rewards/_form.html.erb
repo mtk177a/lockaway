@@ -1,0 +1,29 @@
+<div class="sm:mx-auto sm:w-full sm:max-w-sm">
+  <%= form_with(model: [:admin, @reward], local: true) do |form| %>
+    <div class="my-5">
+      <%= form.label :name, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= form.text_field :name, class: "w-full input input-bordered flex items-center gap-2" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :description, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= form.text_area :description, class: "w-full textarea textarea-bordered" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :condition_type, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= form.select :condition_type, Reward.condition_types.keys.map { |k| [k.humanize, k] }, {}, class: 'form-control', class: "select select-bordered w-full max-w-xs" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :threshold, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+      <%= form.number_field :threshold, class: "w-full input input-bordered flex items-center gap-2" %>
+    </div>
+
+    <div class="my-5">
+      <%= form.submit class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <%= link_to 'Back', admin_rewards_path, class: 'btn btn-secondary' %>
+</div>

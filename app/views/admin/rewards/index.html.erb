@@ -1,0 +1,34 @@
+<div class="mx-auto w-full max-w-5xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-rose-700">All Rewards</h2>
+
+  <div class="container mx-auto w-full max-w-2xl">
+    <%= link_to 'New Reward', new_admin_reward_path, class: 'btn btn-primary mb-5' %>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Condition Type</th>
+          <th>Threshold</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rewards.each do |reward| %>
+          <tr>
+            <td><%= reward.name %></td>
+            <td><%= reward.description %></td>
+            <td><%= reward.condition_type %></td>
+            <td><%= reward.threshold %></td>
+            <td>
+              <%= link_to 'Show', admin_reward_path(reward), class: 'btn btn-info btn-xs' %>
+              <%= link_to 'Edit', edit_admin_reward_path(reward), class: 'btn btn-warning btn-xs' %>
+              <%= link_to 'Delete', admin_reward_path(reward), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-error btn-xs' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
