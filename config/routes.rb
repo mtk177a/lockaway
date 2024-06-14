@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'public_habits/index'
   root 'habits#index'
 
   resources :habits do
