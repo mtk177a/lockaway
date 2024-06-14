@@ -1,2 +1,27 @@
-<h1>PublicHabits#index</h1>
-<p>Find me in app/views/public_habits/index.html.erb</p>
+<div class="mx-auto w-full max-w-5xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Public Habits</h2>
+
+  <%= form_with url: public_habits_path, method: :get, local: true do |form| %>
+    <div>
+      <%= form.label :sort, "Sort by" %>
+      <%= form.select :sort, options_for_select([['Newest', 'newest'], ['Oldest', 'oldest']], params[:sort]) %>
+    </div>
+    <div>
+      <%= form.label :habit_type, "Habit Type" %>
+      <%= form.select :habit_type, options_for_select(Habit.habit_types.keys.map { |k| [k.humanize, k] }, params[:habit_type]) %>
+    </div>
+    <div>
+      <%= form.submit "Filter" %>
+    </div>
+  <% end %>
+  <div class="habits-list">
+    <% @habits.each do |habit| %>
+      <div class="habit-card">
+        <h2><%= link_to habit.name, habit_path(habit) %></h2>
+        <p><%= habit.description %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <%= paginate @habits %>
+</div>
