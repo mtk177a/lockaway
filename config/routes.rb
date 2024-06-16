@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'public_rewards/index'
   root 'habits#index'
 
   resources :habits do
@@ -16,6 +15,8 @@ Rails.application.routes.draw do
   resources :users
 
   resources :public_habits, only: [:index]
+
+  resources :public_rewards, only: [:index]
 
   resources :unlogged_habit_logs, only: [:index]
 
