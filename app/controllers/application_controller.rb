@@ -9,14 +9,6 @@ class ApplicationController < ActionController::Base
     redirect_to login_path, alert: "Please login first"
   end
 
-  def current_admin
-    if session[:admin_id]
-      Rails.logger.info("Session admin_id: #{session[:admin_id]}")
-      @current_admin ||= Admin.find(session[:admin_id])
-      Rails.logger.info("Current admin: #{@current_admin.inspect}")
-    end
-  end
-
   def set_unlogged_habit_logs
     if current_user
       @unlogged_habit_logs = current_user.habits
@@ -25,5 +17,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_admin
+  helper_method :current_user
 end

@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <% if current_admin %>
+    <% if current_user&.admin? %>
       <%= render 'shared/admin_header' %>
     <% elsif logged_in? %>
       <%= render 'shared/header' %>

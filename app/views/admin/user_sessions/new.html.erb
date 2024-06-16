@@ -1,0 +1,19 @@
+<div class="mx-auto w-full max-w-5xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-rose-700">Admin Login</h2>
+
+  <%= form_with url: admin_login_path, local: true do |form| %>
+    <div class="field">
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Login" %>
+    </div>
+  <% end %>
+</div>
