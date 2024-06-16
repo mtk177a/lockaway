@@ -14,6 +14,7 @@
           <th>Total Completed Days</th>
           <th>Continuous Completed Days</th>
           <th>Completion Rate</th>
+          <th>Public</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -27,6 +28,7 @@
             <td><%= habit.total_completed_days %></td>
             <td><%= habit.continuous_completed_days %></td>
             <td><%= habit.completion_rate %></td>
+            <td><%= habit.public ? 'Yes' : 'No' %></td>
             <td>
               <%= link_to 'Show', habit, class: 'btn btn-secondary btn-outline btn-xs' %>
               <% if current_user.own?(habit) %>
@@ -40,4 +42,3 @@
     </table>
   </div>
 </div>
-

@@ -13,6 +13,8 @@ class Habit < ApplicationRecord
   validates :habit_type, presence: true
   validates :start_date, presence: true
 
+  scope :public_habits, -> { where(public: true) }
+
   def total_completed_days
     habit_logs.where(status: 'completed').count
   end

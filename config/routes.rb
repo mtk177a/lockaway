@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :public_habits, only: [:index]
+
+  resources :unlogged_habit_logs, only: [:index]
+
   get 'admin_login' => 'admin_sessions#new', :as => :admin_login
   post 'admin_login' => "admin_sessions#create"
   delete 'admin_logout' => 'admin_sessions#destroy', :as => :admin_logout
@@ -21,8 +25,6 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new', :as => :login
   post 'login' => "user_sessions#create"
   delete 'logout' => 'user_sessions#destroy', :as => :logout
-
-  get 'unlogged_habit_logs', to: 'unlogged_habit_logs#index', as: 'unlogged_habit_logs'
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'

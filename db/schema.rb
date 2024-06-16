@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_14_151040) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_14_155000) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_151040) do
     t.integer "continuous_completed_days", default: 0
     t.float "completion_rate", default: 0.0
     t.integer "highest_continuous_days", default: 0
+    t.boolean "public", default: false, null: false
     t.index ["user_id"], name: "index_habits_on_user_id"
   end
 
