@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  enum role: { general: 0, admin: 1 }
+
   has_many :habits, dependent: :destroy
   has_many :habit_rewards, through: :habits
   has_many :rewards, through: :habit_rewards
@@ -11,6 +13,7 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
   validates :username, presence: true
+  validates :role, presence: true
 
   def own?(object)
     id == object.user_id
