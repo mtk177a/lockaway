@@ -3,7 +3,7 @@ class HabitLogsController < ApplicationController
   before_action :set_habit_log, only: [:update]
 
   def index
-    @habit_logs = @habit.habit_logs.order(:date)
+    @habit_logs = @habit.habit_logs.order(date: :desc)
     if params[:filter] == 'incomplete'
       @habit_logs = @habit_logs.where(status: nil)
     end
