@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   resources :public_habits, only: [:index]
 
+  resources :public_rewards, only: [:index]
+
   resources :unlogged_habit_logs, only: [:index]
 
   get 'admin_login' => 'admin_sessions#new', :as => :admin_login

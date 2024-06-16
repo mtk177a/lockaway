@@ -1,0 +1,35 @@
+<div class="mx-auto w-full max-w-5xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Everyone's Rewards</h2>
+
+  <div class="mb-4 flex items-center">
+    <%= form_with(url: public_rewards_path, method: :get, local: true, class: "flex items-center space-x-2") do |form| %>
+      <%= form.label :sort, 'Sort by:', class: "mr-2" %>
+      <%= form.select :sort, options_for_select([['Newest', 'newest'], ['Oldest', 'oldest']], selected: params[:sort]), {}, { class: "select select-bordered" } %>
+
+      <%= form.label :habit_type, 'Habit Type:', class: "mr-2 ml-4" %>
+      <%= form.select :habit_type, options_for_select(Habit.habit_types.keys.map { |w| [w.humanize, w] }, selected: params[:habit_type]), { include_blank: 'All' }, { class: "select select-bordered" } %>
+
+      <%= form.label :username, 'Username:', class: "mr-2 ml-4" %>
+      <%= form.text_field :username, value: params[:username], class: "input input-bordered" %>
+
+      <%= form.submit 'Filter', class: "btn btn-primary ml-4" %>
+    <% end %>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <% @habit_rewards.each do |habit_reward| %>
+      <div class="card bg-base-100 shadow-md p-4">
+        <h3 class="text-xl font-bold leading-6 text-gray-900"><%= habit_reward.reward.name %></h3>
+        <p class="text-gray-700"><%= habit_reward.reward.description %></p>
+        <p class="text-gray-500">Habit: <%= habit_reward.habit.name %></p>
+        <p class="text-gray-500">Habit Type: <%= habit_reward.habit.habit_type.humanize %></p>
+        <p class="text-gray-500">User: <%= habit_reward.habit.user.username %></p>
+        <p class="text-gray-500">Completed on: <%= habit_reward.created_at.strftime("%Y-%m-%d") %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mt-6">
+    <%= paginate @habit_rewards %>
+  </div>
+</div>

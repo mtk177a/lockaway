@@ -1,0 +1,2 @@
+module PublicRewardsHelper
+end
