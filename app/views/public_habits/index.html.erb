@@ -1,24 +1,59 @@
 <div class="mx-auto w-full max-w-5xl">
-  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Public Habits</h2>
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Everyone's Habits</h2>
 
-  <%= form_with url: public_habits_path, method: :get, local: true do |form| %>
-    <div>
-      <%= form.label :sort, "Sort by" %>
-      <%= form.select :sort, options_for_select([['Newest', 'newest'], ['Oldest', 'oldest']], params[:sort]) %>
-    </div>
-    <div>
-      <%= form.label :habit_type, "Habit Type" %>
-      <%= form.select :habit_type, options_for_select(Habit.habit_types.keys.map { |k| [k.humanize, k] }, params[:habit_type]) %>
-    </div>
-    <div>
-      <%= form.submit "Filter" %>
-    </div>
-  <% end %>
-  <div class="habits-list">
+  <div class="mb-4 flex items-center">
+    <%= form_with(url: public_habits_path, method: :get, local: true, class: "flex items-center space-x-2") do |form| %>
+      <div>
+        <%= form.label :sort, "Sort by", class: "mr-2" %>
+        <%= form.select :sort, options_for_select([['Newest', 'newest'], ['Oldest', 'oldest']], params[:sort]), {}, { class: "select select-bordered" } %>
+      </div>
+      <div>
+        <%= form.label :habit_type, "Habit Type", class: "mr-2 ml-4" %>
+        <%= form.select :habit_type, options_for_select(Habit.habit_types.keys.map { |k| [k.humanize, k] }, params[:habit_type]), {}, { class: "select select-bordered" } %>
+      </div>
+      <div>
+        <%= form.submit "Filter", class: "btn btn-primary ml-4" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="list">
     <% @habits.each do |habit| %>
-      <div class="card">
-        <h2><%= link_to habit.name, habit_path(habit) %></h2>
-        <p><%= habit.description %></p>
+      <div class="card bg-base-100 shadow-xl my-3">
+        <div class="card-body">
+          <div class="flex">
+            <h2 class="flex-1 card-title"><%= habit.name %></h2>
+            <div class="flex-none mx-5 font-bold text-info">
+              <%= habit.public ? 'Public' : 'Private' %>
+            </div>
+            <div class="flex-none">
+              <%= link_to 'Show', habit, class: 'btn btn-info btn-outline btn-xs' %>
+              <% if current_user.own?(habit) %>
+                <%= link_to 'Edit', edit_habit_path(habit), id: "button-edit-#{habit.id}", class: 'btn btn-secondary btn-xs' %>
+                <%= link_to 'Delete', habit_path(habit), id: "button-delete-#{habit.id}", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %>
+              <% end %>
+            </div>
+          </div>
+          <p>Type: <%= habit.habit_type %></p>
+          <p><%= habit.description %></p>
+          <p>Start Date: <%= habit.start_date.strftime("%Y-%m-%d") %></p>
+
+          <div class="stats shadow">
+            <div class="stat">
+              <div class="stat-title">Total Completed Days:</div>
+              <div class="stat-value text-primary"><%= habit.total_completed_days %></div>
+            </div>
+            <div class="stat">
+              <div class="stat-title">Continuous Completed Days:</div>
+              <div class="stat-value text-primary"><%= habit.continuous_completed_days %></div>
+            </div>
+            <div class="stat">
+              <div class="stat-title">Completion Rate:</div>
+              <div class="stat-value text-primary"><%= habit.completion_rate %></div>
+            </div>
+          </div>
+
+        </div>
       </div>
     <% end %>
   </div>
