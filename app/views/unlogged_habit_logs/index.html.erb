@@ -1,12 +1,12 @@
 <div class="container mx-auto w-full max-w-2xl">
-  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">未記録の習慣ログ一覧</h2>
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Unlogged HabitLogs</h2>
 
   <table class="table">
     <thead>
       <tr>
-        <th>習慣名</th>
-        <th>日付</th>
-        <th>アクション</th>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -15,14 +15,18 @@
           <td><%= log.habit.name %></td>
           <td><%= log.date %></td>
           <td>
-            <%= form_with(model: [log.habit, log], local: true, method: :patch) do |form| %>
-              <%= form.hidden_field :status, value: 'completed' %>
-              <%= form.submit '完了にする', class: 'btn btn-success btn-sm' %>
-            <% end %>
-            <%= form_with(model: [log.habit, log], local: true, method: :patch) do |form| %>
-              <%= form.hidden_field :status, value: 'not_completed' %>
-              <%= form.submit '未完了にする', class: 'btn btn-danger btn-sm' %>
-            <% end %>
+            <div class="flex">
+              <% if log.status.nil? %>
+                <%= form_with(model: [@habit, log], local: true, method: :patch) do |form| %>
+                  <%= form.hidden_field :status, value: 'completed' %>
+                  <%= form.submit 'Completed', class: 'btn btn-success btn-xs flex mx-1' %>
+                <% end %>
+                <%= form_with(model: [@habit, log], local: true, method: :patch) do |form| %>
+                  <%= form.hidden_field :status, value: 'not_completed' %>
+                  <%= form.submit 'Not Completed', class: 'btn btn-error btn-xs flex mx-1' %>
+                <% end %>
+              <% end %>
+            </div>
           </td>
         </tr>
       <% end %>

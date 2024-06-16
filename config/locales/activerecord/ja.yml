@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      habit: "習慣"
+      reward: "報酬"
+    attributes:
+      user:
+        username: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+      habit:
+        name: "名前"
+        habit_type: "種類"
+        description: "説明"
+        start_date: "開始日"
+      reward:
+        name: "名前"
+        description: "説明"

@@ -1,11 +1,33 @@
 <div class="mx-auto w-full max-w-5xl">
   <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">All Rewards</h2>
 
-  <ul>
-    <% @rewards.each do |reward| %>
-      <li>
-        <%= link_to reward.name, reward_path(reward) %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="container">
+    <div class="list">
+      <% @rewards.each do |reward| %>
+        <div class="card bg-base-100 shadow-xl my-3">
+          <div class="card-body">
+            <div class="flex">
+              <h2 class="flex-1 card-title"><%= reward.name %></h2>
+              <div class="flex-none mx-5 font-bold text-info">
+
+              </div>
+              <div class="flex-none">
+                <%= link_to 'Show', reward_path(reward), class: 'btn btn-info btn-outline btn-xs' %>
+              </div>
+            </div>
+            <p><%= reward.description %></p>
+            <p>
+              <%= if reward.condition_type == 'continuous_days'
+                    "連続で#{reward.threshold}日達成"
+                  elsif reward.condition_type == 'total_days'
+                    "合計で#{reward.threshold}日達成"
+                  else
+                    reward.condition_type
+                  end %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

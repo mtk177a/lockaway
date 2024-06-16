@@ -16,9 +16,9 @@
   <p>
     <strong class="my-2 w-full block leading-6 text-gray-900">Condition:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @reward.condition %>
+      <%= @reward.condition_type %>
     </div>
   </p>
 
-  <%= link_to 'Back to Rewards', rewards_path %>
+  <%= link_to 'Back to Rewards', rewards_path, class: 'btn btn-primary btn-outline flex-auto w-full ml-2' %>
 </div>
