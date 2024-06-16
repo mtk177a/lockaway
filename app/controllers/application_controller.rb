@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
     @current_admin ||= Admin.find(session[:admin_id]) if session[:admin_id]
   end
 
+  def require_admin_login
+    unless current_admin
+      redirect_to admin_login_path, alert: "Please login as an admin to access this section."
+    end
+  end
+
   def set_unlogged_habit_logs
     if current_user
       @unlogged_habit_logs = current_user.habits
@@ -21,5 +27,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_admin
+  helper_method :current_admin, :logged_in?
 end
