@@ -1,6 +1,11 @@
 <div class="mx-auto w-full max-w-5xl">
   <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Your Rewards</h2>
 
+  <div class="flex justify-between items-center my-5">
+    <h3 class="text-xl font-bold leading-9 tracking-tight text-gray-900"></h3>
+    <%= link_to 'All Rewards >', rewards_path, class: 'link link-primary link-hover' %>
+  </div>
+
   <ul>
     <% @user_rewards.each do |reward| %>
       <li>
@@ -8,6 +13,4 @@
       </li>
     <% end %>
   </ul>
-
-  <%= link_to 'Back to All Rewards', rewards_path %>
 </div>
