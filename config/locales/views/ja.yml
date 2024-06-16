@@ -1,0 +1,27 @@
+ja:
+  hello: "こんにちは"
+  login: "ログイン"
+  logout: "ログアウト"
+  admin:
+    dashboard: "管理者ダッシュボード"
+  users:
+    index:
+      title: "ユーザー一覧"
+    new:
+      title: "新しいユーザー"
+    edit:
+      title: "ユーザー編集"
+  habits:
+    index:
+      title: "習慣一覧"
+    new:
+      title: "新しい習慣"
+    edit:
+      title: "習慣編集"
+  rewards:
+    index:
+      title: "報酬一覧"
+  buttons:
+    create: "作成"
+    update: "更新"
+    delete: "削除"
