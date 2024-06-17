@@ -53,7 +53,14 @@ class Habit < ApplicationRecord
   end
 
   def check_and_apply_rewards
-    CheckRewardsService.new(self).call
+    Reward.where(habit_type: self.habit_type).each do |reward|
+      case reward.condition_type
+      when 'continuous_days'
+        apply_reward(reward) if continuous_completed_days >= reward.threshold
+      when 'total_days'
+        apply_reward(reward) if total_completed_days >= reward.threshold
+      end
+    end
   end
 
   private
@@ -71,5 +78,12 @@ class Habit < ApplicationRecord
       highest_continuous_days: highest_continuous_days,
       completion_rate: completion_rate
     )
+  end
+
+  def apply_reward(reward)
+    unless self.rewards.include?(reward)
+      self.rewards << reward
+      # ここでユーザーに通知を送るなどの処理を追加
+    end
   end
 end

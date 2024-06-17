@@ -7,7 +7,7 @@ class HabitLog < ApplicationRecord
   validates :habit_id, uniqueness: { scope: :date, message: "has already been logged for this date" }
   validate :date_cannot_be_before_habit_start
 
-  after_save :check_rewards
+  after_save :check_rewards, if: :completed?
 
   def date_cannot_be_before_habit_start
     if date.present? && date < habit.start_date
@@ -18,6 +18,6 @@ class HabitLog < ApplicationRecord
   private
 
   def check_rewards
-    CheckRewardsService.new(habit).call if completed?
+    habit.check_and_apply_rewards if completed?
   end
 end
