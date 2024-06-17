@@ -28,7 +28,7 @@
             </div>
             <div class="flex-none">
               <%= link_to 'Show', habit, class: 'btn btn-info btn-outline btn-xs' %>
-              <% if current_user.own?(habit) %>
+              <% if logged_in? && current_user.own?(habit) %>
                 <%= link_to 'Edit', edit_habit_path(habit), id: "button-edit-#{habit.id}", class: 'btn btn-secondary btn-xs' %>
                 <%= link_to 'Delete', habit_path(habit), id: "button-delete-#{habit.id}", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %>
               <% end %>
@@ -37,6 +37,7 @@
           <p>Type: <%= habit.habit_type %></p>
           <p><%= habit.description %></p>
           <p>Start Date: <%= habit.start_date.strftime("%Y-%m-%d") %></p>
+          <p>User: <%= habit.user.username %></p>
 
           <div class="stats shadow">
             <div class="stat">
