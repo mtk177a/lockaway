@@ -4,7 +4,7 @@ class CheckRewardsService
   end
 
   def call
-    Reward.all.each do |reward|
+    Reward.where(habit_type: @habit.habit_type).find_each do |reward|
       case reward.condition_type
       when 'continuous_days'
         apply_reward(reward) if @habit.continuous_completed_days >= reward.threshold
