@@ -44,6 +44,6 @@ class Admin::RewardsController < Admin::BaseController
   end
 
   def reward_params
-    params.require(:reward).permit(:name, :description, :condition_type, :threshold)
+    params.require(:reward).permit(:name, :habit_type, :description, :condition_type, :threshold)
   end
 end
