@@ -1,0 +1,26 @@
+<div class="mx-auto w-full max-w-5xl">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Your Rewards</h2>
+
+  <div class="flex justify-between items-center my-5">
+    <h3 class="text-xl font-bold leading-9 tracking-tight text-gray-900"></h3>
+    <%= link_to 'All Rewards >', rewards_path, class: 'link link-primary link-hover' %>
+  </div>
+
+  <div class="list">
+    <% @user_rewards.each do |habit_reward| %>
+      <div class="card bg-base-100 shadow-md p-4">
+        <div class="card-body">
+          <h3 class="text-xl font-bold leading-6 text-gray-900"><%= habit_reward.reward.name %></h3>
+          <p class="text-gray-700"><%= habit_reward.reward.description %></p>
+          <p class="text-gray-500">Habit: <%= habit_reward.habit.name %></p>
+          <p class="text-gray-500">Habit Type: <%= habit_reward.habit.habit_type.humanize %></p>
+          <p class="text-gray-500">Completed on: <%= habit_reward.created_at.strftime("%Y-%m-%d") %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mt-6">
+    <%= paginate @user_rewards %>
+  </div>
+</div>

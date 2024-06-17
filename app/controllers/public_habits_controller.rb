@@ -1,4 +1,6 @@
 class PublicHabitsController < ApplicationController
+  skip_before_action :require_login, only: [:index]
+
   def index
     @habits = Habit.public_habits
     @habits = @habits.order(created_at: :desc) if params[:sort] == 'newest'

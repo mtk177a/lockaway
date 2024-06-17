@@ -53,7 +53,7 @@ class Habit < ApplicationRecord
   end
 
   def check_and_apply_rewards
-    Reward.all.each do |reward|
+    Reward.where(habit_type: self.habit_type).each do |reward|
       case reward.condition_type
       when 'continuous_days'
         apply_reward(reward) if continuous_completed_days >= reward.threshold

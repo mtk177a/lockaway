@@ -9,7 +9,7 @@
             <div class="flex">
               <h2 class="flex-1 card-title"><%= reward.name %></h2>
               <div class="flex-none mx-5 font-bold text-info">
-
+                <%= reward.habit_type.humanize %>
               </div>
               <div class="flex-none">
                 <%= link_to 'Show', reward_path(reward), class: 'btn btn-info btn-outline btn-xs' %>

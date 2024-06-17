@@ -16,15 +16,17 @@
     <% end %>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="list">
     <% @habit_rewards.each do |habit_reward| %>
       <div class="card bg-base-100 shadow-md p-4">
-        <h3 class="text-xl font-bold leading-6 text-gray-900"><%= habit_reward.reward.name %></h3>
-        <p class="text-gray-700"><%= habit_reward.reward.description %></p>
-        <p class="text-gray-500">Habit: <%= habit_reward.habit.name %></p>
-        <p class="text-gray-500">Habit Type: <%= habit_reward.habit.habit_type.humanize %></p>
-        <p class="text-gray-500">User: <%= habit_reward.habit.user.username %></p>
-        <p class="text-gray-500">Completed on: <%= habit_reward.created_at.strftime("%Y-%m-%d") %></p>
+        <div class="card-body">
+          <h3 class="text-xl font-bold leading-6 text-gray-900"><%= habit_reward.reward.name %></h3>
+          <p class="text-gray-700"><%= habit_reward.reward.description %></p>
+          <p class="text-gray-500">Habit: <%= habit_reward.habit.name %></p>
+          <p class="text-gray-500">Habit Type: <%= habit_reward.habit.habit_type.humanize %></p>
+          <p class="text-gray-500">User: <%= habit_reward.habit.user.username %></p>
+          <p class="text-gray-500">Completed on: <%= habit_reward.created_at.strftime("%Y-%m-%d") %></p>
+        </div>
       </div>
     <% end %>
   </div>
