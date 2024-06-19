@@ -8,7 +8,7 @@
 
   <div class="list">
     <% @user_rewards.each do |habit_reward| %>
-      <div class="card bg-base-100 shadow-md p-4">
+      <div class="card bg-base-100 shadow-xl my-3">
         <div class="card-body">
           <h3 class="text-xl font-bold leading-6 text-gray-900"><%= habit_reward.reward.name %></h3>
           <p class="text-gray-700"><%= habit_reward.reward.description %></p>
