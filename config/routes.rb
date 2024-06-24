@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :habit_logs, only: [:new, :create, :index, :update]
   end
 
-  resources :public_habits, only: [:index]
+  resources :public_habits, only: [:index, :show]
 
   resources :public_rewards, only: [:index]
 

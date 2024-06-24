@@ -27,7 +27,7 @@
               <%= habit.public ? 'Public' : 'Private' %>
             </div>
             <div class="flex-none">
-              <%= link_to 'Show', habit, class: 'btn btn-info btn-outline btn-xs' %>
+              <%= link_to 'Show', public_habit_path(habit), class: 'btn btn-info btn-outline btn-xs' %>
               <% if logged_in? && current_user.own?(habit) %>
                 <%= link_to 'Edit', edit_habit_path(habit), id: "button-edit-#{habit.id}", class: 'btn btn-secondary btn-xs' %>
                 <%= link_to 'Delete', habit_path(habit), id: "button-delete-#{habit.id}", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %>
