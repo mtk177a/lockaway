@@ -4,6 +4,26 @@
   <div class="container">
     <%= link_to 'New Habit', new_habit_path, class: 'my-3 btn btn-primary' %>
 
+    <div class="my-4">
+      <%= search_form_for @q, url: habits_path, method: :get, class: "flex items-center space-x-4" do |f| %>
+        <div>
+          <%= f.label :name_cont, "Search by Name", class: "mx-2" %>
+          <%= f.search_field :name_cont, class: "input input-bordered" %>
+        </div>
+        <div>
+          <%= f.label :habit_type_eq, "Habit Type", class: "mx-2" %>
+          <%= f.select :habit_type_eq, options_for_select([['All', ''], ['Good', 'good'], ['Bad', 'bad']], params[:q]&.dig(:habit_type_eq)), {}, { class: "select select-bordered" } %>
+        </div>
+        <div>
+          <%= f.label :s, "Sort by", class: "mx-2" %>
+          <%= f.select :s, options_for_select([['Newest', 'created_at desc'], ['Oldest', 'created_at asc']], params[:q]&.dig(:s)), {}, { class: "select select-bordered" } %>
+        </div>
+        <div>
+          <%= f.submit "Filter", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+
     <div class="list">
       <% @habits.each do |habit| %>
         <div class="card bg-base-100 shadow-xl my-3">
@@ -44,5 +64,7 @@
         </div>
       <% end %>
     </div>
+
+    <%= paginate @habits %>
   </div>
 </div>
