@@ -3,7 +3,10 @@ class HabitsController < ApplicationController
 
   # GET /habits
   def index
-    @habits = current_user.habits
+    @q = Habit.where(user_id: current_user.id).ransack(params[:q])
+    puts "Params[:q]: #{params[:q]}"  # デバッグ用ログ
+    puts "Ransack query: #{@q.inspect}"  # デバッグ用ログ
+    @habits = @q.result.order(created_at: :desc).page(params[:page])
   end
 
   # GET /habits/1
