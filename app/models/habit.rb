@@ -63,6 +63,14 @@ class Habit < ApplicationRecord
     end
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[completion_rate continuous_completed_days created_at description habit_type highest_continuous_days id name public start_date total_completed_days updated_at user_id]
+  end
+
+  ransacker :habit_type, formatter: proc { |v| habit_types[v] } do |parent|
+    parent.table[:habit_type]
+  end
+
   private
 
   def generate_initial_logs
