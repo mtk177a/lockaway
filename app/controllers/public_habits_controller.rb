@@ -2,11 +2,8 @@ class PublicHabitsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
 
   def index
-    @habits = Habit.public_habits
-    @habits = @habits.order(created_at: :desc) if params[:sort] == 'newest'
-    @habits = @habits.order(created_at: :asc) if params[:sort] == 'oldest'
-    @habits = @habits.where(habit_type: params[:habit_type]) if params[:habit_type].present?
-    @habits = @habits.page(params[:page])
+    @q = Habit.public_habits.ransack(params[:q])
+    @habits = @q.result.order(created_at: :desc).page(params[:page])
   end
 
   def show
