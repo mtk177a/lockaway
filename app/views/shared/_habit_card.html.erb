@@ -1,0 +1,32 @@
+<div class="card bg-base-100 shadow-xl my-3">
+  <div class="card-body">
+    <div class="flex">
+      <h2 class="flex-1 card-title"><%= habit.name %></h2>
+      <div class="flex-none mx-5 font-bold text-info">
+        <%= habit.public ? 'Public' : 'Private' %>
+      </div>
+      <div class="flex-none">
+        <%= link_to 'Show', show_path, class: 'btn btn-info btn-outline btn-xs' %>
+        <% if editable %>
+          <%= link_to 'Edit', edit_path, id: "button-edit-#{habit.id}", class: 'btn btn-secondary btn-outline btn-xs' %>
+          <%= link_to 'Delete', delete_path, id: "button-delete-#{habit.id}", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-outline btn-error btn-xs' %>
+        <% end %>
+      </div>
+    </div>
+    <p>Type: <%= habit.habit_type %></p>
+    <p><%= habit.description %></p>
+    <p>Start Date: <%= habit.start_date.strftime("%Y-%m-%d") %></p>
+    <p>User: <%= habit.user.username %></p> <!-- この行はpublic_habits#index用 -->
+
+    <div class="stats shadow">
+      <div class="stat">
+        <div class="stat-title">Total Completed Days:</div>
+        <div class="stat-value text-primary"><%= habit.total_completed_days %></div>
+      </div>
+      <div class="stat">
+        <div class="stat-title">Continuous Completed Days:</div>
+        <div class="stat-value text-primary"><%= habit.continuous_completed_days %></div>
+      </div>
+    </div>
+  </div>
+</div>
