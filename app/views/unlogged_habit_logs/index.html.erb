@@ -1,12 +1,12 @@
 <div class="container mx-auto w-full max-w-2xl">
-  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Unlogged HabitLogs</h2>
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
 
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Start Date</th>
-        <th>Action</th>
+        <th><%= t('unlogged_habit_logs.index.habit_name') %></th>
+        <th><%= t('habit_logs.index.date') %></th>
+        <th><%= t('habit_logs.index.actions') %></th>
       </tr>
     </thead>
     <tbody>

@@ -130,3 +130,10 @@ ja:
     status:
       completed: "達成!"
       not_completed: "未達成..."
+  unlogged_habit_logs:
+    index:
+      heading: "未記録の習慣ログ"
+      habit_name: "習慣名"
+    alert:
+      message: "達成状況が未記録の習慣ログがあります！"
+      link: "未記録の習慣ログ一覧を見る"
