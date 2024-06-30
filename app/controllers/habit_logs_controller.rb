@@ -25,7 +25,19 @@ class HabitLogsController < ApplicationController
 
   def update
     if @habit_log.update(habit_log_params)
-      redirect_to habit_path(@habit), success: 'Habit log was successfully updated.'
+      flash.now[:success] = 'Habit log was successfully updated.'
+      redirect_target = determine_redirect_target
+
+      respond_to do |format|
+        format.html { redirect_to redirect_target }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace("flash", partial: "shared/flash_message"),
+            turbo_stream.replace("unlogged_habit_logs_alert", partial: "shared/unlogged_habit_logs_alert"),
+            turbo_stream.replace("unlogged_habit_log_#{@habit_log.id}", partial: "shared/unlogged_habit_log", locals: { log: @habit_log })
+          ]
+        end
+      end
     else
       render :index
     end
@@ -43,5 +55,18 @@ class HabitLogsController < ApplicationController
 
   def habit_log_params
     params.require(:habit_log).permit(:status)
+  end
+
+  def determine_redirect_target
+    referrer = request.referrer
+    if referrer.include?(habit_path(@habit))
+      habit_path(@habit)
+    elsif referrer.include?(habit_habit_logs_path(@habit))
+      habit_habit_logs_path(@habit)
+    elsif referrer.include?(unlogged_habit_logs_path)
+      unlogged_habit_logs_path
+    else
+      habit_path(@habit)
+    end
   end
 end
