@@ -2,14 +2,18 @@
   <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Everyone's Habits</h2>
 
   <div class="mb-4 flex items-center">
-    <%= form_with(url: public_habits_path, method: :get, local: true, class: "flex items-center space-x-2") do |form| %>
+    <%= search_form_for @q, url: public_habits_path, method: :get, class: "flex items-center space-x-2" do |form| %>
       <div>
-        <%= form.label :sort, "Sort by", class: "mr-2" %>
-        <%= form.select :sort, options_for_select([['Newest', 'newest'], ['Oldest', 'oldest']], params[:sort]), {}, { class: "select select-bordered" } %>
+        <%= form.label :s, "Sort by", class: "mr-2" %>
+        <%= form.select :s, options_for_select([['Newest', 'created_at desc'], ['Oldest', 'created_at asc']], params[:q]&.dig(:s)), {}, { class: "select select-bordered" } %>
       </div>
       <div>
-        <%= form.label :habit_type, "Habit Type", class: "mr-2 ml-4" %>
-        <%= form.select :habit_type, options_for_select(Habit.habit_types.keys.map { |k| [k.humanize, k] }, params[:habit_type]), {}, { class: "select select-bordered" } %>
+        <%= form.label :habit_type_eq, "Habit Type", class: "mr-2 ml-4" %>
+        <%= form.select :habit_type_eq, options_for_select([['All', ''], ['Good', 'good'], ['Bad', 'bad']], params[:q]&.dig(:habit_type_eq)), {}, { class: "select select-bordered" } %>
+      </div>
+      <div>
+        <%= form.label :name_cont, "Search by Name", class: "mr-2 ml-4" %>
+        <%= form.search_field :name_cont, class: "input input-bordered" %>
       </div>
       <div>
         <%= form.submit "Filter", class: "btn btn-primary ml-4" %>
