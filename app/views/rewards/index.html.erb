@@ -1,5 +1,5 @@
 <div class="mx-auto w-full max-w-5xl">
-  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">All Rewards</h2>
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
 
   <div class="container">
     <div class="list">
@@ -12,15 +12,15 @@
                 <%= reward.habit_type.humanize %>
               </div>
               <div class="flex-none">
-                <%= link_to 'Show', reward_path(reward), class: 'btn btn-info btn-outline btn-xs' %>
+                <%= link_to t('.show'), reward_path(reward), class: 'btn btn-info btn-outline btn-xs' %>
               </div>
             </div>
             <p><%= reward.description %></p>
             <p>
               <%= if reward.condition_type == 'continuous_days'
-                    "連続で#{reward.threshold}日達成"
+                    t('.continuous_days', threshold: reward.threshold)
                   elsif reward.condition_type == 'total_days'
-                    "合計で#{reward.threshold}日達成"
+                    t('.total_days', threshold: reward.threshold)
                   else
                     reward.condition_type
                   end %>

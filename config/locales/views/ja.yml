@@ -46,7 +46,7 @@ ja:
       heading: "ログイン"
   habits:
     index:
-      heading: "あなたの習慣"
+      heading: "あなたの習慣一覧"
       new_habit: "新しい習慣を登録"
       sort_by: "並び替え"
       newest: "新着順"
@@ -144,4 +144,19 @@ ja:
       link: "未記録の習慣ログ一覧を見る"
   public_habits:
     index:
-      heading: "みんなの習慣"
+      heading: "みんなの習慣一覧"
+  rewards:
+    index:
+      heading: "獲得可能報酬一覧"
+      show: "詳細"
+      continuous_days: "連続で%{threshold}日達成"
+      total_days: "合計で%{threshold}日達成"
+    show:
+      heading: "報酬詳細"
+      habit_type: "習慣タイプ"
+      condition: "条件"
+      back: "報酬一覧に戻る"
+    available:
+      heading: "利用可能な報酬"
+      progress: "進行状況: %{progress} / %{threshold} 日"
+      back: "すべての報酬に戻る"

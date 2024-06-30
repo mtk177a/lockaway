@@ -1,5 +1,5 @@
 <div class="container mx-auto w-full max-w-2xl">
-  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Reward Details</h2>
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
 
   <p>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
@@ -14,18 +14,18 @@
   </p>
 
   <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900">Habit Type:</strong>
+    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.habit_type') %>:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
       <%= @reward.habit_type %>
     </div>
   </p>
 
   <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900">Condition:</strong>
+    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.condition') %>:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
       <%= @reward.condition_type %>
     </div>
   </p>
 
-  <%= link_to 'Back to Rewards', rewards_path, class: 'btn btn-primary btn-outline flex-auto w-full ml-2' %>
+  <%= link_to t('.back'), rewards_path, class: 'btn btn-primary btn-outline flex-auto w-full ml-2' %>
 </div>
