@@ -26,42 +26,7 @@
 
     <div class="list">
       <% @habits.each do |habit| %>
-        <div class="card bg-base-100 shadow-xl my-3">
-          <div class="card-body">
-            <div class="flex">
-              <h2 class="flex-1 card-title"><%= habit.name %></h2>
-              <div class="flex-none mx-5 font-bold text-info">
-                <%= habit.public ? 'Public' : 'Private' %>
-              </div>
-              <div class="flex-none">
-                <%= link_to 'Show', habit, class: 'btn btn-info btn-outline btn-xs' %>
-                <% if current_user.own?(habit) %>
-                  <%= link_to 'Edit', edit_habit_path(habit), id: "button-edit-#{habit.id}", class: 'btn btn-secondary btn-xs' %>
-                  <%= link_to 'Delete', habit_path(habit), id: "button-delete-#{habit.id}", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %>
-                <% end %>
-              </div>
-            </div>
-            <p>Type: <%= habit.habit_type %></p>
-            <p><%= habit.description %></p>
-            <p>Start Date: <%= habit.start_date.strftime("%Y-%m-%d") %></p>
-
-            <div class="stats shadow">
-              <div class="stat">
-                <div class="stat-title">Total Completed Days:</div>
-                <div class="stat-value text-primary"><%= habit.total_completed_days %></div>
-              </div>
-              <div class="stat">
-                <div class="stat-title">Continuous Completed Days:</div>
-                <div class="stat-value text-primary"><%= habit.continuous_completed_days %></div>
-              </div>
-              <div class="stat">
-                <div class="stat-title">Completion Rate:</div>
-                <div class="stat-value text-primary"><%= habit.completion_rate %></div>
-              </div>
-            </div>
-
-          </div>
-        </div>
+        <%= render partial: 'shared/habit_card', locals: { habit: habit, show_path: habit_path(habit), edit_path: edit_habit_path(habit), delete_path: habit_path(habit), editable: current_user.own?(habit) } %>
       <% end %>
     </div>
 
