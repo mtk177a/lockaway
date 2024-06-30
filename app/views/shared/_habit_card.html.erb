@@ -1,0 +1,41 @@
+<% color_class = habit.habit_type == 'good' ? 'bg-yellow-100' : 'bg-purple-100' %>
+<div class="card bg-base-100 shadow-xl my-3 <%= color_class %>">
+  <div class="card-body">
+    <div class="text-gray-500">
+      <strong><%= habit.user.username %></strong>
+    </div>
+    <div class="flex">
+      <% color_class = habit.habit_type == 'good' ? 'text-yellow-600' : 'text-purple-600' %>
+      <h2 class="flex-1 card-title <%= color_class %>"><%= habit.name %></h2>
+      <div class="flex-none mx-5">
+        <%= render partial: 'shared/public_icon' if habit.public? %>
+        <%= render partial: 'shared/private_icon' unless habit.public? %>
+      </div>
+      <div class="flex-none">
+        <%= link_to 'Show', show_path, class: 'btn btn-info text-white btn-xs' %>
+        <% if editable %>
+          <%= link_to 'Edit', edit_path, id: "button-edit-#{habit.id}", class: 'btn btn-warning text-white btn-xs' %>
+          <%= link_to 'Delete', delete_path, id: "button-delete-#{habit.id}", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-error text-white btn-xs' %>
+        <% end %>
+      </div>
+    </div>
+    <p><%= habit.description %></p>
+    <p>Start Date: <%= habit.start_date.strftime("%Y-%m-%d") %></p>
+
+    <% color_class = habit.habit_type == 'good' ? 'text-yellow-400' : 'text-purple-400' %>
+    <div class="stats stats-vertical lg:stats-horizontal shadow">
+      <div class="stat">
+        <div class="stat-title">Current Continuous Completed Days:</div>
+        <div class="stat-value text-primary text-3xl <%= color_class %>"><%= habit.continuous_completed_days %></div>
+      </div>
+      <div class="stat">
+        <div class="stat-title">Highest Continuous Completed Days:</div>
+        <div class="stat-value text-primary text-3xl <%= color_class %>"><%= habit.highest_continuous_days %></div>
+      </div>
+      <div class="stat">
+        <div class="stat-title">Total Completed Days:</div>
+        <div class="stat-value text-primary text-3xl <%= color_class %>"><%= habit.total_completed_days %></div>
+      </div>
+    </div>
+  </div>
+</div>
