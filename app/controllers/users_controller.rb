@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       auto_login(@user)
       redirect_to root_path, success: t('users.create.success')
     else
-      flash.now[:danger] = t('users.create.failure')
+      flash.now[:error] = t('users.create.failure')
       render :new, status: :unprocessable_entity
     end
   end
