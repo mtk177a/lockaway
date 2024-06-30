@@ -160,3 +160,10 @@ ja:
       heading: "利用可能な報酬"
       progress: "進行状況: %{progress} / %{threshold} 日"
       back: "すべての報酬に戻る"
+  user_rewards:
+    index:
+      heading: "あなたの獲得報酬一覧"
+      all_rewards: "獲得可能報酬"
+      habit: "習慣"
+      habit_type: "習慣タイプ"
+      completed_on: "達成日"
