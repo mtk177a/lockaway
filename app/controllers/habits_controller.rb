@@ -20,8 +20,9 @@ class HabitsController < ApplicationController
   def create
     @habit = current_user.habits.build(habit_params)
     if @habit.save
-      redirect_to habits_path, success: 'Habit was successfully created.'
+      redirect_to habits_path, success: t('habits.create.success')
     else
+      flash.now[:danger] = t('habits.create.failure')
       render :new
     end
   end
@@ -33,16 +34,21 @@ class HabitsController < ApplicationController
   # PATCH/PUT /habits/1
   def update
     if @habit.update(habit_params)
-      redirect_to habits_path, success: 'Habit was successfully updated.'
+      redirect_to habits_path, success: t('habits.update.success')
     else
+      flash.now[:danger] = t('habits.update.failure')
       render :edit
     end
   end
 
   # DELETE /habits/1
   def destroy
-    @habit.destroy
-    redirect_to habits_path, error: 'Habit was successfully deleted.', status: :see_other
+    if @habit.destroy
+      redirect_to habits_path, success: t('habits.destroy.success'), status: :see_other
+    else
+      flash[:danger] = t('habits.destroy.failure')
+      redirect_to habits_path, status: :see_other
+    end
   end
 
   private
