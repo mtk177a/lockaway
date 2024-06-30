@@ -1,27 +1,32 @@
 ja:
-  hello: "こんにちは"
-  login: "ログイン"
-  logout: "ログアウト"
-  admin:
-    dashboard: "管理者ダッシュボード"
+  helpers:
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
   users:
-    index:
-      title: "ユーザー一覧"
-    new:
-      title: "新しいユーザー"
+    form:
+      errors:
+        heading: "%{count}件のエラーが発生しました:"
+      username: "ユーザー名"
+      email: "メールアドレス"
+      password: "パスワード"
+      password_confirmation: "パスワード確認"
+    user:
+      username: "ユーザー名"
+      email: "メールアドレス"
     edit:
-      title: "ユーザー編集"
-  habits:
+      heading: "ユーザー情報の編集"
+      show: "ユーザー情報を見る"
+      back: "ユーザー一覧に戻る"
     index:
-      title: "習慣一覧"
+      heading: "ユーザー一覧"
+      show: "ユーザー情報を見る"
     new:
-      title: "新しい習慣"
-    edit:
-      title: "習慣編集"
-  rewards:
-    index:
-      title: "報酬一覧"
-  buttons:
-    create: "作成"
-    update: "更新"
-    delete: "削除"
+      heading: "ユーザー登録"
+    show:
+      heading: "ユーザー詳細"
+      back: "ユーザー一覧に戻る"
+    create:
+      success: "ユーザーが正常に作成されました。"
+      failure: "ユーザーを作成できませんでした。"
