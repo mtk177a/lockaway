@@ -1,9 +1,9 @@
 <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">User details</h2>
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
 
   <%= render @user %>
 
   <div class="my-5">
-    <%= link_to "Back to users", users_path, class: "btn btn-primary btn-outline w-full" %>
+    <%= link_to t('.back'), users_path, class: "btn btn-primary btn-outline w-full" %>
   </div>
 </div>

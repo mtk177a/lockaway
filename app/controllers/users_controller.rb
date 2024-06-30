@@ -22,14 +22,15 @@ class UsersController < ApplicationController
 
     if @user.save
       auto_login(@user)
-      redirect_to root_path, success: "User was successfully created."
+      redirect_to root_path, success: t('users.create.success')
     else
-      flash.now[:danger] = "User could not be created."
+      flash.now[:danger] = t('users.create.failure')
       render :new, status: :unprocessable_entity
     end
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
