@@ -4,6 +4,8 @@ ja:
       create: 登録
       submit: 保存
       update: 更新
+      complete: "達成"
+      not_complete: "未達成"
   users:
     form:
       errors:
@@ -94,3 +96,37 @@ ja:
     destroy:
       success: "習慣が正常に削除されました。"
       failure: "習慣を削除できませんでした。"
+  habit_logs:
+    index:
+      heading: "%{habit_name}の習慣ログ"
+      date: "日付"
+      status: "ステータス"
+      actions: "アクション"
+      no_logs: "習慣ログが見つかりませんでした。"
+      back: "戻る"
+    form:
+      errors:
+        heading: "%{count}件のエラーが発生しました:"
+      submit: "送信"
+    show:
+      heading: "習慣ログの詳細"
+      date: "日付"
+      status: "ステータス"
+      actions: "アクション"
+      back: "戻る"
+      edit: "編集"
+      delete: "削除"
+      completed: "完了"
+      not_completed: "未完了"
+    create:
+      success: "習慣ログが正常に作成されました。"
+      failure: "習慣ログを作成できませんでした。"
+    update:
+      success: "習慣ログが正常に更新されました。"
+      failure: "習慣ログを更新できませんでした。"
+    destroy:
+      success: "習慣ログが正常に削除されました。"
+      failure: "習慣ログを削除できませんでした。"
+    status:
+      completed: "達成!"
+      not_completed: "未達成..."

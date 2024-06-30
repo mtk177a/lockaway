@@ -17,15 +17,16 @@ class HabitLogsController < ApplicationController
     @habit_log = @habit.habit_logs.new(habit_log_params)
     @habit_log.date = Date.today
     if @habit_log.save
-      redirect_to habit_habit_logs_path(@habit), success: 'Habit log was successfully created.'
+      redirect_to habit_habit_logs_path(@habit), success: t('habit_logs.create.success')
     else
+      flash.now[:danger] = t('habit_logs.create.failure')
       render :new
     end
   end
 
   def update
     if @habit_log.update(habit_log_params)
-      flash.now[:success] = 'Habit log was successfully updated.'
+      flash.now[:success] = t('habit_logs.update.success')
       redirect_target = determine_redirect_target
 
       respond_to do |format|
@@ -39,6 +40,7 @@ class HabitLogsController < ApplicationController
         end
       end
     else
+      flash.now[:danger] = t('habit_logs.update.failure')
       render :index
     end
   end
