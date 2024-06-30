@@ -1,7 +1,7 @@
 <%= form_with(model: @habit, local: true) do |f| %>
   <% if @habit.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@habit.errors.count, "error") %> prohibited this habit from being saved:</h2>
+      <h2><%= t('.errors.heading', count: @habit.errors.count) %></h2>
       <ul>
         <% @habit.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -11,33 +11,33 @@
   <% end %>
 
   <div class="my-5">
-    <%= f.label :name, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
-    <%= f.text_field :name, class: "w-full input input-bordered flex items-center gap-2", placeholder: "Name" %>
+    <%= f.label :name, t('.name'), class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+    <%= f.text_field :name, class: "w-full input input-bordered flex items-center gap-2", placeholder: t('.name') %>
   </div>
 
   <div class="my-5">
-    <%= f.label :habit_type, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
-    <%= f.select :habit_type, options_for_select(Habit.habit_types.keys.map { |w| [w.humanize, w] }, selected: @habit.habit_type), { include_blank: 'Select Habit Type', disabled: false }, class: "select select-bordered w-full max-w-xs" %>
+    <%= f.label :habit_type, t('.habit_type'), class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+    <%= f.select :habit_type, options_for_select(Habit.habit_types.keys.map { |w| [w.humanize, w] }, selected: @habit.habit_type), { include_blank: t('.habit_type') }, class: "select select-bordered w-full max-w-xs" %>
   </div>
 
   <div class="my-5">
-    <%= f.label :description, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
-    <%= f.text_area :description, class: "w-full textarea textarea-bordered", placeholder: "Description" %>
+    <%= f.label :description, t('.description'), class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+    <%= f.text_area :description, class: "w-full textarea textarea-bordered", placeholder: t('.description') %>
   </div>
 
   <div class="my-5">
-    <%= f.label :start_date, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+    <%= f.label :start_date, t('.start_date'), class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
     <div class="flex space-x-2">
       <%= f.date_select :start_date, { order: [:year, :month, :day] }, { class: "select select-bordered w-full max-w-xs" } %>
     </div>
   </div>
 
   <div class="my-5">
-    <%= f.label :public, class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
+    <%= f.label :public, t('.public'), class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
     <%= f.check_box :public, class: "checkbox checkbox-primary" %>
   </div>
 
   <div class="mt-10 mb-5">
-    <%= f.submit class: "btn btn-primary w-full" %>
+    <%= f.submit button_text, class: "btn btn-primary w-full" %>
   </div>
 <% end %>

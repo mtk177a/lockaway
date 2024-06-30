@@ -9,9 +9,9 @@ class Habit < ApplicationRecord
 
   enum habit_type: { good: 0, bad: 1 }
 
-  validates :name, presence: true
-  validates :habit_type, presence: true
-  validates :start_date, presence: true
+  validates :name, presence: { message: :blank }
+  validates :habit_type, presence: { message: :blank }
+  validates :start_date, presence: { message: :blank }
 
   scope :public_habits, -> { where(public: true) }
 

@@ -1,15 +1,15 @@
 <header>
   <div class="navbar bg-base-100">
     <div class="flex-1">
-      <%= link_to "LockAway", root_path, class: "btn btn-ghost text-xl" %>
+      <%= link_to t('header.title'), root_path, class: "btn btn-ghost text-xl" %>
     </div>
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">
         <li>
-          <%= link_to "Everyone's Habits", public_habits_path %>
+          <%= link_to t('header.public_habits'), public_habits_path %>
         </li>
         <li>
-          <%= link_to "Everyone's Rewards", public_rewards_path %>
+          <%= link_to t('header.public_rewards'), public_rewards_path %>
         </li>
         <li>
           <details>
@@ -18,13 +18,13 @@
             </summary>
             <ul class="p-2 bg-base-100 rounded-t-none">
               <li>
-                <%= link_to "Your Habits", habits_path %>
+                <%= link_to t('header.your_habits'), habits_path %>
               </li>
               <li>
-                <%= link_to "Your Rewards", user_rewards_path %>
+                <%= link_to t('header.your_rewards'), user_rewards_path %>
               </li>
               <li>
-                <%= link_to "Logout", logout_path, data: {turbo_method: :delete} %>
+                <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete } %>
               </li>
             </ul>
           </details>

@@ -1,10 +1,12 @@
-<h1>Editing user</h1>
+<div class="sm:mx-auto sm:w-full sm:max-w-sm">
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
+</div>
 
-<%= render "form", user: @user %>
+<%= render "form", user: @user, button_text: t('helpers.submit.update') %>
 
 <div class="sm:mx-auto sm:w-full sm:max-w-sm">
   <div class="flex">
-    <%= link_to "Show this user", @user, class: "btn btn-primary btn-outline mr-2 w-full flex-auto" %>
-    <%= link_to "Back to users", users_path, class: "btn btn-primary btn-outline ml-2 w-full flex-auto" %>
+    <%= link_to t('users.edit.show'), @user, class: "btn btn-primary btn-outline mr-2 w-full flex-auto" %>
+    <%= link_to t('users.edit.back'), users_path, class: "btn btn-primary btn-outline ml-2 w-full flex-auto" %>
   </div>
 </div>

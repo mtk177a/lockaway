@@ -1,27 +1,195 @@
 ja:
-  hello: "こんにちは"
-  login: "ログイン"
-  logout: "ログアウト"
-  admin:
-    dashboard: "管理者ダッシュボード"
+  helpers:
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
+      complete: "達成"
+      not_complete: "未達成"
   users:
-    index:
-      title: "ユーザー一覧"
-    new:
-      title: "新しいユーザー"
+    form:
+      errors:
+        heading: "%{count}件のエラーが発生しました:"
+      username: "ユーザー名"
+      email: "メールアドレス"
+      password: "パスワード"
+      password_confirmation: "パスワード確認"
+    user:
+      username: "ユーザー名"
+      email: "メールアドレス"
     edit:
-      title: "ユーザー編集"
+      heading: "ユーザー情報の編集"
+      show: "ユーザー情報を見る"
+      back: "ユーザー一覧に戻る"
+    index:
+      heading: "ユーザー一覧"
+      show: "ユーザー情報を見る"
+    new:
+      heading: "ユーザー登録"
+    show:
+      heading: "ユーザー詳細"
+      back: "ユーザー一覧に戻る"
+    create:
+      success: "ユーザーが正常に作成されました。"
+      failure: "ユーザーを作成できませんでした。"
+  user_sessions:
+    create:
+      success: "ログインに成功しました"
+      failure: "ログインに失敗しました"
+    destroy:
+      success: "ログアウトしました"
+    form:
+      email: "メールアドレス"
+      password: "パスワード"
+      submit: "ログイン"
+    new:
+      heading: "ログイン"
   habits:
     index:
-      title: "習慣一覧"
+      heading: "あなたの習慣一覧"
+      new_habit: "新しい習慣を登録"
+      sort_by: "並び替え"
+      newest: "新着順"
+      oldest: "古い順"
+      habit_type: "習慣タイプ"
+      all: "すべて"
+      good: "良い"
+      bad: "悪い"
+      search_by_name: "検索"
+      filter: "フィルター"
+    form:
+      errors:
+        heading: "%{count}件のエラーが発生しました:"
+      name: "名前"
+      habit_type: "習慣の種類"
+      description: "説明"
+      start_date: "開始日"
+      public: "公開"
+      submit: "送信"
+    show:
+      heading: "習慣の詳細"
+      name: "名前"
+      type: "種類"
+      description: "説明"
+      start_date: "開始日"
+      total_completed_days: "総完了日数"
+      continuous_completed_days: "連続完了日数"
+      highest_continuous_days: "最高連続日数"
+      completion_rate: "完了率"
+      public: "公開"
+      yes: "はい"
+      no: "いいえ"
+      recent_habit_logs: "最近の習慣ログ"
+      view_all_logs: "すべてのログを見る"
+      show: "詳細"
+      edit: "編集"
+      delete: "削除"
+      back: "習慣一覧に戻る"
+      are_you_sure: "本当に削除しますか？"
     new:
-      title: "新しい習慣"
+      heading: "新しい習慣"
+      back: "習慣一覧に戻る"
     edit:
-      title: "習慣編集"
+      heading: "習慣の編集"
+      back: "習慣一覧に戻る"
+    create:
+      success: "習慣が正常に作成されました。"
+      failure: "習慣を作成できませんでした。"
+    update:
+      success: "習慣が正常に更新されました。"
+      failure: "習慣を更新できませんでした。"
+    destroy:
+      success: "習慣が正常に削除されました。"
+      failure: "習慣を削除できませんでした。"
+  habit_logs:
+    index:
+      heading: "%{habit_name}の習慣ログ"
+      date: "日付"
+      status: "ステータス"
+      actions: "アクション"
+      no_logs: "習慣ログが見つかりませんでした。"
+      back: "戻る"
+    form:
+      errors:
+        heading: "%{count}件のエラーが発生しました:"
+      submit: "送信"
+    show:
+      heading: "習慣ログの詳細"
+      date: "日付"
+      status: "ステータス"
+      actions: "アクション"
+      back: "戻る"
+      edit: "編集"
+      delete: "削除"
+      completed: "完了"
+      not_completed: "未完了"
+    create:
+      success: "習慣ログが正常に作成されました。"
+      failure: "習慣ログを作成できませんでした。"
+    update:
+      success: "習慣ログが正常に更新されました。"
+      failure: "習慣ログを更新できませんでした。"
+    destroy:
+      success: "習慣ログが正常に削除されました。"
+      failure: "習慣ログを削除できませんでした。"
+    status:
+      completed: "達成!"
+      not_completed: "未達成..."
+  unlogged_habit_logs:
+    index:
+      heading: "未記録の習慣ログ"
+      habit_name: "習慣名"
+    alert:
+      message: "達成状況が未記録の習慣ログがあります！"
+      link: "未記録の習慣ログ一覧を見る"
+  public_habits:
+    index:
+      heading: "みんなの習慣一覧"
   rewards:
     index:
-      title: "報酬一覧"
-  buttons:
-    create: "作成"
-    update: "更新"
-    delete: "削除"
+      heading: "獲得可能報酬一覧"
+      show: "詳細"
+      continuous_days: "連続で%{threshold}日達成"
+      total_days: "合計で%{threshold}日達成"
+    show:
+      heading: "報酬詳細"
+      habit_type: "習慣タイプ"
+      condition: "条件"
+      back: "報酬一覧に戻る"
+    available:
+      heading: "利用可能な報酬"
+      progress: "進行状況: %{progress} / %{threshold} 日"
+      back: "すべての報酬に戻る"
+  user_rewards:
+    index:
+      heading: "あなたの獲得報酬一覧"
+      all_rewards: "獲得可能報酬"
+      habit: "習慣"
+      habit_type: "習慣タイプ"
+      completed_on: "達成日"
+  public_rewards:
+    index:
+      heading: "みんなの獲得報酬一覧"
+      sort_by: "並び替え:"
+      habit_type: "習慣の種類:"
+      username: "ユーザー名:"
+      filter: "フィルター"
+      habit: "習慣"
+      user: "ユーザー"
+      completed_on: "達成日"
+      all: "すべて"
+  header:
+    title: "LockAway"
+    public_habits: "みんなの習慣"
+    public_rewards: "みんなの報酬"
+    signup: "ユーザー登録"
+    login: "ログイン"
+    dashboard: "ダッシュボード"
+    admin_rewards: "報酬"
+    users: "ユーザー"
+    habits: "習慣"
+    your_habits: "あなたの習慣"
+    your_rewards: "あなたの報酬"
+    logout: "ログアウト"
+    admin_logout: "管理者ログアウト"
+    admin: "管理者"

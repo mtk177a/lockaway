@@ -1,12 +1,12 @@
 <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">User list</h2>
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
 </div>
 
 <div id="users">
   <% @users.each do |user| %>
     <%= render user %>
     <p>
-      <%= link_to "Show this user", user %>
+      <%= link_to t('.show'), user %>
     </p>
   <% end %>
 </div>

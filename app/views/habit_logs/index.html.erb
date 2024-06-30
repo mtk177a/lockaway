@@ -1,12 +1,12 @@
 <div class="mx-auto w-full max-w-2xl">
-  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Habit Logs for <%= @habit.name %></h2>
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading', habit_name: @habit.name) %></h2>
 
   <table class="table">
     <thead>
       <tr>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Actions</th>
+        <th><%= t('.date') %></th>
+        <th><%= t('.status') %></th>
+        <th><%= t('.actions') %></th>
       </tr>
     </thead>
     <tbody>
@@ -16,13 +16,13 @@
         <% end %>
       <% else %>
         <tr>
-          <td colspan="3">No habit logs found.</td>
+          <td colspan="3"><%= t('.no_logs') %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
   <div class="mt-5 mb-10">
-    <%= link_to 'Back', habit_path(@habit), class: "btn btn-primary btn-outline w-full" %>
+    <%= link_to t('.back'), habit_path(@habit), class: "btn btn-primary btn-outline w-full" %>
   </div>
 </div>

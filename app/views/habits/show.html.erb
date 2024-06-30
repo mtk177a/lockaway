@@ -1,74 +1,74 @@
 <div class="container mx-auto w-full max-w-2xl">
-  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Habit Details</h2>
+  <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
 
   <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900">Name:</strong>
+    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.name') %>:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
       <%= @habit.name %>
     </div>
   </p>
 
   <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900">Type:</strong>
+    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.type') %>:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
       <%= @habit.habit_type.humanize %>
     </div>
   </p>
 
   <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900">Description:</strong>
+    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.description') %>:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
       <%= @habit.description %>
     </div>
   </p>
 
   <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900">Start Date:</strong>
+    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.start_date') %>:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
       <%= @habit.start_date.strftime("%Y-%m-%d") %>
     </div>
   </p>
 
   <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900">Total Completed Days:</strong>
+    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.total_completed_days') %>:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
       <%= @habit.total_completed_days %>
     </div>
   </p>
 
   <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900">Continuous Completed Days:</strong>
+    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.continuous_completed_days') %>:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
       <%= @habit.continuous_completed_days %>
     </div>
   </p>
 
   <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900">Completion Rate:</strong>
+    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.completion_rate') %>:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
       <%= @habit.completion_rate %>
     </div>
   </p>
 
   <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900">Public:</strong>
+    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.public') %>:</strong>
     <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.public ? 'Yes' : 'No' %>
+      <%= @habit.public ? t('.yes') : t('.no') %>
     </div>
   </p>
 
   <div>
     <div class="flex justify-between items-center my-5">
-      <h3 class="text-xl font-bold leading-9 tracking-tight text-gray-900">Recent Habit Logs</h3>
-      <%= link_to 'View All Logs >', habit_habit_logs_path(@habit), class: 'link link-primary link-hover' %>
+      <h3 class="text-xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.recent_habit_logs') %></h3>
+      <%= link_to t('.view_all_logs'), habit_habit_logs_path(@habit), class: 'link link-primary link-hover' %>
     </div>
 
     <table class="table">
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Status</th>
-          <th>Actions</th>
+          <th><%= t('habit_logs.index.date') %></th>
+          <th><%= t('habit_logs.index.status') %></th>
+          <th><%= t('habit_logs.index.actions') %></th>
         </tr>
       </thead>
       <tbody>
@@ -80,7 +80,7 @@
   </div>
 
   <div class="flex mt-5 mb-10">
-    <%= link_to 'Edit', edit_habit_path(@habit), class: 'btn btn-secondary flex-auto w-full mr-2' %>
-    <%= link_to 'Back', habits_path, class: 'btn btn-primary btn-outline flex-auto w-full ml-2' %>
+    <%= link_to t('.edit'), edit_habit_path(@habit), class: 'btn btn-secondary flex-auto w-full mr-2' %>
+    <%= link_to t('.back'), habits_path, class: 'btn btn-primary btn-outline flex-auto w-full ml-2' %>
   </div>
 </div>
