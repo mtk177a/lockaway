@@ -5,8 +5,8 @@ class Reward < ApplicationRecord
   enum condition_type: { continuous_days: 0, total_days: 1 }
   enum habit_type: { good: 0, bad: 1 }
 
-  validates :name, presence: true
-  validates :condition_type, presence: true
-  validates :threshold, presence: true, numericality: { only_integer: true }
-  validates :habit_type, presence: true
+  validates :name, presence: { message: :blank }
+  validates :condition_type, presence: { message: :blank }
+  validates :threshold, presence: { message: :blank }, numericality: { only_integer: true, message: :not_a_number }
+  validates :habit_type, presence: { message: :blank }
 end
