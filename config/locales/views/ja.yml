@@ -30,3 +30,15 @@ ja:
     create:
       success: "ユーザーが正常に作成されました。"
       failure: "ユーザーを作成できませんでした。"
+  user_sessions:
+    create:
+      success: "ログインに成功しました"
+      failure: "ログインに失敗しました"
+    destroy:
+      success: "ログアウトしました"
+    form:
+      email: "メールアドレス"
+      password: "パスワード"
+      submit: "ログイン"
+    new:
+      heading: "ログイン"
