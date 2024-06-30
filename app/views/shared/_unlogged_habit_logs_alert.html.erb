@@ -1,6 +1,6 @@
 <% if @unlogged_habit_logs.present? %>
   <div class="alert alert-warning">
     <p>達成状況が未記録の習慣ログがあります！</p>
-    <%= link_to '未記録の習慣ログ一覧を見る', unlogged_habit_logs_path, class: 'alert-link' %>
+    <%= link_to '未記録の習慣ログ一覧を見る', unlogged_habit_logs_path, class: 'alert-link', data: { turbo_frame: '_top' } %>
   </div>
 <% end %>

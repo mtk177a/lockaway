@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Lockaway</title>
+    <title>LockAway</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -19,9 +19,13 @@
       <%= render 'shared/before_login_header' %>
     <% end %>
 
-    <%= render 'shared/flash_message' %>
+    <turbo-frame id="flash">
+      <%= render 'shared/flash_message' %>
+    </turbo-frame>
 
-    <%= render 'shared/unlogged_habit_logs_alert' %>
+    <turbo-frame id="unlogged_habit_logs_alert">
+      <%= render 'shared/unlogged_habit_logs_alert' %>
+    </turbo-frame>
 
     <%= yield %>
   </body>

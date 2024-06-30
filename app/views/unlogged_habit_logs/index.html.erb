@@ -11,24 +11,7 @@
     </thead>
     <tbody>
       <% @unlogged_habit_logs.each do |log| %>
-        <tr>
-          <td><%= log.habit.name %></td>
-          <td><%= log.date %></td>
-          <td>
-            <div class="flex">
-              <% if log.status.nil? %>
-                <%= form_with(model: [log.habit, log], local: true, method: :patch) do |form| %>
-                  <%= form.hidden_field :status, value: 'completed' %>
-                  <%= form.submit 'Completed', class: 'btn btn-success btn-xs flex mx-1' %>
-                <% end %>
-                <%= form_with(model: [log.habit, log], local: true, method: :patch) do |form| %>
-                  <%= form.hidden_field :status, value: 'not_completed' %>
-                  <%= form.submit 'Not Completed', class: 'btn btn-error btn-xs flex mx-1' %>
-                <% end %>
-              <% end %>
-            </div>
-          </td>
-        </tr>
+        <%= render partial: 'shared/unlogged_habit_log', locals: { log: log } %>
       <% end %>
     </tbody>
   </table>
