@@ -1,0 +1,18 @@
+<tr id="habit_log_<%= habit_log.id %>">
+  <td><%= habit_log.date %></td>
+  <td><%= habit_log.status %></td>
+  <td>
+    <div class="flex">
+      <% if habit_log.status.nil? %>
+        <%= form_with(model: [habit_log.habit, habit_log], local: true, method: :patch) do |form| %>
+          <%= form.hidden_field :status, value: 'completed' %>
+          <%= form.submit 'Completed', class: 'btn btn-success btn-xs flex mx-1' %>
+        <% end %>
+        <%= form_with(model: [habit_log.habit, habit_log], local: true, method: :patch) do |form| %>
+          <%= form.hidden_field :status, value: 'not_completed' %>
+          <%= form.submit 'Not Completed', class: 'btn btn-error btn-xs flex mx-1' %>
+        <% end %>
+      <% end %>
+    </div>
+  </td>
+</tr>
