@@ -49,7 +49,12 @@ ja:
       heading: "あなたの習慣"
       new_habit: "新しい習慣を登録"
       sort_by: "並び替え"
-      habit_type: "習慣の種類"
+      newest: "新着順"
+      oldest: "古い順"
+      habit_type: "習慣タイプ"
+      all: "すべて"
+      good: "良い"
+      bad: "悪い"
       search_by_name: "検索"
       filter: "フィルター"
     form:
@@ -137,3 +142,6 @@ ja:
     alert:
       message: "達成状況が未記録の習慣ログがあります！"
       link: "未記録の習慣ログ一覧を見る"
+  public_habits:
+    index:
+      heading: "みんなの習慣"

@@ -8,11 +8,11 @@
       <%= search_form_for @q, url: habits_path, method: :get, class: "flex items-center space-x-4" do |f| %>
         <div>
           <%= f.label :s, t('.sort_by'), class: "mx-2" %>
-          <%= f.select :s, options_for_select([['Newest', 'created_at desc'], ['Oldest', 'created_at asc']], params[:q]&.dig(:s)), {}, { class: "select select-bordered" } %>
+          <%= f.select :s, options_for_select([[t('.newest'), 'created_at desc'], [t('.oldest'), 'created_at asc']], params[:q]&.dig(:s)), {}, { class: "select select-bordered" } %>
         </div>
         <div>
           <%= f.label :habit_type_eq, t('.habit_type'), class: "mx-2" %>
-          <%= f.select :habit_type_eq, options_for_select([['All', ''], ['Good', 'good'], ['Bad', 'bad']], params[:q]&.dig(:habit_type_eq)), {}, { class: "select select-bordered" } %>
+          <%= f.select :habit_type_eq, options_for_select([[t('.all'), ''], [t('.good'), 'good'], [t('.bad'), 'bad']], params[:q]&.dig(:habit_type_eq)), {}, { class: "select select-bordered" } %>
         </div>
         <div>
           <%= f.label :name_cont, t('.search_by_name'), class: "mx-2" %>
