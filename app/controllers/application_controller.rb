@@ -11,9 +11,8 @@ class ApplicationController < ActionController::Base
 
   def set_unlogged_habit_logs
     if current_user
-      @unlogged_habit_logs = current_user.habits
-                                         .joins(:habit_logs)
-                                         .where(habit_logs: { date: Date.today, status: nil })
+      @unlogged_habit_logs = HabitLog.joins(:habit)
+                                     .where(habits: { user_id: current_user.id }, status: nil)
     end
   end
 
