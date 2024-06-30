@@ -1,20 +1,93 @@
 ja:
   activerecord:
     models:
-      user: "ユーザー"
-      habit: "習慣"
-      reward: "報酬"
+      habit_log: 習慣ログ
+      habit_reward: 習慣リワード
+      habit: 習慣
+      reward: 報酬
+      user: ユーザー
+
     attributes:
-      user:
-        username: "ユーザー名"
-        email: "メールアドレス"
-        password: "パスワード"
-        password_confirmation: "パスワード確認"
+      habit_log:
+        habit_id: 習慣ID
+        date: 日付
+        status: ステータス
+        created_at: 作成日時
+        updated_at: 更新日時
+
+      habit_reward:
+        habit_id: 習慣ID
+        reward_id: 報酬ID
+        created_at: 作成日時
+        updated_at: 更新日時
+
       habit:
-        name: "名前"
-        habit_type: "種類"
-        description: "説明"
-        start_date: "開始日"
+        user_id: ユーザーID
+        name: 名前
+        habit_type: 習慣タイプ
+        description: 説明
+        start_date: 開始日
+        created_at: 作成日時
+        updated_at: 更新日時
+        total_completed_days: 合計完了日数
+        continuous_completed_days: 連続完了日数
+        completion_rate: 完了率
+        highest_continuous_days: 最高連続日数
+        public: 公開
+
       reward:
-        name: "名前"
-        description: "説明"
+        name: 名前
+        description: 説明
+        threshold: 閾値
+        created_at: 作成日時
+        updated_at: 更新日時
+        condition_type: 条件タイプ
+        habit_type: 習慣タイプ
+
+      user:
+        email: メール
+        username: ユーザー名
+        role: ロール
+        created_at: 作成日時
+        updated_at: 更新日時
+        password: パスワード
+        password_confirmation: パスワード確認
+
+    enums:
+      habit_log:
+        status:
+          not_completed: 未達成
+          completed: 達成
+
+      habit:
+        habit_type:
+          good: 良い
+          bad: 悪い
+
+      reward:
+        condition_type:
+          continuous_days: 連続日数
+          total_days: 合計日数
+        habit_type:
+          good: 良い
+          bad: 悪い
+
+      user:
+        role:
+          general: 一般
+          admin: 管理者
+
+    errors:
+      messages:
+        blank: "を入力してください"
+        taken: "はすでに存在します"
+        confirmation: "が一致しません"
+        too_short: "が短すぎます"
+        not_a_number: "は数値でなければなりません"
+        record_invalid: "バリデーションに失敗しました: %{errors}"
+        restrict_dependent_destroy:
+          has_one: "削除できません、関連する %{record} が存在します"
+          has_many: "削除できません、関連する %{record} が存在します"
+        date_cannot_be_before_habit_start: "習慣の開始日より前の日付は設定できません"
+        uniqueness:
+          scope: "この日付のログは既に存在します"
