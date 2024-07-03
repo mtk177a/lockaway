@@ -162,11 +162,20 @@ ja:
       back: "すべての報酬に戻る"
   user_rewards:
     index:
-      heading: "あなたの獲得報酬一覧"
-      all_rewards: "獲得可能報酬"
+      heading: "あなたの報酬"
+      all_rewards: "全ての報酬を見る"
+      sort_by: "並び替え"
+      newest: "新着順"
+      oldest: "古い順"
+      habit_type: "習慣タイプ"
+      all: "すべて"
+      good: "良い"
+      bad: "悪い"
+      search_by_name: "検索"
+      filter: "フィルタ"
       habit: "習慣"
       habit_type: "習慣タイプ"
-      completed_on: "達成日"
+      completed_on: "獲得日"
   public_rewards:
     index:
       heading: "みんなの獲得報酬一覧"
