@@ -67,6 +67,10 @@ class Habit < ApplicationRecord
     %w[completion_rate continuous_completed_days created_at description habit_type highest_continuous_days id name public start_date total_completed_days updated_at user_id]
   end
 
+  def self.ransackable_associations(auth_object = nil)
+    %w[habit_logs habit_rewards rewards user]
+  end
+
   ransacker :habit_type, formatter: proc { |v| habit_types[v] } do |parent|
     parent.table[:habit_type]
   end

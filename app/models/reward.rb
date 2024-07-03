@@ -9,4 +9,8 @@ class Reward < ApplicationRecord
   validates :condition_type, presence: { message: :blank }
   validates :threshold, presence: { message: :blank }, numericality: { only_integer: true, message: :not_a_number }
   validates :habit_type, presence: { message: :blank }
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[id name description condition_type habit_type threshold created_at updated_at]
+  end
 end
