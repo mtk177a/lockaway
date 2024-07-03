@@ -1,9 +1,19 @@
 <div class="mx-auto w-full max-w-5xl">
   <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
 
-  <div class="flex justify-between items-center my-5">
-    <h3 class="text-xl font-bold leading-9 tracking-tight text-gray-900"></h3>
-    <%= link_to t('.all_rewards'), rewards_path, class: 'link link-primary link-hover' %>
+  <div class="mb-4 flex items-center">
+    <%= search_form_for @q, url: user_rewards_path, method: :get, local: true, class: "flex items-center space-x-2" do |form| %>
+      <%= form.label :s, t('.sort_by'), class: "mr-2 ml-4" %>
+      <%= form.select :s, options_for_select([[t('.newest'), 'created_at desc'], [t('.oldest'), 'created_at asc']], params[:q]&.dig(:s)), {}, { class: "select select-bordered" } %>
+
+      <%= form.label :habit_habit_type_eq, t('.habit_type'), class: "mr-2 ml-4" %>
+      <%= form.select :habit_habit_type_eq, options_for_select([[t('.all'), ''], [t('.good'), 'good'], [t('.bad'), 'bad']], params[:q]&.dig(:habit_habit_type_eq)), {}, { class: "select select-bordered" } %>
+
+      <%= form.label :reward_name_cont, t('.search_by_name'), class: "mr-2 ml-4" %>
+      <%= form.text_field :reward_name_cont, value: params[:q]&.dig(:reward_name_cont), class: "input input-bordered" %>
+
+      <%= form.submit t('.filter'), class: "btn btn-primary ml-4" %>
+    <% end %>
   </div>
 
   <div class="list">
