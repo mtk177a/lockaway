@@ -2,17 +2,22 @@
   <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
 
   <div class="mb-4 flex items-center">
-    <%= form_with(url: public_rewards_path, method: :get, local: true, class: "flex items-center space-x-2") do |form| %>
-      <%= form.label :sort, t('.sort_by'), class: "mr-2" %>
-      <%= form.select :sort, options_for_select([['Newest', 'newest'], ['Oldest', 'oldest']], selected: params[:sort]), {}, { class: "select select-bordered" } %>
-
-      <%= form.label :habit_type, t('.habit_type'), class: "mr-2 ml-4" %>
-      <%= form.select :habit_type, options_for_select(Habit.habit_types.keys.map { |w| [w.humanize, w] }, selected: params[:habit_type]), { include_blank: t('.all') }, { class: "select select-bordered" } %>
-
-      <%= form.label :username, t('.username'), class: "mr-2 ml-4" %>
-      <%= form.text_field :username, value: params[:username], class: "input input-bordered" %>
-
-      <%= form.submit t('.filter'), class: "btn btn-primary ml-4" %>
+    <%= search_form_for @q, url: public_rewards_path, method: :get, class: "flex items-center space-x-2" do |form| %>
+      <div>
+        <%= form.label :s, t('.sort_by'), class: "mr-2" %>
+        <%= form.select :s, options_for_select([[t('.newest'), 'created_at desc'], [t('.oldest'), 'created_at asc']], params[:q]&.dig(:s)), {}, { class: "select select-bordered" } %>
+      </div>
+      <div>
+        <%= form.label :habit_habit_type_eq, t('.habit_type'), class: "mr-2 ml-4" %>
+        <%= form.select :habit_habit_type_eq, options_for_select([[t('.all'), ''], [t('.good'), 'good'], [t('.bad'), 'bad']], params[:q]&.dig(:habit_habit_type_eq)), {}, { class: "select select-bordered" } %>
+      </div>
+      <div>
+        <%= form.label :reward_name_cont, t('.search_by_name'), class: "mr-2 ml-4" %>
+        <%= form.text_field :reward_name_cont, value: params[:q]&.dig(:reward_name_cont), class: "input input-bordered" %>
+      </div>
+      <div>
+        <%= form.submit t('.filter'), class: "btn btn-primary ml-4" %>
+      </div>
     <% end %>
   </div>
 
