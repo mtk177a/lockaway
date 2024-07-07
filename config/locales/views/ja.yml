@@ -6,6 +6,12 @@ ja:
       update: 更新
       complete: "達成"
       not_complete: "未達成"
+  shared:
+    reward_card:
+      habit: "習慣"
+      habit_type: "習慣タイプ"
+      user: "ユーザー"
+      completed_on: "達成日"
   users:
     form:
       errors:
@@ -172,7 +178,7 @@ ja:
       good: "良い"
       bad: "悪い"
       search_by_name: "習慣名"
-      filter: "フィルタ"
+      filter: "フィルター"
       habit: "習慣"
       habit_type: "習慣タイプ"
       completed_on: "獲得日"
