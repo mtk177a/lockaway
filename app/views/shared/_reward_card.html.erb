@@ -1,0 +1,21 @@
+<% color_class = habit_reward.habit.habit_type == 'good' ? 'bg-yellow-100' : 'bg-purple-100' %>
+<div class="card bg-base-100 shadow-xl my-5 <%= color_class %>">
+  <div class="card-body">
+    <div class="text-gray-500">
+      <strong><%= habit_reward.habit.user.username %></strong>
+    </div>
+
+    <div>
+      <p class="text-gray-500"><%= habit_reward.habit.name %></p>
+    </div>
+
+    <div>
+      <% color_class = habit_reward.habit.habit_type == 'good' ? 'text-yellow-600' : 'text-purple-600' %>
+      <h2 class="card-title <%= color_class %>"><%= habit_reward.reward.name %></h2>
+    </div>
+
+    <p class="text-gray-500"><%= habit_reward.reward.description %></p>
+
+    <p class="text-gray-500"><%= t('.completed_on') %>: <%= habit_reward.created_at.strftime("%Y-%m-%d") %></p>
+  </div>
+</div>
