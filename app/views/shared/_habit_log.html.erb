@@ -1,17 +1,19 @@
 <tr id="habit_log_<%= habit_log.id %>">
+  <td><%= habit_log.habit.name if habit_log.habit %></td>
   <td><%= habit_log.date %></td>
-  <td><%= habit_log.status ? t("habit_logs.status.#{habit_log.status}") : '' %></td>
   <td>
     <div class="flex">
       <% if habit_log.status.nil? %>
-        <%= form_with(model: [habit_log.habit, habit_log], local: true, method: :patch) do |form| %>
+        <%= form_with(model: [habit_log.habit, habit_log], data: { turbo: true }, method: :patch) do |form| %>
           <%= form.hidden_field :status, value: 'completed' %>
           <%= form.submit t('helpers.submit.complete'), class: 'btn btn-success btn-xs flex mx-1' %>
         <% end %>
-        <%= form_with(model: [habit_log.habit, habit_log], local: true, method: :patch) do |form| %>
+        <%= form_with(model: [habit_log.habit, habit_log], data: { turbo: true }, method: :patch) do |form| %>
           <%= form.hidden_field :status, value: 'not_completed' %>
           <%= form.submit t('helpers.submit.not_complete'), class: 'btn btn-error btn-xs flex mx-1' %>
         <% end %>
+      <% else %>
+        <span><%= habit_log.status ? t("habit_logs.status.#{habit_log.status}") : '' %></span>
       <% end %>
     </div>
   </td>
