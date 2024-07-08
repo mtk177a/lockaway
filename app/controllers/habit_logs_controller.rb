@@ -4,9 +4,7 @@ class HabitLogsController < ApplicationController
 
   def index
     @habit_logs = @habit.habit_logs.order(date: :desc)
-    if params[:filter] == 'incomplete'
-      @habit_logs = @habit_logs.where(status: nil)
-    end
+    @habit_logs = @habit_logs.where(status: nil) if params[:filter] == 'incomplete'
   end
 
   def new
@@ -27,20 +25,17 @@ class HabitLogsController < ApplicationController
   def update
     if @habit_log.update(habit_log_params)
       flash.now[:success] = t('habit_logs.update.success')
-      redirect_target = determine_redirect_target
-
       respond_to do |format|
-        format.html { redirect_to redirect_target }
+        format.html { redirect_to determine_redirect_target }
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace("flash", partial: "shared/flash_message"),
-            turbo_stream.replace("unlogged_habit_logs_alert", partial: "shared/unlogged_habit_logs_alert"),
-            turbo_stream.replace("unlogged_habit_log_#{@habit_log.id}", partial: "shared/unlogged_habit_log", locals: { log: @habit_log })
+            turbo_stream.replace("habit_log_#{@habit_log.id}", partial: "shared/habit_log", locals: { habit_log: @habit_log })
           ]
         end
       end
     else
-      flash.now[:danger] = t('habit_logs.update.failure')
+      flash.now[:error] = t('habit_logs.update.failure')
       render :index
     end
   end

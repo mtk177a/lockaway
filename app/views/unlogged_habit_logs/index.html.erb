@@ -6,12 +6,12 @@
       <tr>
         <th><%= t('unlogged_habit_logs.index.habit_name') %></th>
         <th><%= t('habit_logs.index.date') %></th>
-        <th><%= t('habit_logs.index.actions') %></th>
+        <th><%= t('habit_logs.index.status') %></th>
       </tr>
     </thead>
     <tbody>
       <% @unlogged_habit_logs.each do |log| %>
-        <%= render partial: 'shared/unlogged_habit_log', locals: { log: log } %>
+        <%= render partial: 'shared/habit_log', locals: { habit_log: log } %>
       <% end %>
     </tbody>
   </table>
