@@ -110,6 +110,7 @@ ja:
   habit_logs:
     index:
       heading: "%{habit_name}の習慣ログ"
+      habit_name: "習慣名"
       date: "日付"
       status: "ステータス"
       actions: "アクション"
