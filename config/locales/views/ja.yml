@@ -6,6 +6,8 @@ ja:
       update: 更新
       complete: "達成"
       not_complete: "未達成"
+    twitter:
+      share: "Xでシェア"
   shared:
     reward_card:
       habit: "習慣"
