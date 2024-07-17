@@ -217,3 +217,11 @@ ja:
     logout: "ログアウト"
     admin_logout: "管理者ログアウト"
     admin: "管理者"
+  footer:
+    title: "LockAway"
+    about: "LockAwayについて"
+    terms: "利用規約"
+    privacy: "プライバシーポリシー"
+    contact: "お問い合わせ"
+    copy_right: "Copyright ©"
+    all_rights_reserved: "- All Rights Reserved"
