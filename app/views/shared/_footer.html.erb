@@ -1,0 +1,36 @@
+<footer class="footer footer-center bg-base-200 text-base-content p-5 mt-10">
+  <div>
+    <div class="flex">
+      <div class="mx-10">
+        <a class="flex-none">
+          <%= image_tag 'logomark.png', alt: 'LockAway Logomark', class: 'inline-block w-12 h-12' %>
+        </a>
+
+        <a class="flex-none">
+          <%= image_tag 'logotype.png', alt: 'LockAway Logotype', class: 'inline-block h-12 ml-2' %>
+        </a>
+      </div>
+
+      <nav class="flex-none items-center grid grid-flow-col mx-10">
+        <a class="link link-hover mx-4">
+          <%= link_to t('footer.about'), "#" %>
+        </a>
+        <a class="link link-hover mx-4">
+          <%= link_to t('footer.terms'), "#" %>
+        </a>
+        <a class="link link-hover mx-4">
+          <%= link_to t('footer.privacy'), "#" %>
+        </a>
+        <a class="link link-hover mx-4">
+          <%= link_to t('footer.contact'), "#" %>
+        </a>
+      </nav>
+    </div>
+
+    <p>
+      <%= t('footer.copy_right') %>
+      <%= Time.now.year %>
+      <%= t('footer.all_rights_reserved') %>
+    </p>
+  </div>
+</footer>
