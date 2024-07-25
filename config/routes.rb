@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   root 'public_habits#index'
 
   get 'login', to: 'user_sessions#new', as: :login
