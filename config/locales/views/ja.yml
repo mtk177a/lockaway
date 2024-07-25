@@ -225,3 +225,25 @@ ja:
     contact: "お問い合わせ"
     copy_right: "Copyright ©"
     all_rights_reserved: "- All Rights Reserved"
+  home:
+    hero:
+      title: "LockAway"
+      subtitle: "悪い習慣を「ロック」して、良い習慣を「アンロック」することをサポート"
+      signup: "新規登録"
+      login: "ログイン"
+    features:
+      title: "主な機能の紹介"
+      feature1_title: "習慣の記録"
+      feature1_description: "毎日の習慣を簡単に記録できます。"
+      feature2_title: "進捗の確認"
+      feature2_description: "習慣の進捗を確認して、モチベーションを維持しましょう。"
+      feature3_title: "報酬の獲得"
+      feature3_description: "達成した習慣に応じて報酬を獲得しましょう。"
+    how_to_use:
+      title: "使い方の説明"
+      step1_title: "ステップ1"
+      step1_description: "アプリをインストールします。"
+      step2_title: "ステップ2"
+      step2_description: "アカウントを作成し、ログインします。"
+      step3_title: "ステップ3"
+      step3_description: "習慣を登録し、毎日記録します。"
