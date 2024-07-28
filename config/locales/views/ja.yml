@@ -228,9 +228,11 @@ ja:
   home:
     hero:
       title: "LockAway"
-      subtitle: "悪い習慣を「ロック」して、良い習慣を「アンロック」することをサポート"
+      subtitle: "悪い習慣を 'ロック' して、良い習慣を 'アンロック' することをサポート"
       signup: "新規登録"
       login: "ログイン"
+      public_habits: "みんなの習慣を見る"
+      public_rewards: "みんなの報酬を見る"
     features:
       title: "主な機能の紹介"
       feature1_title: "習慣の記録"
@@ -240,10 +242,10 @@ ja:
       feature3_title: "報酬の獲得"
       feature3_description: "達成した習慣に応じて報酬を獲得しましょう。"
     how_to_use:
-      title: "使い方の説明"
-      step1_title: "ステップ1"
-      step1_description: "アプリをインストールします。"
-      step2_title: "ステップ2"
-      step2_description: "アカウントを作成し、ログインします。"
-      step3_title: "ステップ3"
-      step3_description: "習慣を登録し、毎日記録します。"
+      title: "使い方"
+      step1_title: "STEP 1"
+      step1_description: "習慣を登録します"
+      step2_title: "STEP 2"
+      step2_description: "習慣を継続できたか記録します"
+      step3_title: "STEP 3"
+      step3_description: "達成した習慣に応じて報酬を獲得できます"
