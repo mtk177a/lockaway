@@ -1,0 +1,11 @@
+<%= turbo_frame_tag 'modal' do %>
+  <dialog id="my_modal" class="modal modal-bottom sm:modal-middle" data-controller="modal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold"><%= reward.name %></h3>
+      <p class="py-4"><%= reward.description %></p>
+      <div class="modal-action">
+        <button class="btn" data-action="modal#close">Close</button>
+      </div>
+    </div>
+  </dialog>
+<% end %>
