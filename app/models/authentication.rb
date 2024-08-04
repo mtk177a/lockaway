@@ -1,2 +1,3 @@
-class Authentication < ApplicationRecord
+class Authentication < ActiveRecord::Base
+  belongs_to :user
 end
