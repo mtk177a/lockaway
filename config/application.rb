@@ -32,5 +32,11 @@ module Myapp
 
     # Adding the locales path
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
+    config.before_configuration do
+      ENV['GOOGLE_CLIENT_ID'] = Rails.application.credentials.dig(:google, :google_client_id)
+      ENV['GOOGLE_CLIENT_SECRET'] = Rails.application.credentials.dig(:google, :google_client_secret)
+      ENV['GOOGLE_CALLBACK_URL'] = Settings.sorcery[:google_callback_url]
+    end
   end
 end

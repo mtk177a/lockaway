@@ -31,4 +31,12 @@ module ApplicationHelper
     message = "習慣［#{habit_name}］が 報酬［#{reward_name}］を達成しました！\n#LockAway\n"
     URI.encode_www_form_component(message)
   end
+
+  def google_client_id
+    ENV['GOOGLE_CLIENT_ID']
+  end
+
+  def google_callback_url
+    ENV['GOOGLE_CALLBACK_URL']
+  end
 end

@@ -19,6 +19,8 @@ ja:
       title: "報酬を獲得しました！"
       completed_on: "達成日"
       close: "✕"
+    google_login_button:
+      login: "Googleでログイン"
   users:
     form:
       errors:
