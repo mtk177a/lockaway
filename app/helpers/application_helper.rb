@@ -26,4 +26,9 @@ module ApplicationHelper
       }
     }
   end
+
+  def share_message(habit_name, reward_name)
+    message = "習慣［#{habit_name}］が 報酬［#{reward_name}］を達成しました！\n#LockAway\n"
+    URI.encode_www_form_component(message)
+  end
 end

@@ -30,7 +30,7 @@
 
       <% if current_user == reward.habit.user %>
         <div class="flex-none mx-5">
-          <%= link_to t('helpers.twitter.share'), "https://twitter.com/intent/tweet?url=#{request.original_url}&text=習慣［#{reward.habit.name}］が［#{reward.reward.name}］を達成しました！%0a%0a", target: "_blank", rel: "noopener", class: "btn btn-neutral text-white mt-5 mb-5" %>
+          <%= link_to t('helpers.twitter.share'), "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{share_message(reward.habit.name, reward.reward.name)}", target: "_blank", rel: "noopener", class: "btn btn-neutral text-white mt-5 mb-5" %>
         </div>
       <% end %>
     </div>
