@@ -5,9 +5,10 @@
       <div class="flex-1 text-gray-500">
         <strong><%= habit_reward.habit.user.username %></strong>
       </div>
+      <%= link_to t('.show'), user_reward_path(habit_reward), class: 'btn btn-info text-white btn-xs', data: { turbo_frame: 'modal' } %>
       <% if current_user == habit_reward.habit.user %>
         <div class="flex-none mx-5">
-          <%= link_to t('helpers.twitter.share'), "https://twitter.com/intent/tweet?url=#{request.original_url}&text=【#{habit_reward.habit.name}】が【#{habit_reward.reward.name}】を達成しました！", target: "_blank", rel: "noopener", class: "btn btn-neutral text-white btn-xs" %>
+          <%= link_to t('helpers.twitter.share'), "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{share_message(habit_reward.habit.name, habit_reward.reward.name)}", target: "_blank", rel: "noopener", class: "btn btn-neutral text-white btn-xs" %>
         </div>
       <% end %>
     </div>

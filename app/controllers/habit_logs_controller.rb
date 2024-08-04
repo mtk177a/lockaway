@@ -24,14 +24,17 @@ class HabitLogsController < ApplicationController
 
   def update
     if @habit_log.update(habit_log_params)
+      rewards = @habit_log.habit.check_and_apply_rewards
       flash.now[:success] = t('habit_logs.update.success')
+
       respond_to do |format|
         format.html { redirect_to determine_redirect_target }
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace("flash", partial: "shared/flash_message"),
-            turbo_stream.replace("habit_log_#{@habit_log.id}", partial: "shared/habit_log", locals: { habit_log: @habit_log })
-          ]
+            turbo_stream.replace("habit_log_#{@habit_log.id}", partial: "shared/habit_log", locals: { habit_log: @habit_log }),
+            (rewards.present? ? turbo_stream.replace("modal", partial: "shared/reward_modal", locals: { reward: rewards.last }) : nil)
+          ].compact
         end
       end
     else

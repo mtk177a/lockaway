@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :unlogged_habit_logs, only: [:index]
 
-  resources :user_rewards, only: [:index]
+  resources :user_rewards, only: [:index, :show]
 
   resources :users
 

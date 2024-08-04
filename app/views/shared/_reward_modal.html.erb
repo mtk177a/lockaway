@@ -1,0 +1,38 @@
+<%= turbo_frame_tag 'modal' do %>
+  <% color_class = reward.habit.habit_type == 'good' ? 'bg-yellow-100' : 'bg-purple-100' %>
+  <dialog id="my_modal" class="modal modal-bottom sm:modal-middle" data-controller="modal">
+    <div class="modal-box text-center <%= color_class %>">
+      <div class="modal-action">
+        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" data-action="modal#close"><%= t('.close') %></button>
+      </div>
+
+      <div class="text-gray-500 text-xl mb-3">
+        <strong><%= t('.title') %></strong>
+      </div>
+
+      <div class="my-5">
+        <% color_class = reward.habit.habit_type == 'good' ? 'text-yellow-600' : 'text-purple-600' %>
+        <h2 class="text-2xl font-bold leading-6 <%= color_class %>"><%= reward.reward.name %></h2>
+      </div>
+
+      <div class="text-gray-500 my-2">
+        <p><%= reward.habit.user.username %></p>
+      </div>
+
+      <div class="my-2">
+        <p class="text-gray-500"><%= reward.habit.name %></p>
+      </div>
+
+      <div class="my-2">
+        <p class="text-gray-700"><%= reward.reward.description %></p>
+        <p class="text-gray-500"><%= t('.completed_on') %>: <%= reward.created_at.strftime("%Y-%m-%d") %></p>
+      </div>
+
+      <% if current_user == reward.habit.user %>
+        <div class="flex-none mx-5">
+          <%= link_to t('helpers.twitter.share'), "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{share_message(reward.habit.name, reward.reward.name)}", target: "_blank", rel: "noopener", class: "btn btn-neutral text-white mt-5 mb-5" %>
+        </div>
+      <% end %>
+    </div>
+  </dialog>
+<% end %>
