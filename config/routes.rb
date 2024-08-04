@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'oauths/oauth'
+  get 'oauths/callback'
   root 'home#index'
 
   get 'login', to: 'user_sessions#new', as: :login
