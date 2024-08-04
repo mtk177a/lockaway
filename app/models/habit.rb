@@ -53,14 +53,22 @@ class Habit < ApplicationRecord
   end
 
   def check_and_apply_rewards
+    acquired_rewards = []
     Reward.where(habit_type: self.habit_type).each do |reward|
       case reward.condition_type
       when 'continuous_days'
-        apply_reward(reward) if continuous_completed_days >= reward.threshold
+        if continuous_completed_days >= reward.threshold
+          apply_reward(reward)
+          acquired_rewards << reward
+        end
       when 'total_days'
-        apply_reward(reward) if total_completed_days >= reward.threshold
+        if total_completed_days >= reward.threshold
+          apply_reward(reward)
+          acquired_rewards << reward
+        end
       end
     end
+    acquired_rewards
   end
 
   def self.ransackable_attributes(auth_object = nil)
