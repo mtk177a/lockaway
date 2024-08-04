@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_17_151035) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_04_161122) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -18,6 +18,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_151035) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
+  end
+
+  create_table "authentications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
   end
 
   create_table "habit_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
