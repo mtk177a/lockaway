@@ -10,7 +10,9 @@ class UserRewardsController < ApplicationController
     @habit_reward = HabitReward.find(params[:id])
     respond_to do |format|
       format.html
-      format.turbo_stream { render partial: 'shared/reward_modal', locals: { reward: @habit_reward.reward } }
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace('modal', partial: 'shared/reward_modal', locals: { reward: @habit_reward })
+      end
     end
   end
 end
