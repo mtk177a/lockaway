@@ -80,7 +80,14 @@ Rails.application.config.sorcery.configure do |config|
   # i.e. [:twitter, :facebook, :github, :linkedin, :xing, :google, :liveid, :salesforce, :slack, :line].
   # Default: `[]`
   #
-  # config.external_providers =
+
+  #externalモジュールの読み込み
+  Rails.application.config.sorcery.submodules = [:external]
+
+  Rails.application.config.sorcery.configure do |config|
+
+    #利用する外部サービスのプロバイダーを指定
+    config.external_providers = %i[google]
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -158,11 +165,13 @@ Rails.application.config.sorcery.configure do |config|
   # config.auth0.callback_url = "https://0.0.0.0:3000/oauth/callback?provider=auth0"
   # config.auth0.site = "https://example.auth0.com"
   #
-  # config.google.key = ""
-  # config.google.secret = ""
-  # config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
-  # config.google.user_info_mapping = {:email => "email", :username => "name"}
+    config.google.key = Rails.application.credentials.dig(:google, :google_client_id)
+    config.google.secret = Rails.application.credentials.dig(:google, :google_client_secret)
+    config.google.callback_url = 'http://localhost:3000/oauth/callback?provider=google'
+    config.google.user_info_mapping = {:email => "email", :username => "name"}
   # config.google.scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+  end
+
   #
   # For Microsoft Graph, the key will be your App ID, and the secret will be your app password/public key.
   # The callback URL "can't contain a query string or invalid special characters"
@@ -543,7 +552,9 @@ Rails.application.config.sorcery.configure do |config|
     # Class which holds the various external provider data for this user.
     # Default: `nil`
     #
-    # user.authentications_class =
+
+      #外部サービスとの認証情報を保存するモデルを指定
+      user.authentications_class = Authentication
 
     # User's identifier in the `authentications` class.
     # Default: `:user_id`
