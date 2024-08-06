@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'static_pages/privacy'
   get 'oauths/oauth'
   get 'oauths/callback'
   root 'home#index'
