@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   get 'privacy', to: 'static_pages#privacy'
+  get 'terms_of_service', to: 'static_pages#terms_of_service'
 
   resources :habits do
     resources :habit_logs, only: [:new, :create, :index, :update]
