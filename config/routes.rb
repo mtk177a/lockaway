@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
-  get 'static_pages/privacy'
-  get 'oauths/oauth'
-  get 'oauths/callback'
   root 'home#index'
 
   get 'login', to: 'user_sessions#new', as: :login
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy', as: :logout
 
+  get 'oauths/oauth'
+  get 'oauths/callback'
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback"
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+
+  get 'privacy', to: 'static_pages#privacy'
 
   resources :habits do
     resources :habit_logs, only: [:new, :create, :index, :update]
