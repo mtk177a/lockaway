@@ -236,7 +236,7 @@ ja:
     hero:
       title: "LockAway"
       subtitle: "悪い習慣を 'ロック' して、良い習慣を 'アンロック' することをサポート"
-      signup: "新規登録"
+      signup: "ユーザー登録"
       login: "ログイン"
       public_habits: "みんなの習慣を見る"
       public_rewards: "みんなの報酬を見る"
