@@ -1,0 +1,26 @@
+<div class="card bg-base-100 w-full shadow-xl">
+  <%= search_form_for @q, url: url, method: :get, local: true, class: "space-y-4 lg:space-y-0 p-4" do |f| %>
+
+    <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-2">
+      <div class="px-2 py-1">
+        <%= f.label :s, t('.sort_by'), class: "mr-2" %>
+        <%= f.select :s, options_for_select([[t('.newest'), 'created_at desc'], [t('.oldest'), 'created_at asc']], params[:q]&.dig(:s)), {}, { class: "select select-bordered" } %>
+      </div>
+
+      <div class="px-2 py-1">
+        <%= f.label :habit_habit_type_eq, t('.habit_type'), class: "mr-2" %>
+        <%= f.select :habit_habit_type_eq, options_for_select([[t('.all'), ''], [t('.good'), 'good'], [t('.bad'), 'bad']], params[:q]&.dig(:habit_habit_type_eq)), {}, { class: "select select-bordered" } %>
+      </div>
+
+      <div class="px-2 py-1">
+        <%= f.label :reward_name_cont, t('.search_by_name'), class: "mr-2" %>
+        <%= f.text_field :reward_name_cont, value: params[:q]&.dig(:reward_name_cont), class: "input input-bordered" %>
+      </div>
+
+      <div class="px-1 py-1">
+        <%= f.submit t('.filter'), class: "btn btn-primary" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
