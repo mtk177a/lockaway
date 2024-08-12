@@ -26,10 +26,6 @@
       <%= render 'shared/flash_message' %>
     </turbo-frame>
 
-    <turbo-frame id="unlogged_habit_logs_alert">
-      <%= render 'shared/unlogged_habit_logs_alert' %>
-    </turbo-frame>
-
     <%= yield %>
 
     <%= turbo_frame_tag 'modal' %>
