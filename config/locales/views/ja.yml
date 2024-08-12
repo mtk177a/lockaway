@@ -8,6 +8,12 @@ ja:
       not_complete: "未達成"
     twitter:
       share: "Xでシェア"
+  pagination:
+    previous: "<"
+    next: ">"
+    first: "<<"
+    last: ">>"
+    truncate: "..."
   shared:
     reward_card:
       habit: "習慣"
