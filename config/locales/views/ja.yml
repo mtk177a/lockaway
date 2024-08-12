@@ -27,6 +27,27 @@ ja:
       close: "✕"
     google_login_button:
       login: "Googleでログイン"
+    habit_search_sort:
+      sort_by: "並び替え"
+      newest: "新着順"
+      oldest: "古い順"
+      habit_type: "習慣タイプ"
+      all: "すべて"
+      good: "良い"
+      bad: "悪い"
+      search_by_name: "習慣名"
+      filter: "フィルター"
+    reward_search_sort:
+      sort_by: "並び替え"
+      newest: "新着順"
+      oldest: "古い順"
+      habit_type: "習慣タイプ"
+      all: "すべて"
+      good: "良い"
+      bad: "悪い"
+      username: "ユーザー名"
+      search_by_name: "習慣名"
+      filter: "フィルター"
   users:
     form:
       errors:
