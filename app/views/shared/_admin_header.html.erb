@@ -1,47 +1,46 @@
 <header>
-  <div class="navbar bg-base-100">
-    <div class="flex-1">
-      <%= link_to t('header.title'), root_path, class: "btn btn-ghost text-xl text-rose-700" %>
+  <div class="navbar bg-rose-100">
+    <div class="navbar-start">
+      <!-- サイトタイトル -->
+      <%= link_to root_path, class: "btn btn-ghost text-xl" do %>
+        <!-- 小さいスクリーン用 -->
+        <%= image_tag 'logomark.png', alt: 'LockAway Logomark', class: 'block lg:hidden h-10' %>
+        <!-- 大きいスクリーン用 -->
+        <%= image_tag 'logomark_and_logotype_horizontal.png', alt: 'LockAway Logomark and Logotype', class: 'hidden lg:block h-10' %>
+      <% end %>
     </div>
-    <div class="flex-none">
-      <ul class="menu menu-horizontal px-1">
-        <li>
-          <%= link_to t('header.dashboard'), admin_dashboard_path, class: "text-rose-700" %>
-        </li>
-        <li>
-          <%= link_to t('header.admin_rewards'), admin_rewards_path, class: "text-rose-700" %>
-        </li>
-        <li>
-          <%= link_to t('header.users'), admin_users_path, class: "text-rose-700" %>
-        </li>
-        <li>
-          <%= link_to t('header.habits'), admin_habits_path, class: "text-rose-700" %>
-        </li>
-        <li>
-          <%= link_to t('header.public_habits'), public_habits_path %>
-        </li>
-        <li>
-          <%= link_to t('header.public_rewards'), public_rewards_path %>
-        </li>
-        <li>
-          <details>
-            <summary class="text-rose-700">
-              <%= t('header.admin') %>: <%= current_user.username %>
-            </summary>
-            <ul class="p-2 bg-base-100 rounded-t-none">
-              <li>
-                <%= link_to t('header.your_habits'), habits_path %>
-              </li>
-              <li>
-                <%= link_to t('header.your_rewards'), user_rewards_path %>
-              </li>
-              <li>
-                <%= link_to t('header.admin_logout'), admin_logout_path, data: { turbo_method: :delete } %>
-              </li>
-            </ul>
-          </details>
-        </li>
+
+    <div class="navbar-end flex items-center">
+      <!-- 公開ページへのリンク -->
+      <ul class="menu menu-horizontal px-1 hidden lg:flex">
+        <li><%= link_to t('header.public_habits'), public_habits_path %></li>
+        <li><%= link_to t('header.public_rewards'), public_rewards_path %></li>
       </ul>
+
+      <!-- 管理者用ドロップダウンメニュー -->
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost">
+          <span class="text-rose-700">管理メニュー</span>
+        </div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+          <li><%= link_to t('header.dashboard'), admin_dashboard_path, class: "text-rose-700" %></li>
+          <li><%= link_to t('header.admin_rewards'), admin_rewards_path, class: "text-rose-700" %></li>
+          <li><%= link_to t('header.users'), admin_users_path, class: "text-rose-700" %></li>
+          <li><%= link_to t('header.habits'), admin_habits_path, class: "text-rose-700" %></li>
+        </ul>
+      </div>
+
+      <!-- ユーザーのドロップダウンメニュー -->
+      <div class="dropdown dropdown-end pl-3">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle text-rose-700">
+          <%= current_user.username %>
+        </div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+          <li><%= link_to t('header.your_habits'), habits_path %></li>
+          <li><%= link_to t('header.your_rewards'), user_rewards_path %></li>
+          <li><%= link_to t('header.admin_logout'), admin_logout_path, data: { turbo_method: :delete }, class: "text-error" %></li>
+        </ul>
+      </div>
     </div>
   </div>
 </header>
