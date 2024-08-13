@@ -26,11 +26,16 @@
     </div>
 
     <div class="navbar-end flex items-center">
-      <!-- 横並びのナビゲーションメニュー -->
-      <ul class="menu menu-horizontal px-1 hidden lg:flex">
-        <li><%= link_to t('header.public_habits'), public_habits_path %></li>
-        <li><%= link_to t('header.public_rewards'), public_rewards_path %></li>
-      </ul>
+      <!-- 公開ページへのリンク -->
+      <%= link_to public_habits_path, class: "relative flex item-center btn btn-ghost hidden lg:flex" do %>
+        <%= render 'shared/public_habits_icon' %>
+        <%= t('header.public_habits') %>
+      <% end %>
+
+      <%= link_to public_rewards_path, class: "relative flex item-center btn btn-ghost hidden lg:flex" do %>
+        <%= render 'shared/public_rewards_icon' %>
+        <%= t('header.public_rewards') %>
+      <% end %>
 
       <!-- ユーザー登録とログイン -->
       <ul class="menu menu-horizontal px-1 flex">

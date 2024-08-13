@@ -1,6 +1,32 @@
 <header>
   <div class="navbar bg-rose-100">
     <div class="navbar-start">
+      <!-- ハンバーガーメニュー -->
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+          <!-- ハンバーガーアイコン -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+          </svg>
+        </div>
+        <!-- ハンバーガーメニューの内容 -->
+        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+          <li>
+            <%= link_to public_habits_path, class: "relative flex items-center" do %>
+              <%= render 'shared/public_habits_icon' %>
+              <%= t('header.public_habits') %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to public_rewards_path, class: "relative flex items-center" do %>
+              <%= render 'shared/public_rewards_icon' %>
+              <%= t('header.public_rewards') %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
       <!-- サイトタイトル -->
       <%= link_to root_path, class: "btn btn-ghost text-xl" do %>
         <!-- 小さいスクリーン用 -->
@@ -12,33 +38,31 @@
 
     <div class="navbar-end flex items-center">
       <!-- 公開ページへのリンク -->
-      <ul class="menu menu-horizontal px-1 hidden lg:flex">
-        <li><%= link_to t('header.public_habits'), public_habits_path %></li>
-        <li><%= link_to t('header.public_rewards'), public_rewards_path %></li>
-      </ul>
+      <%= link_to public_habits_path, class: "relative flex item-center btn btn-ghost hidden lg:flex" do %>
+        <%= render 'shared/public_habits_icon' %>
+        <%= t('header.public_habits') %>
+      <% end %>
 
-      <!-- 未記録の習慣通知ボタン -->
-      <%= link_to unlogged_habit_logs_path, class: "btn btn-ghost btn-circle md:btn-square" do %>
-        <div class="indicator tooltip tooltip-bottom" data-tip="未記録の習慣ログ">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-          </svg>
-          <span class="badge badge-sm bg-warning indicator-item"><%= @unlogged_habit_logs.size %></span>
+      <%= link_to public_rewards_path, class: "relative flex item-center btn btn-ghost hidden lg:flex" do %>
+        <%= render 'shared/public_rewards_icon' %>
+        <%= t('header.public_rewards') %>
+      <% end %>
+
+      <!-- 新しい習慣作成ボタン -->
+      <%= link_to new_habit_path, class: "btn btn-ghost" do %>
+        <%= render 'shared/new_habit_icon' %>
+        <div class="hidden lg:flex">
+          <%= t('header.new_habit') %>
         </div>
       <% end %>
 
-      <!-- 管理者用ドロップダウンメニュー -->
-      <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost">
-          <span class="text-rose-700">管理メニュー</span>
+      <!-- 未記録の習慣通知ボタン -->
+      <%= link_to unlogged_habit_logs_path, class: "btn btn-ghost" do %>
+        <%= render 'shared/unlogged_habit_logs_icon' %>
+        <div class="hidden lg:flex">
+          <%= t('header.unlogged_habit_logs') %>
         </div>
-        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-          <li><%= link_to t('header.dashboard'), admin_dashboard_path, class: "text-rose-700" %></li>
-          <li><%= link_to t('header.admin_rewards'), admin_rewards_path, class: "text-rose-700" %></li>
-          <li><%= link_to t('header.users'), admin_users_path, class: "text-rose-700" %></li>
-          <li><%= link_to t('header.habits'), admin_habits_path, class: "text-rose-700" %></li>
-        </ul>
-      </div>
+      <% end %>
 
       <!-- ユーザーのドロップダウンメニュー -->
       <div class="dropdown dropdown-end pl-3">
@@ -46,9 +70,30 @@
           <%= current_user.username %>
         </div>
         <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-          <li><%= link_to t('header.your_habits'), habits_path %></li>
-          <li><%= link_to t('header.your_rewards'), user_rewards_path %></li>
-          <li><%= link_to t('header.admin_logout'), admin_logout_path, data: { turbo_method: :delete }, class: "text-error" %></li>
+          <li>
+            <%= link_to t('header.admin_dashboard'), admin_dashboard_path, class: "text-rose-700" %>
+          </li>
+
+          <li>
+            <%= link_to habits_path, class: "relative flex items-center" do %>
+              <%= render 'shared/habits_icon' %>
+              <%= t('header.your_habits') %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to user_rewards_path do %>
+              <%= render 'shared/user_rewards_icon' %>
+              <%= t('header.your_rewards') %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to logout_path, data: { turbo_method: :delete }, class: "text-error" do %>
+              <%= render 'shared/logout_icon' %>
+              <%= t('header.logout') %>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>
