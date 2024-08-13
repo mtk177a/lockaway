@@ -8,6 +8,8 @@ ja:
       not_complete: "未達成"
     twitter:
       share: "Xでシェア"
+    messages:
+      already_logged_in: "すでにログインしています"
   pagination:
     previous: "<"
     next: ">"
@@ -242,10 +244,12 @@ ja:
     public_rewards: "みんなの報酬"
     signup: "ユーザー登録"
     login: "ログイン"
-    dashboard: "ダッシュボード"
+    admin_dashboard: "ダッシュボード"
     admin_rewards: "報酬"
     users: "ユーザー"
     habits: "習慣"
+    new_habit: "新しい習慣"
+    unlogged_habit_logs: "未記録の習慣ログ"
     your_habits: "あなたの習慣"
     your_rewards: "あなたの報酬"
     logout: "ログアウト"
