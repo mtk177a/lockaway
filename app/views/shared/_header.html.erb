@@ -1,35 +1,97 @@
 <header>
   <div class="navbar bg-base-100">
-    <div class="flex-1">
-      <%= link_to t('header.title'), root_path, class: "btn btn-ghost text-xl" %>
+    <div class="navbar-start">
+      <!-- ハンバーガーメニュー -->
+      <div class="dropdown">
+        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+          <!-- ハンバーガーアイコン -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+          </svg>
+        </div>
+        <!-- ハンバーガーメニューの内容 -->
+        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+          <li>
+            <%= link_to public_habits_path, class: "relative flex items-center" do %>
+              <%= render 'shared/public_habits_icon' %>
+              <%= t('header.public_habits') %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to public_rewards_path, class: "relative flex items-center" do %>
+              <%= render 'shared/public_rewards_icon' %>
+              <%= t('header.public_rewards') %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <!-- サイトタイトル -->
+      <%= link_to root_path, class: "btn btn-ghost text-xl" do %>
+        <!-- 小さいスクリーン用 -->
+        <%= image_tag 'logomark.png', alt: 'LockAway Logomark', class: 'block lg:hidden h-10' %>
+        <!-- 大きいスクリーン用 -->
+        <%= image_tag 'logomark_and_logotype_horizontal.png', alt: 'LockAway Logomark and Logotype', class: 'hidden lg:block h-10' %>
+      <% end %>
     </div>
-    <div class="flex-none">
-      <ul class="menu menu-horizontal px-1">
-        <li>
-          <%= link_to t('header.public_habits'), public_habits_path %>
-        </li>
-        <li>
-          <%= link_to t('header.public_rewards'), public_rewards_path %>
-        </li>
-        <li>
-          <details>
-            <summary>
-              <%= current_user.username %>
-            </summary>
-            <ul class="p-2 bg-base-100 rounded-t-none">
-              <li>
-                <%= link_to t('header.your_habits'), habits_path %>
-              </li>
-              <li>
-                <%= link_to t('header.your_rewards'), user_rewards_path %>
-              </li>
-              <li>
-                <%= link_to t('header.logout'), logout_path, data: { turbo_method: :delete } %>
-              </li>
-            </ul>
-          </details>
-        </li>
-      </ul>
+
+    <div class="navbar-end flex items-center">
+      <!-- 横並びのナビゲーションメニュー -->
+      <%= link_to public_habits_path, class: "relative flex item-center btn btn-ghost hidden lg:flex" do %>
+        <%= render 'shared/public_habits_icon' %>
+        <%= t('header.public_habits') %>
+      <% end %>
+
+      <%= link_to public_rewards_path, class: "relative flex item-center btn btn-ghost hidden lg:flex" do %>
+        <%= render 'shared/public_rewards_icon' %>
+        <%= t('header.public_rewards') %>
+      <% end %>
+
+      <!-- 新しい習慣作成ボタン -->
+      <%= link_to new_habit_path, class: "btn btn-ghost" do %>
+        <%= render 'shared/new_habit_icon' %>
+        <div class="hidden lg:flex">
+          <%= t('header.new_habit') %>
+        </div>
+      <% end %>
+
+      <!-- 未記録の習慣通知ボタン -->
+      <%= link_to unlogged_habit_logs_path, class: "btn btn-ghost" do %>
+        <%= render 'shared/unlogged_habit_logs_icon' %>
+        <div class="hidden lg:flex">
+          <%= t('header.unlogged_habit_logs') %>
+        </div>
+      <% end %>
+
+      <!-- ユーザーのドロップダウンメニュー -->
+      <div class="dropdown dropdown-end pl-3">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+          <%= current_user.username %>
+        </div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+          <li>
+            <%= link_to habits_path, class: "relative flex items-center" do %>
+              <%= render 'shared/habits_icon' %>
+              <%= t('header.your_habits') %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to user_rewards_path do %>
+              <%= render 'shared/user_rewards_icon' %>
+              <%= t('header.your_rewards') %>
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to logout_path, data: { turbo_method: :delete }, class: "text-error" do %>
+              <%= render 'shared/logout_icon' %>
+              <%= t('header.logout') %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </header>

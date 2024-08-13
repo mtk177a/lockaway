@@ -1,15 +1,9 @@
 <% color_class = habit.habit_type == 'good' ? 'bg-yellow-100' : 'bg-purple-100' %>
-<div class="card bg-base-100 shadow-xl my-3 <%= color_class %>">
+<div class="card bg-base-100 shadow-xl mx-5 my-5 <%= color_class %>">
   <div class="card-body">
-    <div class="text-gray-500">
-      <strong><%= habit.user.username %></strong>
-    </div>
-    <div class="flex">
-      <% color_class = habit.habit_type == 'good' ? 'text-yellow-600' : 'text-purple-600' %>
-      <h2 class="flex-1 card-title <%= color_class %>"><%= habit.name %></h2>
-      <div class="flex-none mx-5">
-        <%= render partial: 'shared/public_icon' if habit.public? %>
-        <%= render partial: 'shared/private_icon' unless habit.public? %>
+    <div class="flex justify-center">
+      <div class="flex-1 text-gray-500">
+        <strong><%= habit.user.username %></strong>
       </div>
       <div class="flex-none">
         <%= link_to t('habits.show.show'), show_path, class: 'btn btn-info text-white btn-xs' %>
@@ -17,6 +11,14 @@
           <%= link_to t('habits.show.edit'), edit_path, id: "button-edit-#{habit.id}", class: 'btn btn-warning text-white btn-xs' %>
           <%= link_to t('habits.show.delete'), delete_path, id: "button-delete-#{habit.id}", data: { turbo_method: :delete, turbo_confirm: t('habits.show.are_you_sure') }, class: 'btn btn-error text-white btn-xs' %>
         <% end %>
+      </div>
+    </div>
+    <div class="flex">
+      <% color_class = habit.habit_type == 'good' ? 'text-yellow-600' : 'text-purple-600' %>
+      <h2 class="flex-1 card-title <%= color_class %>"><%= habit.name %></h2>
+      <div class="flex-none mx-5 my-1">
+        <%= render partial: 'shared/public_icon' if habit.public? %>
+        <%= render partial: 'shared/private_icon' unless habit.public? %>
       </div>
     </div>
     <p><%= habit.description %></p>

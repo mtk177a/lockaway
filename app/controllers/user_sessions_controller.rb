@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
+  before_action :redirect_logged_in_user, only: [:new, :create]
 
   def new
   end
@@ -18,5 +19,13 @@ class UserSessionsController < ApplicationController
   def destroy
     logout
     redirect_to login_path, status: :see_other, success: t('user_sessions.destroy.success')
+  end
+
+  private
+
+  def redirect_logged_in_user
+    if logged_in?
+      redirect_to root_path, notice: t('helpers.messages.already_logged_in')
+    end
   end
 end

@@ -1,16 +1,16 @@
 <% color_class = habit_reward.habit.habit_type == 'good' ? 'bg-yellow-100' : 'bg-purple-100' %>
-<div class="card bg-base-100 shadow-xl my-5 <%= color_class %>">
+<div class="card bg-base-100 shadow-xl mx-5 my-5 <%= color_class %>">
   <div class="card-body">
     <div class="flex">
       <div class="flex-1 text-gray-500">
         <strong><%= habit_reward.habit.user.username %></strong>
       </div>
-      <%= link_to t('.show'), user_reward_path(habit_reward), class: 'btn btn-info text-white btn-xs', data: { turbo_frame: 'modal' } %>
-      <% if current_user == habit_reward.habit.user %>
-        <div class="flex-none mx-5">
+      <div class="flex-none ml-5">
+        <%= link_to t('.show'), user_reward_path(habit_reward), class: 'btn btn-info text-white btn-xs', data: { turbo_frame: 'modal' } %>
+        <% if current_user == habit_reward.habit.user %>
           <%= link_to t('helpers.twitter.share'), "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{share_message(habit_reward.habit.name, habit_reward.reward.name)}", target: "_blank", rel: "noopener", class: "btn btn-neutral text-white btn-xs" %>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
 
     <div>
