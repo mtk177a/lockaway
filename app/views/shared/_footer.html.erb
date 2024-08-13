@@ -12,7 +12,7 @@
 
       <nav class="flex flex-col lg:flex-row lg:items-center lg:mx-10 gap-2 lg:gap-4">
         <a class="link link-hover">
-          <%= link_to t('footer.about'), "#" %>
+          <%= link_to t('footer.about'), root_path %>
         </a>
         <a class="link link-hover">
           <%= link_to t('footer.terms'), terms_of_service_path %>
@@ -20,9 +20,11 @@
         <a class="link link-hover">
           <%= link_to t('footer.privacy'), privacy_path %>
         </a>
+        <!--
         <a class="link link-hover">
           <%= link_to t('footer.contact'), "#" %>
         </a>
+        -->
       </nav>
     </div>
 
