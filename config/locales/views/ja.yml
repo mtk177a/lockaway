@@ -128,14 +128,14 @@ ja:
       show: "詳細"
       edit: "編集"
       delete: "削除"
-      back: "習慣一覧に戻る"
+      back: "一覧に戻る"
       are_you_sure: "本当に削除しますか？"
     new:
       heading: "新しい習慣"
-      back: "習慣一覧に戻る"
+      back: "戻る"
     edit:
       heading: "習慣の編集"
-      back: "習慣一覧に戻る"
+      back: "一覧に戻る"
     create:
       success: "習慣が正常に作成されました。"
       failure: "習慣を作成できませんでした。"
@@ -200,7 +200,7 @@ ja:
       heading: "報酬詳細"
       habit_type: "習慣タイプ"
       condition: "条件"
-      back: "報酬一覧に戻る"
+      back: "一覧に戻る"
     available:
       heading: "利用可能な報酬"
       progress: "進行状況: %{progress} / %{threshold} 日"
