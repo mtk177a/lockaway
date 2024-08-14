@@ -6,7 +6,11 @@
         <strong><%= habit.user.username %></strong>
       </div>
       <div class="flex-none">
-        <%= link_to t('habits.show.show'), show_path, class: 'btn btn-info text-white btn-xs' %>
+        <% if current_user&.own?(habit) %>
+          <%= link_to t('habits.show.show'), habit_path(habit), class: 'btn btn-info text-white btn-xs' %>
+        <% else %>
+          <%= link_to t('habits.show.show'), public_habit_path(habit), class: 'btn btn-info text-white btn-xs' %>
+        <% end %>
         <% if editable %>
           <%= link_to t('habits.show.edit'), edit_path, id: "button-edit-#{habit.id}", class: 'btn btn-warning text-white btn-xs' %>
           <%= link_to t('habits.show.delete'), delete_path, id: "button-delete-#{habit.id}", data: { turbo_method: :delete, turbo_confirm: t('habits.show.are_you_sure') }, class: 'btn btn-error text-white btn-xs' %>

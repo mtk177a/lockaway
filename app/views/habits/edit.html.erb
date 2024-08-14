@@ -4,6 +4,6 @@
   <%= render 'form', habit: @habit, button_text: t('helpers.submit.update') %>
 
   <div class="mt-5 mb-10">
-    <%= link_to t('.back'), habits_path, class: "btn btn-primary btn-outline w-full" %>
+    <%= link_to t('.back'), request.referer || habits_path, class: "btn btn-primary btn-outline w-full" %>
   </div>
 </div>
