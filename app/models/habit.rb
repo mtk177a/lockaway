@@ -20,12 +20,15 @@ class Habit < ApplicationRecord
   end
 
   def continuous_completed_days
-    logs = habit_logs.order(date: :desc)
+    logs = habit_logs.order(date: :asc) # 日付順に並べる
     count = 0
+
+    # 連続完了日数をカウント
     logs.each do |log|
-      break if log.status != 'completed'
+      break if log.status != 'completed' # 未完了のログがあればカウントを中断
       count += 1
     end
+
     count
   end
 
@@ -54,17 +57,19 @@ class Habit < ApplicationRecord
 
   def check_and_apply_rewards
     acquired_rewards = []
-    Reward.where(habit_type: self.habit_type).each do |reward|
+    applicable_rewards = Reward.where(habit_type: self.habit_type)
+
+    applicable_rewards.each do |reward|
       case reward.condition_type
       when 'continuous_days'
         if continuous_completed_days >= reward.threshold
           apply_reward(reward)
-          acquired_rewards << reward
+          acquired_rewards << HabitReward.find_by(habit: self, reward: reward)
         end
       when 'total_days'
         if total_completed_days >= reward.threshold
           apply_reward(reward)
-          acquired_rewards << reward
+          acquired_rewards << HabitReward.find_by(habit: self, reward: reward)
         end
       end
     end
