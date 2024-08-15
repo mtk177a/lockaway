@@ -61,18 +61,19 @@ ja:
     user:
       username: "ユーザー名"
       email: "メールアドレス"
+      show: "詳細"
     edit:
       heading: "ユーザー情報の編集"
       show: "ユーザー情報を見る"
-      back: "ユーザー一覧に戻る"
+      back: "ユーザーリストに戻る"
     index:
-      heading: "ユーザー一覧"
+      heading: "ユーザーリスト"
       show: "ユーザー情報を見る"
     new:
       heading: "ユーザー登録"
     show:
       heading: "ユーザー詳細"
-      back: "ユーザー一覧に戻る"
+      back: "ユーザーリストに戻る"
     create:
       success: "ユーザーが正常に作成されました。"
       failure: "ユーザーを作成できませんでした。"

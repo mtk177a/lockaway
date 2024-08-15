@@ -1,10 +1,23 @@
-<div id="<%= dom_id user %>">
-  <div>
-    <strong><%= t('views.users.user.username') %>:</strong>
-    <%= user.username %>
-  </div>
-  <div>
-    <strong><%= t('views.users.user.email') %>:</strong>
-    <%= user.email %>
+<div class="card shadow-xl mx-5 my-5">
+  <div class="card-body">
+    <div class="flex justify-center">
+      <div class="flex-1">
+        <strong><%= user.username %></strong>
+      </div>
+      <div class="flex-none">
+        <%= link_to t('.show'), user_path(user), class: 'btn btn-info text-white btn-xs' %>
+        <% if current_user.admin? %>
+          <%= link_to t('.edit'), edit_user_path(user), class: 'btn btn-warning text-white btn-xs' %>
+          <%= link_to t('.delete'), user_path(user), data: { turbo_method: :delete, turbo_confirm: t('users.confirm_delete') }, class: 'btn btn-error text-white btn-xs' %>
+        <% end %>
+      </div>
+    </div>
+    <% if current_user.admin? %>
+      <div class="mt-2">
+        <div class="text-gray-700">
+          <%= user.email %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
