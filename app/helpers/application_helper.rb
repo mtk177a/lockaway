@@ -32,6 +32,16 @@ module ApplicationHelper
     URI.encode_www_form_component(message)
   end
 
+  def determine_back_path
+    if request.referer&.include?(public_habits_path)
+      public_habits_path
+    elsif request.referer&.include?(habits_path)
+      habits_path
+    else
+      habits_path
+    end
+  end
+
   def google_client_id
     ENV['GOOGLE_CLIENT_ID']
   end

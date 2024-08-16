@@ -11,30 +11,47 @@
   <% end %>
 
   <div class="my-5">
-    <%= f.label :name, t('.name'), class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
-    <%= f.text_field :name, class: "w-full input input-bordered flex items-center gap-2", placeholder: t('.name') %>
+    <%= f.label :name, t('.name'), class: "badge badge-lg badge-ghost px-5 my-1" %>
+    <p class="text-gray-500 text-sm m-2"><%= t('.name_description') %></p>
+    <%= f.text_field :name, class: "w-full input input-bordered flex items-center gap-2 mx-2", placeholder: t('.name') %>
   </div>
 
   <div class="my-5">
-    <%= f.label :habit_type, t('.habit_type'), class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
-    <%= f.select :habit_type, options_for_select(Habit.habit_types.keys.map { |w| [w.humanize, w] }, selected: @habit.habit_type), { include_blank: t('.habit_type') }, class: "select select-bordered w-full max-w-xs" %>
+    <%= f.label :habit_type, t('.habit_type'), class: "badge badge-lg badge-ghost px-5 my-1" %>
+    <p class="text-gray-500 text-sm m-2"><%= t('.habit_type_description') %></p>
+    <div class="flex gap-4 mt-2">
+      <label class="flex items-center gap-2 mx-2">
+        <%= f.radio_button :habit_type, 'good', class: "radio radio-primary" %>
+        <span><%= t('.good_habit') %></span>
+      </label>
+      <label class="flex items-center gap-2 mx-2">
+        <%= f.radio_button :habit_type, 'bad', class: "radio radio-primary" %>
+        <span><%= t('.bad_habit') %></span>
+      </label>
+    </div>
   </div>
 
   <div class="my-5">
-    <%= f.label :description, t('.description'), class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
-    <%= f.text_area :description, class: "w-full textarea textarea-bordered", placeholder: t('.description') %>
+    <%= f.label :description, t('.description'), class: "badge badge-lg badge-ghost px-5 my-1" %>
+    <p class="text-gray-500 text-sm m-2"><%= t('.description_description') %></p>
+    <%= f.text_area :description, class: "w-full textarea textarea-bordered mx-2", placeholder: t('.description') %>
   </div>
 
   <div class="my-5">
-    <%= f.label :start_date, t('.start_date'), class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
-    <div class="flex space-x-2">
+    <%= f.label :start_date, t('.start_date'), class: "badge badge-lg badge-ghost px-5 my-1" %>
+    <p class="text-gray-500 text-sm m-2"><%= t('.start_date_description') %></p>
+    <div class="flex space-x-2 mx-2">
       <%= f.date_select :start_date, { order: [:year, :month, :day] }, { class: "select select-bordered w-full max-w-xs" } %>
     </div>
   </div>
 
   <div class="my-5">
-    <%= f.label :public, t('.public'), class: "my-2 w-full block font-medium leading-6 text-gray-900" %>
-    <%= f.check_box :public, class: "checkbox checkbox-primary" %>
+    <%= f.label :public, t('.public_setting'), class: "badge badge-lg badge-ghost px-5 my-1" %>
+    <p class="text-gray-500 text-sm m-2"><%= t('.public_description') %></p>
+    <label class="flex items-center gap-2">
+      <%= f.check_box :public, class: "toggle toggle-primary mx-2" %>
+      <span><%= t('.public') %></span>
+    </label>
   </div>
 
   <div class="mt-10 mb-5">

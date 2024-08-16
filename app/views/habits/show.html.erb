@@ -1,86 +1,123 @@
-<div class="container mx-auto w-full max-w-2xl">
+<div class="container mx-auto w-full max-w-3xl">
   <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.name') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.name %>
-    </div>
-  </p>
+  <div class="mx-5">
+    <div class="card bg-base-100 shadow my-5">
+      <div class="card-body">
+        <div class="flex items-center">
+          <div class="basis-1/4 text-center my-2 w-full block leading-6 text-gray-900">
+            <div class="badge badge-ghost w-24 mr-5">
+              <%= t('.name') %>
+            </div>
+          </div>
+          <div cltrongass="basis-3/4 my-2 w-full block font-medium leading-6 text-gray-900">
+            <%= @habit.name %>
+          </div>
+        </div>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.type') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.habit_type.humanize %>
-    </div>
-  </p>
+        <div class="flex items-center">
+          <div class="basis-1/4 text-center my-2 w-full block leading-6 text-gray-900">
+            <div class="badge badge-ghost w-24 mr-5">
+              <%= t('.type') %>
+            </div>
+          </div>
+          <div class="basis-3/4 my-2 w-full block font-medium leading-6 text-gray-900">
+            <%= @habit.habit_type.humanize %>
+          </div>
+        </div>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.description') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.description %>
-    </div>
-  </p>
+        <div class="flex items-center">
+          <div class="basis-1/4 text-center my-2 w-full block leading-6 text-gray-900">
+            <div class="badge badge-ghost w-24 mr-5">
+              <%= t('.description') %>
+            </div>
+          </div>
+          <div class="basis-3/4 my-2 w-full block font-medium leading-6 text-gray-900">
+            <%= @habit.description %>
+          </div>
+        </div>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.start_date') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.start_date.strftime("%Y-%m-%d") %>
-    </div>
-  </p>
+        <div class="flex items-center">
+          <div class="basis-1/4 text-center my-2 w-full block leading-6 text-gray-900">
+            <div class="badge badge-ghost w-24 mr-5">
+              <%= t('.start_date') %>
+            </div>
+          </div>
+          <div class="basis-3/4 my-2 w-full block font-medium leading-6 text-gray-900">
+            <%= @habit.start_date.strftime("%Y-%m-%d") %>
+          </div>
+        </div>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.total_completed_days') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.total_completed_days %>
-    </div>
-  </p>
-
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.continuous_completed_days') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.continuous_completed_days %>
-    </div>
-  </p>
-
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.completion_rate') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.completion_rate %>
-    </div>
-  </p>
-
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('.public') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.public ? t('.yes') : t('.no') %>
-    </div>
-  </p>
-
-  <div>
-    <div class="flex justify-between items-center my-5">
-      <h3 class="text-xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.recent_habit_logs') %></h3>
-      <%= link_to t('.view_all_logs'), habit_habit_logs_path(@habit), class: 'link link-primary link-hover' %>
+        <div class="flex items-center">
+          <div class="basis-1/4 text-center my-2 w-full block leading-6 text-gray-900">
+            <div class="badge badge-ghost w-24 mr-5">
+              <%= t('.public_private') %>
+            </div>
+          </div>
+          <div class="basis-3/4 my-2 w-full block font-medium leading-6 text-gray-900">
+            <%= @habit.public ? t('.public') : t('.private') %>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th><%= t('habit_logs.index.habit_name') %></th>
-          <th><%= t('habit_logs.index.date') %></th>
-          <th><%= t('habit_logs.index.status') %></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @habit.habit_logs.order(date: :desc).limit(5).each do |log| %>
-          <%= render partial: 'shared/habit_log', locals: { habit_log: log } %>
-        <% end %>
-      </tbody>
-    </table>
+    <% color_class = @habit.habit_type == 'good' ? 'text-yellow-400' : 'text-purple-400' %>
+    <div class="stats stats-vertical lg:stats-horizontal shadow w-full my-3 text-center">
+      <div class="stat flex lg:block items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.continuous_completed_days') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= @habit.continuous_completed_days %></div>
+      </div>
+
+      <div class="stat flex lg:block items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.highest_continuous_days') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= @habit.highest_continuous_days %></div>
+      </div>
+
+      <div class="stat flex lg:block items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.total_completed_days') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= @habit.total_completed_days %></div>
+      </div>
+
+      <div class="stat flex lg:block items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.completion_rate') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= @habit.completion_rate %></div>
+      </div>
+    </div>
+
+    <div class="card bg-base-100 shadow my-5">
+      <div class="card-body">
+        <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
+          <div class="flex justify-between items-center mb-5">
+            <h3 class="text-xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.recent_habit_logs') %></h3>
+            <%= link_to t('.view_all_logs'), habit_habit_logs_path(@habit), class: 'link link-primary link-hover' %>
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th><%= t('habit_logs.index.habit_name') %></th>
+                <th><%= t('habit_logs.index.date') %></th>
+                <th><%= t('habit_logs.index.status') %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @habit.habit_logs.order(date: :desc).limit(5).each do |log| %>
+                <%= render partial: 'shared/habit_log', locals: { habit_log: log } %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="flex mt-5 mb-10">
-    <%= link_to t('.edit'), edit_habit_path(@habit), class: 'btn btn-secondary flex-auto w-full mr-2' %>
-    <%= link_to t('.back'), request.referer || habits_path, class: 'btn btn-primary btn-outline flex-auto w-full ml-2' %>
+  <div class="mx-5">
+    <div class="flex mt-10 my-5">
+      <%= link_to t('.edit'), edit_habit_path(@habit), class: 'btn btn-secondary flex-auto w-full mr-2' %>
+      <%= link_to t('.delete'), habit_path(@habit), data: { turbo_method: :delete, turbo_confirm: t('.are_you_sure') }, class: 'btn btn-error flex-auto w-full ml-2' %>
+    </div>
+    <div class="mt-5 mb-10">
+      <%= link_to t('.back'), determine_back_path, class: "btn btn-primary btn-outline w-full" %>
+    </div>
   </div>
 </div>
