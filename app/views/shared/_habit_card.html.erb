@@ -1,7 +1,7 @@
 <% color_class = habit.habit_type == 'good' ? 'bg-yellow-100' : 'bg-purple-100' %>
 <div class="card bg-base-100 shadow-xl mx-5 my-5 <%= color_class %>">
   <div class="card-body">
-    <div class="flex justify-center">
+    <div class="flex items-center justify-center">
       <div class="flex-1 text-gray-500">
         <strong><%= habit.user.username %></strong>
       </div>
@@ -17,7 +17,7 @@
         <% end %>
       </div>
     </div>
-    <div class="flex">
+    <div class="flex items-center my-2">
       <% color_class = habit.habit_type == 'good' ? 'text-yellow-600' : 'text-purple-600' %>
       <h2 class="flex-1 card-title <%= color_class %>"><%= habit.name %></h2>
       <div class="flex-none mx-5 my-1">
@@ -25,22 +25,34 @@
         <%= render partial: 'shared/private_icon' unless habit.public? %>
       </div>
     </div>
-    <p><%= habit.description %></p>
-    <p><%= t('habits.show.start_date') %>: <%= habit.start_date.strftime("%Y-%m-%d") %></p>
+    <div class="flex items-center mx-3">
+      <div class="badge badge-outline w-24 px-5 mr-5">
+        <%= t('habits.show.description') %>
+      </div>
+      <%= habit.description %>
+    </div>
+    <div class="flex items-center mx-3">
+      <div class="badge badge-outline w-24 px-5 mr-5">
+        <%= t('habits.show.start_date') %>
+      </div>
+      <%= habit.start_date.strftime("%Y-%m-%d") %>
+    </div>
 
     <% color_class = habit.habit_type == 'good' ? 'text-yellow-400' : 'text-purple-400' %>
-    <div class="stats stats-vertical lg:stats-horizontal shadow">
-      <div class="stat">
-        <div class="stat-title"><%= t('habits.show.continuous_completed_days') %>:</div>
-        <div class="stat-value text-primary text-3xl <%= color_class %>"><%= habit.continuous_completed_days %></div>
+    <div class="stats stats-vertical lg:stats-horizontal shadow w-full mt-3 text-center">
+      <div class="stat flex items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.continuous_completed_days') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= habit.continuous_completed_days %></div>
       </div>
-      <div class="stat">
-        <div class="stat-title"><%= t('habits.show.highest_continuous_days') %>:</div>
-        <div class="stat-value text-primary text-3xl <%= color_class %>"><%= habit.highest_continuous_days %></div>
+
+      <div class="stat flex items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.highest_continuous_days') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= habit.highest_continuous_days %></div>
       </div>
-      <div class="stat">
-        <div class="stat-title"><%= t('habits.show.total_completed_days') %>:</div>
-        <div class="stat-value text-primary text-3xl <%= color_class %>"><%= habit.total_completed_days %></div>
+
+      <div class="stat flex items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.total_completed_days') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= habit.total_completed_days %></div>
       </div>
     </div>
   </div>
