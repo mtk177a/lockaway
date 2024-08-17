@@ -221,7 +221,7 @@ ja:
       back: "すべての報酬に戻る"
   user_rewards:
     index:
-      heading: "あなたの報酬"
+      heading: "あなたの獲得報酬"
       all_rewards: "全ての報酬を見る"
       sort_by: "並び替え"
       newest: "新着順"
