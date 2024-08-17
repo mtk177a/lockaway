@@ -1,63 +1,93 @@
-<div class="container mx-auto w-full max-w-2xl">
+<div class="container mx-auto w-full max-w-3xl">
   <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('habits.show.heading') %></h2>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('habits.show.name') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.name %>
-    </div>
-  </p>
+  <div class="mx-5">
+    <div class="card bg-base-100 shadow my-5">
+      <div class="card-body">
+        <div class="flex items-center">
+          <div class="basis-1/4 text-center my-2 w-full block leading-6 text-gray-900">
+            <div class="badge badge-ghost w-24 mr-5">
+              <%= t('habits.show.name') %>
+            </div>
+          </div>
+          <div class="basis-3/4 my-2 w-full block font-medium leading-6 text-gray-900">
+            <%= @habit.name %>
+          </div>
+        </div>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('habits.show.type') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.habit_type.humanize %>
-    </div>
-  </p>
+        <div class="flex items-center">
+          <div class="basis-1/4 text-center my-2 w-full block leading-6 text-gray-900">
+            <div class="badge badge-ghost w-24 mr-5">
+              <%= t('habits.show.type') %>
+            </div>
+          </div>
+          <div class="basis-3/4 my-2 w-full block font-medium leading-6 text-gray-900">
+            <%= @habit.habit_type.humanize %>
+          </div>
+        </div>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('habits.show.description') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.description %>
-    </div>
-  </p>
+        <div class="flex items-center">
+          <div class="basis-1/4 text-center my-2 w-full block leading-6 text-gray-900">
+            <div class="badge badge-ghost w-24 mr-5">
+              <%= t('habits.show.description') %>
+            </div>
+          </div>
+          <div class="basis-3/4 my-2 w-full block font-medium leading-6 text-gray-900">
+            <%= @habit.description %>
+          </div>
+        </div>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('habits.show.start_date') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.start_date.strftime("%Y-%m-%d") %>
-    </div>
-  </p>
+        <div class="flex items-center">
+          <div class="basis-1/4 text-center my-2 w-full block leading-6 text-gray-900">
+            <div class="badge badge-ghost w-24 mr-5">
+              <%= t('habits.show.start_date') %>
+            </div>
+          </div>
+          <div class="basis-3/4 my-2 w-full block font-medium leading-6 text-gray-900">
+            <%= @habit.start_date.strftime("%Y-%m-%d") %>
+          </div>
+        </div>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('habits.show.total_completed_days') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.total_completed_days %>
+        <div class="flex items-center">
+          <div class="basis-1/4 text-center my-2 w-full block leading-6 text-gray-900">
+            <div class="badge badge-ghost w-24 mr-5">
+              <%= t('habits.show.public_private') %>
+            </div>
+          </div>
+          <div class="basis-3/4 my-2 w-full block font-medium leading-6 text-gray-900">
+            <%= @habit.public ? t('habits.show.public') : t('habits.show.private') %>
+          </div>
+        </div>
+      </div>
     </div>
-  </p>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('habits.show.continuous_completed_days') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.continuous_completed_days %>
+    <% color_class = @habit.habit_type == 'good' ? 'text-yellow-400' : 'text-purple-400' %>
+    <div class="stats stats-vertical lg:stats-horizontal shadow w-full my-3 text-center">
+      <div class="stat flex lg:block items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.continuous_completed_days') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= @habit.continuous_completed_days %></div>
+      </div>
+
+      <div class="stat flex lg:block items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.highest_continuous_days') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= @habit.highest_continuous_days %></div>
+      </div>
+
+      <div class="stat flex lg:block items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.total_completed_days') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= @habit.total_completed_days %></div>
+      </div>
+
+      <div class="stat flex lg:block items-center">
+        <div class="stat-title flex-1"><%= t('habits.show.completion_rate') %>:</div>
+        <div class="stat-value flex-1 text-primary text-3xl <%= color_class %>"><%= @habit.completion_rate %></div>
+      </div>
     </div>
-  </p>
+  </div>
 
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('habits.show.completion_rate') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.completion_rate %>
+  <div class="mx-5">
+    <div class="mt-5 mb-10">
+      <%= link_to t('habits.show.back'), public_habits_path, class: "btn btn-primary btn-outline w-full" %>
     </div>
-  </p>
-
-  <p>
-    <strong class="my-2 w-full block leading-6 text-gray-900"><%= t('habits.show.public') %>:</strong>
-    <div class="my-2 w-full block font-medium leading-6 text-gray-900">
-      <%= @habit.public ? t('habits.show.yes') : t('habits.show.no') %>
-    </div>
-  </p>
-
-  <div class="flex mt-5 mb-10">
-    <%= link_to t('habits.show.back'), public_habits_path, class: 'btn btn-primary btn-outline flex-auto w-full ml-2' %>
   </div>
 </div>
