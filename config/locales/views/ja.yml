@@ -6,6 +6,10 @@ ja:
       update: 更新
       complete: "達成"
       not_complete: "未達成"
+      completed: "達成した"
+      not_completed: "達成できなかった"
+      avoided: "避けた"
+      not_avoided: "避けられなかった"
     twitter:
       share: "Xでシェア"
     messages:
@@ -126,8 +130,8 @@ ja:
       type: "種類"
       description: "説明"
       start_date: "開始日"
-      total_completed_days: "総完了日数"
-      continuous_completed_days: "連続完了日数"
+      total_completed_days: "総達成日数"
+      continuous_completed_days: "現在の連続日数"
       highest_continuous_days: "最高連続日数"
       completion_rate: "完了率"
       public_private: "公開/非公開"
