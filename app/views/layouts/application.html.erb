@@ -31,6 +31,10 @@
     <%= turbo_frame_tag 'modal' %>
 
     <%= render 'shared/footer' %>
+
+    <% if logged_in? %>
+      <%= render 'shared/bottom_navigation' %>
+    <% end %>
   </body>
 
   <script>
