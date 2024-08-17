@@ -24,7 +24,10 @@ class HabitLogsController < ApplicationController
 
   def update
     if @habit_log.update(habit_log_params)
-      rewards = @habit_log.habit.check_and_apply_rewards
+      # 更新されたログに関連する報酬を取得
+      applied_rewards = @habit_log.habit.check_and_apply_rewards
+      newly_acquired_reward = applied_rewards.find { |reward| reward.created_at >= @habit_log.updated_at }
+
       flash.now[:success] = t('habit_logs.update.success')
 
       respond_to do |format|
@@ -33,7 +36,7 @@ class HabitLogsController < ApplicationController
           render turbo_stream: [
             turbo_stream.replace("flash", partial: "shared/flash_message"),
             turbo_stream.replace("habit_log_#{@habit_log.id}", partial: "shared/habit_log", locals: { habit_log: @habit_log }),
-            (rewards.present? ? turbo_stream.replace("modal", partial: "shared/reward_modal", locals: { reward: rewards.last }) : nil)
+            (newly_acquired_reward.present? ? turbo_stream.replace("modal", partial: "shared/reward_modal", locals: { reward: newly_acquired_reward }) : nil)
           ].compact
         end
       end
