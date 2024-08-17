@@ -1,18 +1,33 @@
 <div class="container mx-auto w-full max-w-2xl">
   <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t('.heading') %></h2>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th><%= t('unlogged_habit_logs.index.habit_name') %></th>
-        <th><%= t('habit_logs.index.date') %></th>
-        <th><%= t('habit_logs.index.status') %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @unlogged_habit_logs.each do |log| %>
-        <%= render partial: 'shared/habit_log', locals: { habit_log: log } %>
-      <% end %>
-    </tbody>
-  </table>
+  <% @unlogged_habit_logs.group_by(&:habit).each do |habit, logs| %>
+    <% color_class = habit.habit_type == 'good' ? 'bg-yellow-50' : 'bg-purple-50' %>
+    <div class="card bg-base-100 shadow-xl mx-5 my-5 <%= color_class %>">
+      <div class="card-body">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-xl font-bold text-gray-900"><%= habit.name %></h3>
+          <%= link_to t('habits.show.show'), habit_path(habit), class: 'btn btn-info btn-sm text-white' %>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>
+                <div class="text-center"><%= t('habit_logs.index.date') %></div>
+              </th>
+              <th>
+                <div class="text-center"><%= t('habit_logs.index.status') %></div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% logs.each do |log| %>
+              <%= render partial: 'shared/habit_log', locals: { habit_log: log } %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
 </div>
