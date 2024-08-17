@@ -13,7 +13,7 @@
     <%= display_meta_tags(default_meta_tags) %>
   </head>
 
-  <body>
+  <body class="pb-16">
     <% if current_user&.admin? %>
       <%= render 'shared/admin_header' %>
     <% elsif logged_in? %>
@@ -31,6 +31,10 @@
     <%= turbo_frame_tag 'modal' %>
 
     <%= render 'shared/footer' %>
+
+    <% if logged_in? %>
+      <%= render 'shared/bottom_navigation' %>
+    <% end %>
   </body>
 
   <script>

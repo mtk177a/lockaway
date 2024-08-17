@@ -1,32 +1,6 @@
 <header>
   <div class="navbar bg-base-100">
     <div class="navbar-start">
-      <!-- ハンバーガーメニュー -->
-      <div class="dropdown">
-        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-          <!-- ハンバーガーアイコン -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
-          </svg>
-        </div>
-        <!-- ハンバーガーメニューの内容 -->
-        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-          <li>
-            <%= link_to public_habits_path, class: "relative flex items-center" do %>
-              <%= render 'shared/public_habits_icon' %>
-              <%= t('header.public_habits') %>
-            <% end %>
-          </li>
-
-          <li>
-            <%= link_to public_rewards_path, class: "relative flex items-center" do %>
-              <%= render 'shared/public_rewards_icon' %>
-              <%= t('header.public_rewards') %>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-
       <!-- サイトタイトル -->
       <%= link_to root_path, class: "btn btn-ghost text-xl" do %>
         <!-- 小さいスクリーン用 -->
@@ -38,18 +12,22 @@
 
     <div class="navbar-end flex items-center">
       <!-- 横並びのナビゲーションメニュー -->
-      <%= link_to public_habits_path, class: "relative flex item-center btn btn-ghost hidden lg:flex" do %>
+      <%= link_to public_habits_path, class: "relative flex item-center btn btn-ghost" do %>
         <%= render 'shared/public_habits_icon' %>
-        <%= t('header.public_habits') %>
+        <div class="hidden lg:flex">
+          <%= t('header.public_habits') %>
+        </div>
       <% end %>
 
-      <%= link_to public_rewards_path, class: "relative flex item-center btn btn-ghost hidden lg:flex" do %>
+      <%= link_to public_rewards_path, class: "relative flex item-center btn btn-ghost" do %>
         <%= render 'shared/public_rewards_icon' %>
-        <%= t('header.public_rewards') %>
+        <div class="hidden lg:flex">
+          <%= t('header.public_rewards') %>
+        </div>
       <% end %>
 
       <!-- 新しい習慣作成ボタン -->
-      <%= link_to new_habit_path, class: "btn btn-ghost" do %>
+      <%= link_to new_habit_path, class: "hidden md:flex btn btn-ghost" do %>
         <%= render 'shared/new_habit_icon' %>
         <div class="hidden lg:flex">
           <%= t('header.new_habit') %>
@@ -57,7 +35,7 @@
       <% end %>
 
       <!-- 未記録の習慣通知ボタン -->
-      <%= link_to unlogged_habit_logs_path, class: "btn btn-ghost" do %>
+      <%= link_to unlogged_habit_logs_path, class: "hidden md:flex btn btn-ghost" do %>
         <%= render 'shared/unlogged_habit_logs_icon' %>
         <div class="hidden lg:flex">
           <%= t('header.unlogged_habit_logs') %>
@@ -71,14 +49,14 @@
         </div>
         <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
           <li>
-            <%= link_to habits_path, class: "relative flex items-center" do %>
+            <%= link_to habits_path, class: "hidden md:flex relative items-center" do %>
               <%= render 'shared/habits_icon' %>
               <%= t('header.your_habits') %>
             <% end %>
           </li>
 
           <li>
-            <%= link_to user_rewards_path do %>
+            <%= link_to user_rewards_path, class: "hidden md:flex relative items-center" do %>
               <%= render 'shared/user_rewards_icon' %>
               <%= t('header.your_rewards') %>
             <% end %>
