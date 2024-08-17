@@ -1,19 +1,37 @@
 <tr id="habit_log_<%= habit_log.id %>">
-  <td><%= habit_log.habit.name if habit_log.habit %></td>
-  <td><%= habit_log.date %></td>
   <td>
-    <div class="flex">
+    <div class="text-center"><%= habit_log.date %></div>
+  </td>
+  <td>
+    <div class="block md:flex justify-center text-center">
       <% if habit_log.status.nil? %>
-        <%= form_with(model: [habit_log.habit, habit_log], data: { turbo: true }, method: :patch) do |form| %>
-          <%= form.hidden_field :status, value: 'completed' %>
-          <%= form.submit t('helpers.submit.complete'), class: 'btn btn-success btn-xs flex mx-1' %>
-        <% end %>
-        <%= form_with(model: [habit_log.habit, habit_log], data: { turbo: true }, method: :patch) do |form| %>
-          <%= form.hidden_field :status, value: 'not_completed' %>
-          <%= form.submit t('helpers.submit.not_complete'), class: 'btn btn-error btn-xs flex mx-1' %>
+        <% if habit_log.habit.habit_type == 'good' %>
+          <%= form_with(model: [habit_log.habit, habit_log], data: { turbo: true }, method: :patch) do |form| %>
+            <%= form.hidden_field :status, value: 'completed' %>
+            <%= form.submit t('helpers.submit.completed'), class: 'btn btn-ghost btn-xs bg-yellow-400 w-32 m-1' %>
+          <% end %>
+          <%= form_with(model: [habit_log.habit, habit_log], data: { turbo: true }, method: :patch) do |form| %>
+            <%= form.hidden_field :status, value: 'not_completed' %>
+            <%= form.submit t('helpers.submit.not_completed'), class: 'btn btn-ghost btn-xs bg-yellow-200 w-32 m-1' %>
+          <% end %>
+        <% else %>
+          <%= form_with(model: [habit_log.habit, habit_log], data: { turbo: true }, method: :patch) do |form| %>
+            <%= form.hidden_field :status, value: 'completed' %>
+            <%= form.submit t('helpers.submit.avoided'), class: 'btn btn-ghost btn-xs bg-purple-400 w-32 m-1' %>
+          <% end %>
+          <%= form_with(model: [habit_log.habit, habit_log], data: { turbo: true }, method: :patch) do |form| %>
+            <%= form.hidden_field :status, value: 'not_completed' %>
+            <%= form.submit t('helpers.submit.not_avoided'), class: 'btn btn-ghost btn-xs bg-purple-200 w-32 m-1' %>
+          <% end %>
         <% end %>
       <% else %>
-        <span><%= habit_log.status ? t("habit_logs.status.#{habit_log.status}") : '' %></span>
+        <% status_color_class = if habit_log.status == 'completed' %>
+          <% habit_log.habit.habit_type == 'good' ? 'text-amber-500' : 'text-fuchsia-500' %>
+        <% else %>
+          <% habit_log.habit.habit_type == 'good' ? 'text-amber-400' : 'text-fuchsia-400' %>
+        <% end %>
+
+        <span class="<%= status_color_class %> text-lg font-bold"><%= habit_log.status ? t("habit_logs.status.#{habit_log.status}") : '' %></span>
       <% end %>
     </div>
   </td>
