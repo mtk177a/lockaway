@@ -1,0 +1,17 @@
+<div class="btm-nav md:hidden items-center border border-slate-100">
+  <%= link_to new_habit_path, class: "" do %>
+    <%= render 'shared/new_habit_icon' %>
+  <% end %>
+
+  <%= link_to unlogged_habit_logs_path, class: "" do %>
+    <%= render 'shared/unlogged_habit_logs_icon' %>
+  <% end %>
+
+  <%= link_to habits_path, class: "" do %>
+    <%= render 'shared/habits_icon' %>
+  <% end %>
+
+  <%= link_to user_rewards_path, class: "" do %>
+    <%= render 'shared/user_rewards_icon' %>
+  <% end %>
+</div>
