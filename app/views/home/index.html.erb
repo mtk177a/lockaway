@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<div class="container mx-auto px-10 py-10">
+<div class="container mx-auto px-5 py-10">
   <h2 class="text-3xl font-bold text-center mb-8"><%= t('home.features.title') %></h2>
   <div class="grid gap-6">
     <div class="card lg:card-side bg-base-100 shadow-xl">
@@ -24,8 +24,8 @@
         <h2 class="card-title"><%= t('home.features.feature1_title') %></h2>
         <p><%= t('home.features.feature1_description') %></p>
       </div>
-      <figure>
-        <%= image_tag 'feature1.png', alt: 'Feature 1', class: 'rounded-lg lg:w-96 px-5 py-5' %>
+      <figure class="px-5 pb-10 md:px-10 m-0">
+        <%= render 'shared/image_card', image_path: 'feature1.png', image_alt: 'Feature 1' %>
       </figure>
     </div>
 
@@ -34,8 +34,8 @@
         <h2 class="card-title"><%= t('home.features.feature2_title') %></h2>
         <p><%= t('home.features.feature2_description') %></p>
       </div>
-      <figure>
-        <%= image_tag 'feature2.png', alt: 'Feature 2', class: 'rounded-lg lg:w-96 px-5 py-5' %>
+      <figure class="px-5 pb-10 md:px-10 m-0">
+        <%= render 'shared/image_card', image_path: 'feature2.png', image_alt: 'Feature 2' %>
       </figure>
     </div>
 
@@ -44,51 +44,62 @@
         <h2 class="card-title"><%= t('home.features.feature3_title') %></h2>
         <p><%= t('home.features.feature3_description') %></p>
       </div>
-      <figure>
-        <%= image_tag 'feature3.png', alt: 'Feature 3', class: 'rounded-lg lg:w-96 px-5 py-5' %>
+      <figure class="px-5 pb-10 md:px-10 m-0">
+        <%= render 'shared/image_card', image_path: 'feature3.png', image_alt: 'Feature 3' %>
       </figure>
     </div>
   </div>
 </div>
 
-<div class="container mx-auto px-10 py-10 text-center">
+<div class="container mx-auto px-5 py-10 text-center">
   <h2 class="text-3xl font-bold text-center mb-8"><%= t('home.how_to_use.title') %></h2>
   <div class="carousel carousel-center bg-base-200 rounded-box w-full space-x-4 p-4">
     <div class="carousel-item">
-      <div class="card bg-base-100 w-96 shadow-xl">
+      <div class="card bg-base-100 shadow-xl">
         <div class="card-body items-center text-center">
           <h2 class="card-title"><%= t('home.how_to_use.step1_title') %></h2>
           <p><%= t('home.how_to_use.step1_description') %></p>
         </div>
-        <figure class="flex justify-center items-center px-10 py-10 m-0">
-          <%= image_tag 'step1.png', alt: 'Step 1', class: 'rounded-xl' %>
+        <figure class="px-5 pb-10 md:px-10 m-0">
+          <%= render 'shared/image_card', image_path: 'step1.png', image_alt: 'Step 1' %>
         </figure>
       </div>
     </div>
 
     <div class="carousel-item">
-      <div class="card bg-base-100 w-96 shadow-xl">
+      <div class="card bg-base-100 shadow-xl">
         <div class="card-body items-center text-center">
           <h2 class="card-title"><%= t('home.how_to_use.step2_title') %></h2>
           <p><%= t('home.how_to_use.step2_description') %></p>
         </div>
-        <figure class="flex justify-center items-center px-10 py-10 m-0">
-          <%= image_tag 'step2.png', alt: 'Step 2', class: 'rounded-xl' %>
+        <figure class="px-5 pb-10 md:px-10 m-0">
+          <%= render 'shared/image_card', image_path: 'step2.png', image_alt: 'Step 2' %>
         </figure>
       </div>
     </div>
 
     <div class="carousel-item">
-      <div class="card bg-base-100 w-96 shadow-xl">
+      <div class="card bg-base-100 shadow-xl">
         <div class="card-body items-center text-center">
           <h2 class="card-title"><%= t('home.how_to_use.step3_title') %></h2>
           <p><%= t('home.how_to_use.step3_description') %></p>
         </div>
-        <figure class="flex justify-center items-center px-10 py-10 m-0">
-          <%= image_tag 'step3.png', alt: 'Step 3', class: 'rounded-xl' %>
+        <figure class="px-5 pb-10 md:px-10 m-0">
+          <%= render 'shared/image_card', image_path: 'step3.png', image_alt: 'Step 3' %>
         </figure>
       </div>
     </div>
-    <!-- Add more carousel items as needed -->
+  </div>
+</div>
+
+<div class="hero bg-slate-100 py-10">
+  <div class="hero-content text-center">
+    <div class="max-w-md px-6">
+      <p class="font-bold py-6 text-2xl"><%= t('home.hero.lets_get_started') %></p>
+      <div class="flex justify-center space-x-4 py-3">
+        <%= link_to t('home.hero.signup'), new_user_path, class: 'btn btn-secondary' %>
+        <%= link_to t('home.hero.login'), login_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
   </div>
 </div>
