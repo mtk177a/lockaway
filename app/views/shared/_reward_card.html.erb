@@ -6,8 +6,8 @@
         <strong><%= habit_reward.habit.user.username %></strong>
       </div>
       <div class="flex-none ml-5">
-        <%= link_to t('.show'), user_reward_path(habit_reward), class: 'btn btn-info text-white btn-xs', data: { turbo_frame: 'modal' } %>
         <% if current_user == habit_reward.habit.user %>
+          <%= link_to t('.show'), user_reward_path(habit_reward), class: 'btn btn-info text-white btn-xs', data: { turbo_frame: 'modal' } %>
           <%= link_to t('helpers.twitter.share'), "https://twitter.com/intent/tweet?url=#{request.original_url}&text=#{share_message(habit_reward.habit.name, habit_reward.reward.name)}", target: "_blank", rel: "noopener", class: "btn btn-neutral text-white btn-xs" %>
         <% end %>
       </div>
