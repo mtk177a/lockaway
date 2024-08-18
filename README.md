@@ -2,7 +2,7 @@
 
 ## ■ サービスURL
 
- [Lockaway](https://lockaway-fbeb557015fd.herokuapp.com/)
+ [LockAway](https://lockaway-app.com/)
 
 ## ■ サービス概要
 
