@@ -285,6 +285,7 @@ ja:
       login: "ログイン"
       public_habits: "みんなの習慣を見る"
       public_rewards: "みんなの報酬を見る"
+      lets_get_started: "さあ、はじめましょう！"
     features:
       title: "主な機能の紹介"
       feature1_title: "習慣の記録"
