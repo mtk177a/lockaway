@@ -1,4 +1,4 @@
-# LockAway
+# [LockAway](https://lockaway-app.com/)
 
 [![Image from Gyazo](https://i.gyazo.com/f828d9ebe0a6ac07f5ccd36e76e18793.png)](https://gyazo.com/f828d9ebe0a6ac07f5ccd36e76e18793)
 
