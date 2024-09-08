@@ -81,9 +81,6 @@ Rails.application.config.sorcery.configure do |config|
   # Default: `[]`
   #
 
-  #externalモジュールの読み込み
-  Rails.application.config.sorcery.submodules = [:external]
-
   Rails.application.config.sorcery.configure do |config|
 
     #利用する外部サービスのプロバイダーを指定
