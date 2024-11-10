@@ -4,7 +4,7 @@ class HabitLog < ApplicationRecord
   enum status: { not_completed: 0, completed: 1 }
 
   validates :date, presence: true
-  validates :habit_id, uniqueness: { scope: :date, message: :scope }
+  validates :habit_id, uniqueness: { scope: :date, message: :taken }
   validate :date_cannot_be_before_habit_start
 
   after_save :check_rewards, if: :completed?
