@@ -24,14 +24,20 @@ jobs:
       - name: Set up Docker Compose
         run: docker-compose up -d
 
+      - name: Install Node.js and Yarn
+        run: |
+          docker-compose exec -T web bash -c "curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs && yarn install"
+
       - name: Install Gems
-        run: docker-compose exec -T web bundle _2.5.9_ install --jobs 4 --retry 3
+        run: docker-compose exec -T web bundle install --jobs 4 --retry 3
 
       - name: Wait for services to be ready
         run: sleep 20
 
       - name: Run RSpec in Docker
-        run: docker-compose exec -T web bundle exec rspec --format documentation || true
+        run: docker-compose exec -T web bundle exec rspec --format documentation
+        env:
+          RAILS_ENV: test
 
       - name: Get Web Service Logs
         run: docker-compose logs web
