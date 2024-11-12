@@ -26,7 +26,7 @@ RSpec.describe '報酬機能', type: :system do
       click_button '達成した'
     end
 
-    expect(page).to have_selector("dialog#my_modal", visible: true, wait: 30) # モーダルが表示されるのを待機
+    expect(page).to have_selector("dialog#my_modal", visible: true, wait: 10) # モーダルが表示されるのを待機
     expect(page).to have_content('報酬を獲得しました！')
     expect(page).to have_content(reward.name)
   end
