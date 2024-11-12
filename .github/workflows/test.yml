@@ -13,22 +13,22 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v2
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
       - name: Set up Docker Compose
         run: docker-compose up -d
 
-      - name: Wait for MySQL and Chrome to be ready
-        run: |
-          until docker-compose exec db mysqladmin ping -h "db" --silent; do
-            echo "Waiting for MySQL..."
-            sleep 5
-          done
-
-      - name: Prepare Database
-        run: docker-compose exec web bash -c "RAILS_ENV=test bundle exec rails db:create db:migrate"
+      - name: Wait for services to be ready
+        run: sleep 20
 
       - name: Run RSpec in Docker
         run: docker-compose exec web bundle exec rspec
 
       - name: Shut down Docker Compose
-        if: always()
         run: docker-compose down
