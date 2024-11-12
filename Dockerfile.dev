@@ -12,5 +12,5 @@ RUN apt-get update -qq \
 RUN apt-get update -qq && apt-get install -y build-essential libssl-dev nodejs yarn vim
 RUN mkdir /myapp
 WORKDIR /myapp
-RUN gem install bundler
+RUN gem install bundler -v 2.5.9
 COPY . /myapp

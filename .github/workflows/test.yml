@@ -25,7 +25,7 @@ jobs:
         run: docker-compose up -d
 
       - name: Install Gems
-        run: docker-compose exec -T web bundle install --jobs 4 --retry 3
+        run: docker-compose exec -T web bundle _2.5.9_ install --jobs 4 --retry 3
 
       - name: Wait for services to be ready
         run: sleep 20
