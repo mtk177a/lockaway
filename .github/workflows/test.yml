@@ -31,7 +31,12 @@ jobs:
         run: sleep 20
 
       - name: Run RSpec in Docker
-        run: docker-compose exec -T web bundle exec rspec
+        run: docker-compose exec -T web bundle exec rspec --format documentation
+        env:
+          RAILS_ENV: test
+
+      - name: Get Web Service Logs
+        run: docker-compose logs web
 
       - name: Shut down Docker Compose
         run: docker-compose down
