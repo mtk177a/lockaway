@@ -7,22 +7,17 @@ on:
       - main
 
 jobs:
-  test:
+  rspec:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     services:
-      db:
-        image: mysql:8
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: myapp_test
+      mysql:
+        image: mysql:8.0
         ports:
           - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping --silent"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
 
     steps:
       - name: Checkout code
@@ -31,45 +26,18 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.3
           bundler-cache: true
 
-      - name: Install Chrome and ChromeDriver
+      - name: Bundler and gem install
         run: |
-          sudo apt-get update
-          sudo apt-get install -y wget unzip
-          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt install ./google-chrome-stable_current_amd64.deb -y
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION)
-          wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-          sudo unzip -o chromedriver_linux64.zip -d /usr/local/bin/
-          rm chromedriver_linux64.zip
+          gem install bundler
+          bundle install --jobs 4 --retry 3 --path vendor/bundle
 
-      - name: Start ChromeDriver
-        run: chromedriver --port=4444 &
-
-      - name: Set up database
-        env:
-          RAILS_ENV: test
+      - name: Database create and migrate
         run: |
           cp config/database.yml.ci config/database.yml
-          until mysqladmin ping -h 127.0.0.1 --silent; do
-            echo "Waiting for MySQL to be ready..."
-            sleep 10
-          done
-          bin/rails db:create db:schema:load
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:migrate RAILS_ENV=test
 
-      - name: Run tests
-        env:
-          RAILS_ENV: test
-        run: |
-          bundle exec rspec
-
-      - name: Collect screenshots for failed tests
-        uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: screenshots
-          path: tmp/screenshots
-          if-no-files-found: ignore
+      - name: Run rspec
+        run: bundle exec rspec
