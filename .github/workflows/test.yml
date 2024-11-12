@@ -34,14 +34,16 @@ jobs:
           ruby-version: 3.2.3
           bundler-cache: true
 
-      - name: Install dependencies
+      - name: Install Chrome and ChromeDriver
         run: |
           sudo apt-get update
-          sudo apt-get install -y libmysqlclient-dev chromium-browser chromium-chromedriver
-          if [ ! -f /usr/bin/chromedriver ]; then
-            sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
-          fi
-          bundle install --jobs 4 --retry 3
+          sudo apt-get install -y wget unzip
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install ./google-chrome-stable_current_amd64.deb -y
+          CHROME_VERSION=$(google-chrome --version | sed 's/Google Chrome //g' | sed 's/ .*//g')
+          wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/${CHROME_VERSION}/chromedriver_linux64.zip
+          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+          rm /tmp/chromedriver.zip
 
       - name: Start ChromeDriver
         run: chromedriver --port=4444 &
@@ -62,3 +64,11 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rspec
+
+      - name: Collect screenshots for failed tests
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: screenshots
+          path: tmp/screenshots
+          if-no-files-found: ignore
