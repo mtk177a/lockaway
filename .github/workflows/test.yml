@@ -9,38 +9,26 @@ on:
 jobs:
   rspec:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    services:
-      mysql:
-        image: mysql:8.0
-        ports:
-          - 3306:3306
-        env:
-          MYSQL_ROOT_PASSWORD: password
-        options: --health-cmd "mysqladmin ping -ppassword" --health-interval 10s --health-timeout 5s --health-retries 10
-
     steps:
-      - name: Checkout code
+      - name: Check out the code
         uses: actions/checkout@v2
 
-      - name: Wait for MySQL to be ready
-        run: sleep 15
+      - name: Set up Docker Compose
+        run: docker-compose up -d
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-
-      - name: Install Bundler and Gems
+      - name: Wait for MySQL and Chrome to be ready
         run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3 --path vendor/bundle
+          until docker-compose exec db mysqladmin ping -h "db" --silent; do
+            echo "Waiting for MySQL..."
+            sleep 5
+          done
 
-      - name: Database setup
-        run: |
-          cp config/database.yml.ci config/database.yml
-          bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
+      - name: Prepare Database
+        run: docker-compose exec web bash -c "RAILS_ENV=test bundle exec rails db:create db:migrate"
 
-      - name: Run RSpec tests
-        run: bundle exec rspec
+      - name: Run RSpec in Docker
+        run: docker-compose exec web bundle exec rspec
+
+      - name: Shut down Docker Compose
+        if: always()
+        run: docker-compose down
