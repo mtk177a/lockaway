@@ -23,21 +23,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Wait for MySQL to be ready
+        run: sleep 15
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
 
-      - name: Bundler and gem install
+      - name: Install Bundler and Gems
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3 --path vendor/bundle
 
-      - name: Database create and migrate
+      - name: Database setup
         run: |
           cp config/database.yml.ci config/database.yml
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
 
-      - name: Run rspec
+      - name: Run RSpec tests
         run: bundle exec rspec
