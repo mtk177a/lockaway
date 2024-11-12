@@ -28,7 +28,7 @@ jobs:
         run: sleep 20
 
       - name: Run RSpec in Docker
-        run: docker-compose exec web bundle exec rspec
+        run: docker-compose exec -T web bundle exec rspec
 
       - name: Shut down Docker Compose
         run: docker-compose down
