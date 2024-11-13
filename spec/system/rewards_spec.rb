@@ -21,8 +21,8 @@ RSpec.describe '報酬機能', type: :system do
 
     visit habit_path(habit)
 
-    expect(page).to have_css("#habit_#{habit.id}", wait: 5)
-    within("#habit_#{habit.id}") do
+    log = habit.habit_logs.first
+    within("#habit_log_#{log.id}") do
       click_button '達成した'
     end
 
