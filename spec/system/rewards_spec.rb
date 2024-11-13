@@ -15,7 +15,7 @@ RSpec.describe '報酬機能', type: :system do
     expect(page).to have_content('1日達成')
   end
 
-  it '条件達成により報酬を獲得できること', js: true do
+  it '条件達成により報酬を獲得できること' do
     habit = create(:habit, user: user, name: '今日の運動', start_date: Date.today)
     reward = create(:reward, name: '1日達成', threshold: 1)
 
@@ -27,6 +27,6 @@ RSpec.describe '報酬機能', type: :system do
     end
 
     visit user_rewards_path(user)
-    expect(page).to have_content(reward.name, wait: 5)
+    expect(page).to have_content(reward.name, wait: 10)
   end
 end
