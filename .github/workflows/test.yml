@@ -42,6 +42,13 @@ jobs:
         env:
           RAILS_ENV: test
 
+      - name: Upload Capybara screenshots
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: capybara-screenshots
+          path: /myapp/tmp/capybara/
+
       - name: Get Web Service Logs
         run: docker-compose logs web
 
