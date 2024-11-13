@@ -1,27 +1,33 @@
 FROM ruby:3.2.3
 ENV LANG C.UTF-8
 ENV TZ Asia/Tokyo
-RUN apt-get update -qq \
-&& apt-get install -y ca-certificates curl gnupg cron build-essential libssl-dev vim \
-&& mkdir -p /etc/apt/keyrings \
-&& curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
-&& NODE_MAJOR=20 \
-&& echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
-&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-&& apt-get update -qq && apt-get install -y nodejs yarn
+
+# Node.jsとYarnのインストール
+RUN apt-get update -qq && \
+    apt-get install -y ca-certificates curl gnupg cron build-essential libssl-dev && \
+    mkdir -p /etc/apt/keyrings && \
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
+    NODE_MAJOR=20 && \
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update -qq && \
+    apt-get install -y nodejs yarn vim && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /myapp
 
-# Gemfileとyarn.lockのみを先にコピーして依存関係をインストール
+# bundlerのインストールと依存関係の解決
+RUN gem install bundler -v 2.5.9
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler -v 2.5.9 && bundle install
+RUN bundle install --jobs 4 --retry 3
 
+# JavaScript依存関係のインストール
 COPY package.json yarn.lock ./
 RUN yarn install --check-files
 
 # アプリケーションのコードをコピー
 COPY . .
 
-# アセットのプリコンパイル（必要に応じて）
-RUN yarn build && yarn build:css
+# 必要に応じて、事前コンパイル（例：アセットのビルド）
+RUN bundle exec rake assets:precompile
