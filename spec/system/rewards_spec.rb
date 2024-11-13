@@ -26,6 +26,8 @@ RSpec.describe '報酬機能', type: :system do
       click_button '達成した'
     end
 
+    page.evaluate_script("console.log('Test: Reward modal should open');")
+
     using_wait_time(15) do
       expect(page).to have_selector('.modal-box', visible: true)
       expect(page).to have_content('報酬を獲得しました！')
