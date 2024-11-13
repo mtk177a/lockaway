@@ -20,13 +20,11 @@ RSpec.describe '報酬機能', type: :system do
     reward = create(:reward, name: '1日達成', threshold: 1)
 
     visit habit_path(habit)
-
-    log = habit.habit_logs.first
-    within("#habit_log_#{log.id}") do
+    within("#habit_#{habit.id}") do
       click_button '達成した'
     end
 
     visit user_rewards_path(user)
-    expect(page).to have_content(reward.name)
+    expect(page).to have_content(reward.name, wait: 5)
   end
 end
