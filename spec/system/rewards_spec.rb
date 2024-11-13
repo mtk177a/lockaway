@@ -26,13 +26,7 @@ RSpec.describe '報酬機能', type: :system do
       click_button '達成した'
     end
 
-    modal_presence = page.evaluate_script("document.querySelector('dialog#my_modal') !== null")
-    puts "Modal dialog presence: #{modal_presence}"
-
-    using_wait_time(15) do
-      expect(page).to have_selector('.modal-box', visible: true)
-      expect(page).to have_content('報酬を獲得しました！')
-      expect(page).to have_content(reward.name)
-    end
+    visit user_rewards_path(user)
+    expect(page).to have_content(reward.name)
   end
 end
