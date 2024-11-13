@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
+      - name: Set up Docker Compose
+        run: docker-compose up -d
+
+      - name: Install Node.js and Yarn
+        run: |
+          docker-compose exec -T web bash -c "curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs && yarn install"
+
+      - name: Install Gems
+        run: docker-compose exec -T web bundle install --jobs 4 --retry 3
+
+      - name: Wait for services to be ready
+        run: sleep 20
+
+      - name: Run RSpec in Docker
+        run: docker-compose exec -T web bundle exec rspec --format documentation
+        env:
+          RAILS_ENV: test
+
+      - name: Upload Capybara screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capybara-screenshots
+          path: /myapp/tmp/capybara/
+
+      - name: Get Web Service Logs
+        run: docker-compose logs web
+
+      - name: Shut down Docker Compose
+        run: docker-compose down

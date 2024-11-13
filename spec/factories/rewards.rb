@@ -4,6 +4,6 @@ FactoryBot.define do
     description { "Test Reward Description" }
     condition_type { "continuous_days" }
     threshold { 1 }
-    habit_type { 1 }
+    habit_type { 0 }
   end
 end

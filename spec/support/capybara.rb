@@ -16,3 +16,5 @@ Capybara.register_driver :selenium_remote_chrome do |app|
 end
 
 Capybara.default_driver = :selenium_remote_chrome
+Capybara.javascript_driver = :selenium_remote_chrome
+Capybara.default_max_wait_time = 15

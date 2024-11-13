@@ -15,7 +15,7 @@ RSpec.describe '報酬機能', type: :system do
     expect(page).to have_content('1日達成')
   end
 
-  it '条件達成により報酬を獲得できること' do
+  it '条件達成により報酬を獲得できること', js: true do
     habit = create(:habit, user: user, name: '今日の運動', start_date: Date.today)
     reward = create(:reward, name: '1日達成', threshold: 1)
 
@@ -26,7 +26,10 @@ RSpec.describe '報酬機能', type: :system do
       click_button '達成した'
     end
 
-    expect(page).to have_content('報酬を獲得しました！')
-    expect(page).to have_content(reward.name)
+    using_wait_time(15) do
+      expect(page).to have_selector('.modal-box', visible: true)
+      expect(page).to have_content('報酬を獲得しました！')
+      expect(page).to have_content(reward.name)
+    end
   end
 end

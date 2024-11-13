@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :habit do
     name { "Test Habit" }
-    habit_type { :good }
+    habit_type { 0 }
     start_date { Date.today - 3.days }
     public { true }
     user
