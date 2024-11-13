@@ -24,6 +24,13 @@ jobs:
       - name: Set up Docker Compose
         run: docker-compose up -d
 
+      - name: Install Node.js and Yarn
+        run: |
+          docker-compose exec -T web bash -c "curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs && yarn install"
+
+      - name: Install Gems
+        run: docker-compose exec -T web bundle install --jobs 4 --retry 3
+
       - name: Wait for services to be ready
         run: sleep 20
 
