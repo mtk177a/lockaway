@@ -6,10 +6,8 @@
       <%= render 'shared/habit_search_sort', url: public_habits_path %>
     </div>
 
-    <div class="list">
-      <% @habits.each do |habit| %>
-        <%= render partial: 'shared/habit_card', locals: { habit: habit, show_path: public_habit_path(habit), edit_path: edit_habit_path(habit), delete_path: habit_path(habit), editable: logged_in? && current_user.own?(habit) } %>
-      <% end %>
+    <div id="habit_list">
+      <%= render 'shared/habit_list', habits: @habits %>
     </div>
 
     <div class="text-center my-10">
