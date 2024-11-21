@@ -1,0 +1,5 @@
+<div class="list">
+  <% habits.each do |habit| %>
+    <%= render partial: 'shared/habit_card', locals: { habit: habit, show_path: habit_path(habit), edit_path: edit_habit_path(habit), delete_path: habit_path(habit), editable: current_user.own?(habit) } %>
+  <% end %>
+</div>
