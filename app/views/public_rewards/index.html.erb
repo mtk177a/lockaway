@@ -6,10 +6,8 @@
       <%= render 'shared/reward_search_sort', url: public_rewards_path %>
     </div>
 
-    <div class="list">
-      <% @habit_rewards.each do |habit_reward| %>
-        <%= render partial: 'shared/reward_card', locals: { reward: habit_reward.reward, habit_reward: habit_reward } %>
-      <% end %>
+    <div id="reward_list">
+      <%= render 'shared/reward_list', rewards: @habit_rewards %>
     </div>
 
     <div class="text-center my-10">
