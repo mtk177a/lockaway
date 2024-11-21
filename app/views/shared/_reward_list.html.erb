@@ -1,0 +1,5 @@
+<div class="list">
+  <% rewards.each do |habit_reward| %>
+    <%= render partial: 'shared/reward_card', locals: { reward: habit_reward.reward, habit_reward: habit_reward } %>
+  <% end %>
+</div>
