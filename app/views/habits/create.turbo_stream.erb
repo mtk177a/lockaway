@@ -1,0 +1,3 @@
+<%= turbo_stream.update 'habit_list' do %>
+  <%= render partial: 'shared/habit_list', locals: { habits: @habits } %>
+<% end %>

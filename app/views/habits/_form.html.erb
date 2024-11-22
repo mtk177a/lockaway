@@ -1,6 +1,6 @@
-<%= form_with(model: @habit, local: true) do |f| %>
+<%= form_with(model: @habit, data: { turbo: false }) do |f| %>
   <% if @habit.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-error">
       <h2><%= t('.errors.heading', count: @habit.errors.count) %></h2>
       <ul>
         <% @habit.errors.full_messages.each do |message| %>

@@ -116,11 +116,13 @@
 
   <div class="mx-5">
     <div class="flex mt-10 my-5">
-      <%= link_to t('.edit'), edit_habit_path(@habit), class: 'btn btn-secondary flex-auto w-full mr-2' %>
-      <%= link_to t('.delete'), habit_path(@habit), data: { turbo_method: :delete, turbo_confirm: t('.are_you_sure') }, class: 'btn btn-error flex-auto w-full ml-2' %>
+      <%= link_to t('.edit'), edit_habit_path(@habit), class: 'btn btn-secondary flex-auto w-full mr-2', data: { turbo: false } %>
+      <%= link_to t('.delete'), habit_path(@habit),
+            data: { turbo_method: :delete, turbo_confirm: t('.are_you_sure') },
+            class: 'btn btn-error flex-auto w-full ml-2' %>
     </div>
     <div class="mt-5 mb-10">
-      <%= link_to t('.back'), determine_back_path, class: "btn btn-primary btn-outline w-full" %>
+      <%= link_to t('.back'), determine_back_path, class: "btn btn-primary btn-outline w-full", data: { turbo: false } %>
     </div>
   </div>
 </div>
