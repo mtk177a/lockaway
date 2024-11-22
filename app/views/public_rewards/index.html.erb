@@ -6,9 +6,9 @@
       <%= render 'shared/reward_search_sort', url: public_rewards_path %>
     </div>
 
-    <div id="reward_list">
+    <turbo-frame id="reward_list">
       <%= render 'shared/reward_list', rewards: @habit_rewards %>
-    </div>
+    </turbo-frame>
 
     <div class="text-center my-10">
       <%= paginate @habit_rewards %>

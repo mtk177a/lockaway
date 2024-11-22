@@ -6,9 +6,9 @@
       <%= render 'shared/habit_search_sort', url: public_habits_path %>
     </div>
 
-    <div id="habit_list">
+    <turbo-frame id="habit_list">
       <%= render 'shared/habit_list', habits: @habits %>
-    </div>
+    </turbo-frame>
 
     <div class="text-center my-10">
       <%= paginate @habits %>

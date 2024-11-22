@@ -30,10 +30,18 @@ class HabitsController < ApplicationController
   def create
     @habit = current_user.habits.build(habit_params)
     if @habit.save
-      redirect_to habits_path, success: t('habits.create.success')
+      @q = Habit.where(user_id: current_user.id).ransack(params[:q])
+      @habits = @q.result.order(created_at: :desc).page(params[:page])
+
+      respond_to do |format|
+        format.html { redirect_to habits_path, success: t('habits.create.success') }
+        format.turbo_stream
+      end
     else
-      flash.now[:danger] = t('habits.create.failure')
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('habit_form', partial: 'habits/form', locals: { habit: @habit }) }
+      end
     end
   end
 
@@ -44,20 +52,36 @@ class HabitsController < ApplicationController
   # PATCH/PUT /habits/1
   def update
     if @habit.update(habit_params)
-      redirect_to habits_path, success: t('habits.update.success')
+      respond_to do |format|
+        format.html { redirect_to habits_path, success: t('habits.update.success') }
+        format.turbo_stream
+      end
     else
-      flash.now[:danger] = t('habits.update.failure')
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace('habit_form', partial: 'habits/form', locals: { habit: @habit }) }
+      end
     end
   end
 
   # DELETE /habits/1
   def destroy
     if @habit.destroy
-      redirect_to habits_path, success: t('habits.destroy.success'), status: :see_other
+      flash.now[:success] = t('habits.destroy.success')
+      @q = Habit.where(user_id: current_user.id).ransack(params[:q])
+      @habits = @q.result.order(created_at: :desc).page(params[:page])
+
+      respond_to do |format|
+        format.turbo_stream # Turboリクエストの場合は部分更新
+        format.html { redirect_to habits_path, success: t('habits.destroy.success') } # 通常リクエストの場合はリダイレクト
+      end
     else
-      flash[:danger] = t('habits.destroy.failure')
-      redirect_to habits_path, status: :see_other
+      flash.now[:error] = t('habits.destroy.failure')
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to habits_path, alert: t('habits.destroy.failure') }
+      end
     end
   end
 

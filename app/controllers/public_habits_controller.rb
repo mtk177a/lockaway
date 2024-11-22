@@ -9,8 +9,9 @@ class PublicHabitsController < ApplicationController
       format.html # デフォルトのHTMLレンダリング
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
-          'habit_list', # `index.html.erb` で定義するDOM ID
-          partial: 'shared/habit_list', locals: { habits: @habits }
+          'habit_list',
+          partial: 'shared/habit_list',
+          locals: { habits: @habits, context: :public_habits }
         )
       end
     end

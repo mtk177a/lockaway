@@ -7,13 +7,12 @@
       </div>
       <div class="flex-none">
         <% if current_user&.own?(habit) %>
-          <%= link_to t('habits.show.show'), habit_path(habit), class: 'btn btn-info text-white btn-xs' %>
+          <%= link_to t('habits.show.show'), habit_path(habit), class: 'btn btn-info text-white btn-xs', data: { turbo: false } %>
         <% else %>
-          <%= link_to t('habits.show.show'), public_habit_path(habit), class: 'btn btn-info text-white btn-xs' %>
+          <%= link_to t('habits.show.show'), public_habit_path(habit), class: 'btn btn-info text-white btn-xs', data: { turbo: false } %>
         <% end %>
         <% if editable %>
-          <%= link_to t('habits.show.edit'), edit_path, id: "button-edit-#{habit.id}", class: 'btn btn-warning text-white btn-xs' %>
-          <%= link_to t('habits.show.delete'), delete_path, id: "button-delete-#{habit.id}", data: { turbo_method: :delete, turbo_confirm: t('habits.show.are_you_sure') }, class: 'btn btn-error text-white btn-xs' %>
+          <%= link_to t('habits.show.edit'), edit_path, id: "button-edit-#{habit.id}", class: 'btn btn-warning text-white btn-xs', data: { turbo: false } %>
         <% end %>
       </div>
     </div>
