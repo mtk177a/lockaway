@@ -41,8 +41,9 @@ ja:
       all: "すべて"
       good: "良い"
       bad: "悪い"
-      search_by_name: "習慣名"
-      filter: "フィルター"
+      search_by_name: "習慣名で検索"
+      enter_habit_name: "習慣名を入力"
+      search: "検索"
     reward_search_sort:
       sort_by: "並び替え"
       newest: "新着順"
@@ -53,7 +54,7 @@ ja:
       bad: "悪い"
       username: "ユーザー名"
       search_by_name: "習慣名"
-      filter: "フィルター"
+      search: "検索"
   users:
     form:
       errors:
