@@ -20,4 +20,11 @@ class PublicHabitsController < ApplicationController
   def show
     @habit = Habit.public_habits.find(params[:id])
   end
+
+  def search
+    @habits = Habit.public_habits.where("name LIKE ?", "%#{params[:q]}%").limit(10)
+    respond_to do |format|
+      format.js { render partial: 'shared/habit_search_results' }
+    end
+  end
 end
