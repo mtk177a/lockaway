@@ -9,3 +9,9 @@ application.register("hello", HelloController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
+
+import { Autocomplete } from "stimulus-autocomplete"
+application.register("autocomplete", Autocomplete)
+
+import FormController from "./form_controller"
+application.register("form", FormController)
