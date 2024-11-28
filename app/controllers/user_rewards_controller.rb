@@ -25,4 +25,11 @@ class UserRewardsController < ApplicationController
       end
     end
   end
+
+  def search
+    @rewards = Reward.where("name LIKE ?", "%#{params[:q]}%").limit(10)
+    respond_to do |format|
+      format.js { render partial: 'shared/reward_search_results' }
+    end
+  end
 end
