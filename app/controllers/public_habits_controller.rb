@@ -1,5 +1,5 @@
 class PublicHabitsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show]
+  skip_before_action :require_login, only: [:index, :show, :search]
 
   def index
     @q = Habit.public_habits.ransack(params[:q])
