@@ -85,6 +85,13 @@ class HabitsController < ApplicationController
     end
   end
 
+  def search
+    @habits = Habit.where("name LIKE ?", "%#{params[:q]}%").limit(10)
+    respond_to do |format|
+      format.js { render partial: 'shared/habit_search_results' } # 絶対パスで指定
+    end
+  end
+
   private
 
   def set_habit

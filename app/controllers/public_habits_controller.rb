@@ -1,5 +1,5 @@
 class PublicHabitsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :show]
+  skip_before_action :require_login, only: [:index, :show, :search]
 
   def index
     @q = Habit.public_habits.ransack(params[:q])
@@ -19,5 +19,12 @@ class PublicHabitsController < ApplicationController
 
   def show
     @habit = Habit.public_habits.find(params[:id])
+  end
+
+  def search
+    @habits = Habit.public_habits.where("name LIKE ?", "%#{params[:q]}%").limit(10)
+    respond_to do |format|
+      format.js { render partial: 'shared/habit_search_results' }
+    end
   end
 end
