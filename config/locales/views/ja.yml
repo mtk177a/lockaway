@@ -53,7 +53,8 @@ ja:
       good: "良い"
       bad: "悪い"
       username: "ユーザー名"
-      search_by_name: "習慣名"
+      search_by_name: "報酬名で検索"
+      enter_reward_name: "報酬名を入力"
       search: "検索"
   users:
     form:
