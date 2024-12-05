@@ -41,8 +41,9 @@ ja:
       all: "すべて"
       good: "良い"
       bad: "悪い"
-      search_by_name: "習慣名"
-      filter: "フィルター"
+      search_by_name: "習慣名で検索"
+      enter_habit_name: "習慣名を入力"
+      search: "検索"
     reward_search_sort:
       sort_by: "並び替え"
       newest: "新着順"
@@ -52,8 +53,9 @@ ja:
       good: "良い"
       bad: "悪い"
       username: "ユーザー名"
-      search_by_name: "習慣名"
-      filter: "フィルター"
+      search_by_name: "報酬名で検索"
+      enter_reward_name: "報酬名を入力"
+      search: "検索"
   users:
     form:
       errors:
@@ -106,6 +108,7 @@ ja:
       bad: "悪い"
       search_by_name: "習慣名"
       filter: "フィルター"
+      no_habits: "習慣が見つかりませんでした。"
     form:
       errors:
         heading: "%{count}件のエラーが発生しました:"
@@ -149,6 +152,7 @@ ja:
       back: "戻る"
     edit:
       heading: "習慣の編集"
+      delete: "削除"
       back: "一覧に戻る"
     create:
       success: "習慣が正常に作成されました。"
@@ -235,6 +239,7 @@ ja:
       habit: "習慣"
       habit_type: "習慣タイプ"
       completed_on: "獲得日"
+      no_rewards: "報酬が見つかりませんでした。"
   public_rewards:
     index:
       heading: "みんなの獲得報酬一覧"

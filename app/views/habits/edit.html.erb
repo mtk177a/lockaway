@@ -2,10 +2,15 @@
   <h2 class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 mx-5"><%= t('.heading') %></h2>
 
   <div class="mx-5">
-    <%= render 'form', habit: @habit, button_text: t('helpers.submit.update') %>
+    <turbo-frame id="habit_form">
+      <%= render 'form', habit: @habit, button_text: t('helpers.submit.update') %>
+    </turbo-frame>
 
-    <div class="mt-5 mb-10">
-      <%= link_to t('.back'), determine_back_path, class: "btn btn-primary btn-outline w-full" %>
+    <div class="flex mt-10 my-5">
+      <%= link_to t('.delete'), habit_path(@habit),
+            data: { turbo_method: :delete, turbo_confirm: t('.are_you_sure') },
+            class: "btn btn-error flex-auto mr-2" %>
+      <%= link_to t('.back'), determine_back_path, class: "btn btn-primary btn-outline flex-auto ml-2", data: { turbo: false } %>
     </div>
   </div>
 </div>

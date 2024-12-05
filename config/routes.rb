@@ -15,12 +15,18 @@ Rails.application.routes.draw do
   get 'terms_of_service', to: 'static_pages#terms_of_service'
 
   resources :habits do
+    get :search, on: :collection
+
     resources :habit_logs, only: [:new, :create, :index, :update]
   end
 
-  resources :public_habits, only: [:index, :show]
+  resources :public_habits, only: [:index, :show] do
+    get :search, on: :collection
+  end
 
-  resources :public_rewards, only: [:index]
+  resources :public_rewards, only: [:index] do
+    get :search, on: :collection
+  end
 
   resources :rewards, only: [:index, :show] do
     collection do
@@ -30,7 +36,9 @@ Rails.application.routes.draw do
 
   resources :unlogged_habit_logs, only: [:index]
 
-  resources :user_rewards, only: [:index, :show]
+  resources :user_rewards, only: [:index, :show] do
+    get :search, on: :collection
+  end
 
   resources :users
 

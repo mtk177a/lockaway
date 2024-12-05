@@ -1,0 +1,6 @@
+<%= turbo_stream.replace 'flash' do %>
+  <%= render 'shared/flash_message' %>
+<% end %>
+<%= turbo_stream.replace 'main' do %>
+  <%= render partial: 'shared/habit_list', locals: { habits: @habits } %>
+<% end %>
